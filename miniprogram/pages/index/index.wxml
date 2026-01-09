@@ -1,0 +1,165 @@
+<navigation-bar title="墙绘报价工具" back="{{false}}" color="black" background="#F9F8F6"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y>
+  <view class="page">
+    <view class="calculator-card">
+      <view class="calculator-inputs">
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">👤</text>
+            <text>客户名称</text>
+          </view>
+          <view class="input-wrapper">
+            <input class="primary-input" placeholder="输入客户名称（可选）" value="{{customerName}}" bindinput="onCustomerNameInput" />
+          </view>
+        </view>
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">📐</text>
+            <text>绘制面积 (㎡)</text>
+          </view>
+          <view class="input-wrapper">
+            <input class="primary-input" type="digit" placeholder="输入面积，例如 50" value="{{area}}" bindinput="onAreaInput" />
+            <text class="unit-tag">㎡</text>
+          </view>
+        </view>
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">🎨</text>
+            <text>墙绘类型</text>
+          </view>
+          <radio-group class="style-cards-grid" bindchange="onTypeChange">
+            <label class="style-card {{selectedType === item.key ? 'active' : ''}}" wx:for="{{artTypes}}" wx:key="key">
+              <radio value="{{item.key}}" checked="{{selectedType === item.key}}" class="style-radio" />
+              <image class="style-img" src="{{item.img}}" mode="aspectFill" />
+              <text class="style-name">{{item.label}}</text>
+            </label>
+          </radio-group>
+        </view>
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">¥</text>
+            <text>自定义单价 (¥/㎡)</text>
+          </view>
+          <view class="custom-price-grid">
+            <view class="custom-price-item" wx:for="{{artTypes}}" wx:key="key" wx:if="{{item.key === selectedType}}">
+              <text class="custom-price-name">{{item.label}}</text>
+              <view class="input-wrapper">
+                <input class="primary-input price-input" type="digit" value="{{typePrices[item.key]}}" data-key="{{item.key}}" bindinput="onTypePriceInput" />
+                <text class="unit-tag">¥/㎡</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">🏗</text>
+            <text>垂直/特殊环境系数</text>
+          </view>
+          <radio-group class="technical-grid" bindchange="onSceneChange">
+            <label class="tech-option {{selectedScene === item.key ? 'active' : ''}}" wx:for="{{scenes}}" wx:key="key">
+              <radio value="{{item.key}}" checked="{{selectedScene === item.key}}" class="scene-radio" />
+              <view class="tech-texts">
+                <text class="tech-label">{{item.label}}</text>
+                <text class="tech-note">系数 x{{item.coeff}}</text>
+              </view>
+            </label>
+          </radio-group>
+        </view>
+        <view class="input-group">
+          <view class="label-title">
+            <text class="icon">⚖️</text>
+            <text>统一减免 (按㎡减免)</text>
+          </view>
+          <view class="discount-grid">
+            <view class="discount-item">
+              <view class="discount-row">
+                <text class="discount-label">统一减免</text>
+                <view class="input-wrapper">
+                  <input class="primary-input price-input" type="digit" value="{{discountFlat}}" bindinput="onDiscountFlatInput" />
+                  <text class="unit-tag">¥/㎡</text>
+                </view>
+              </view>
+            </view>
+            <view class="discount-item">
+              <view class="discount-row">
+                <text class="discount-label">材料减免</text>
+                <view class="input-wrapper">
+                  <input class="primary-input price-input" type="digit" value="{{discountMaterial}}" bindinput="onDiscountMaterialInput" />
+                  <text class="unit-tag">¥</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="vertical-divider"></view>
+      <view class="calculator-results">
+        <view class="quote-card sidebar-mode">
+          <button class="floating-copy-btn" bindtap="onSaveImage" loading="{{isSaving}}" disabled="{{isSaving}}">
+            {{isSaving ? "生成中…" : "保存图片"}}
+          </button>
+          <view class="quote-header">
+            <text class="quote-brand">姐姐墙绘 报价单</text>
+            <text class="quote-customer" wx:if="{{hasCustomerName}}">尊敬的 {{customerName}}</text>
+            <text class="quote-id">{{previewDate}}</text>
+          </view>
+          <view class="quote-visual-ref">
+            <image class="preview-img" src="{{previewImage}}" mode="aspectFill" />
+            <text class="ref-tag">效果参考</text>
+          </view>
+          <view class="quote-body">
+            <view class="quote-section">
+              <view class="section-title">
+                <text>方案概览</text>
+              </view>
+              <view class="info-grid">
+                <view class="info-item">
+                  <text class="label">墙绘类型</text>
+                  <text class="value">{{previewStyleName}}</text>
+                </view>
+                <view class="info-item">
+                  <text class="label">预估面积</text>
+                  <text class="value">{{previewArea}}</text>
+                </view>
+                <view class="info-item">
+                  <text class="label">环境方案</text>
+                  <text class="value">{{previewScene}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="divider-dashed"></view>
+            <view class="quote-section">
+              <view class="section-title">
+                <text>费用构成</text>
+              </view>
+              <view class="fee-table">
+                <view class="fee-row">
+                  <text>规模减免</text>
+                  <text>{{previewDiscountFee}}</text>
+                </view>
+                <view class="fee-row highlight">
+                  <text>预估折合总计</text>
+                  <text>{{previewTotalPrice}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="quote-summary">
+              <view class="price-wrap">
+                <text class="currency">¥</text>
+                <text class="price">{{finalPriceText}}</text>
+              </view>
+              <text class="price-notice">* 建议估算价，正式报价以合同为准</text>
+              <text class="price-warning" wx:if="{{hasMinPriceRule}}">
+                已应用起步价保护，按 ¥{{minPriceText}} 计价
+              </text>
+            </view>
+          </view>
+          <view class="badges-container">
+            <view class="badge {{item.type}}" wx:for="{{badges}}" wx:key="text">{{item.text}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<canvas type="2d" id="quoteCanvas" class="capture-canvas"></canvas>
