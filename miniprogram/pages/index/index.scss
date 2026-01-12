@@ -1,22 +1,28 @@
 page {
-  background: linear-gradient(180deg, #f4f3f1 0%, #e8edf8 100%);
+  background-color: #f3f0eb;
+}
+
+.page-root {
+  position: relative;
+  min-height: 100vh;
 }
 
 .page {
-  min-height: 100vh;
-  padding: 12vh 24rpx 32rpx;
+  height: 100vh;
   box-sizing: border-box;
+  padding: 12vh 24rpx 5vh;
+  background: linear-gradient(180deg, #f3f0eb 0%, #e2ded7 100%);
 }
 
 .quote-container {
   max-width: 750rpx;
   margin: 0 auto;
-  background: #ffffff;
+  background: #f8f4ef;
   border-radius: 24rpx;
-  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16rpx 40rpx rgba(56, 49, 43, 0.06);
   padding: 40rpx 36rpx 32rpx;
   box-sizing: border-box;
-  color: #202124;
+  color: #4a4742;
   font-size: 26rpx;
   line-height: 1.6;
 }
@@ -35,7 +41,7 @@ page {
 .client-name {
   display: block;
   font-size: 26rpx;
-  color: #5f6368;
+  color: #8b8680;
   margin-bottom: 8rpx;
 }
 
@@ -59,23 +65,23 @@ page {
 .section-table {
   border-radius: 16rpx;
   overflow: hidden;
-  border: 2rpx solid #dadce0;
+  border: 2rpx solid #d3cbc2;
 }
 
 .table-row {
   display: flex;
-  background-color: #ffffff;
+  background-color: #f9f5f0;
 }
 
 .table-header {
-  background: #f8f9fa;
+  background: #e5ddd4;
   font-weight: 600;
 }
 
 .section-table .table-row text {
   padding: 16rpx 12rpx;
   font-size: 24rpx;
-  border-bottom: 2rpx solid #f1f3f4;
+  border-bottom: 2rpx solid #e8dfd6;
   box-sizing: border-box;
 }
 
@@ -101,19 +107,82 @@ page {
 .section-body {
   margin-top: 12rpx;
   padding: 20rpx 24rpx;
-  background: #f7f6f4;
+  background: #efe7df;
   border-radius: 16rpx;
 }
 
 .section-text {
   display: block;
   font-size: 24rpx;
-  color: #44413c;
+  color: #6b665f;
   line-height: 1.7;
 }
 
 .section-text + .section-text {
   margin-top: 8rpx;
+}
+
+.action-bar {
+  margin-top: 40rpx;
+  display: flex;
+  gap: 24rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  line-height: 88rpx;
+  text-align: center;
+  padding: 0;
+}
+
+.action-btn.secondary {
+  background-color: transparent;
+  border: 2rpx solid #c0a28a;
+  color: #6b665f;
+}
+
+.action-btn.primary {
+  background-color: #c0a28a;
+  border: 2rpx solid #c0a28a;
+  color: #fdfaf7;
+}
+
+.bottom-dialog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10vh;
+  background-color: #f8f4ef;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+  box-shadow: 0 -10rpx 30rpx rgba(56, 49, 43, 0.12);
+  transition: height 250ms ease-out;
+}
+
+.bottom-dialog.expanded {
+  height: 80vh;
+}
+
+.bottom-dialog-header {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-dialog-handle {
+  width: 96rpx;
+  height: 8rpx;
+  border-radius: 999rpx;
+  background-color: #d3cbc2;
+}
+
+.bottom-dialog-body {
+  height: calc(100% - 60rpx);
 }
 
 @media screen and (max-width: 750px) {
