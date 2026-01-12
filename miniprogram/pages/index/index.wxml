@@ -65,6 +65,13 @@
     </view>
   </view>
 
+  <!-- 底部对话框遮罩 -->
+  <view
+    wx:if="{{bottomDialogExpanded}}"
+    class="bottom-dialog-mask"
+    bindtap="toggleBottomDialog"
+  ></view>
+
   <!-- 底部对话框 -->
   <view
     class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}"
