@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "quote-preview": "/components/quote-preview/quote-preview"
+  }
+}
