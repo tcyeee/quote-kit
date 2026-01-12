@@ -1,7 +1,7 @@
 <view class="page-root">
   <quote-preview />
   <!-- 底部对话框遮罩 -->
-  <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog"></view>
+  <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
   <!-- 底部对话框 -->
   <view class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}" style="height: {{bottomDialogExpanded ? options.bottomDialogExpandedHeight : options.bottomDialogCollapsedHeight}}vh;">
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog">

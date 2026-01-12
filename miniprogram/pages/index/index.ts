@@ -7,6 +7,7 @@ Page({
     },
     bottomDialogExpanded: false,
   },
+  onBottomDialogMaskTouchMove() {},
   toggleBottomDialog() {
     this.setData({
       bottomDialogExpanded: !this.data.bottomDialogExpanded,
