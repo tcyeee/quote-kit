@@ -1,7 +1,15 @@
 // app.ts
+// 小程序全局入口，负责初始化全局数据和生命周期
 App<IAppOption>({
   globalData: {
+    // 当前小程序使用的默认报价详情
     quoteDetail: {
+      // 报价对应的客户信息
+      client: {
+        name: "熬夜汽水设计工作室",
+        logoUrl: "https://example.com/assets/logo.png",
+      },
+      // 报价中按类别分组的服务项目列表
       pricingItems: [
         {
           name: "品牌设计",
