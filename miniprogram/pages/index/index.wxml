@@ -75,8 +75,7 @@
 
   <!-- 底部对话框遮罩 -->
   <view
-    wx:if="{{bottomDialogExpanded}}"
-    class="bottom-dialog-mask"
+    class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}"
     bindtap="toggleBottomDialog"
   ></view>
 

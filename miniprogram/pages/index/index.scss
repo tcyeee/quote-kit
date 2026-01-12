@@ -125,7 +125,7 @@ page {
 }
 
 .action-bar {
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   display: flex;
   gap: 24rpx;
 }
@@ -154,6 +154,7 @@ page {
 
 .bottom-dialog {
   position: fixed;
+  padding: 0 24rpx;
   left: 0;
   right: 0;
   bottom: 0;
@@ -166,6 +167,7 @@ page {
 }
 
 .bottom-dialog-header {
+  padding-bottom: 15px;
   height: 60rpx;
   display: flex;
   align-items: center;
@@ -180,7 +182,7 @@ page {
 }
 
 .bottom-dialog-body {
-  padding: 24rpx 36rpx;
+  padding-bottom: 36rpx;
   height: calc(100% - 60rpx);
 }
 
@@ -190,8 +192,20 @@ page {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.22);
+  background-color: rgba(0, 0, 0, 0);
   z-index: 10;
+  transition: background-color 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+}
+
+.bottom-dialog-mask.visible {
+  background-color: rgba(0, 0, 0, 0.22);
+  pointer-events: auto;
+}
+
+.bottom-dialog-mask.hidden {
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
 }
 
 @media screen and (max-width: 750px) {
