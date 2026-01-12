@@ -7,123 +7,6 @@ page {
   min-height: 100vh;
 }
 
-.page {
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 12vh 24rpx 25vh;
-  background: linear-gradient(180deg, #f3f0eb 0%, #e2ded7 100%);
-}
-
-.page-scroll {
-  height: 100vh;
-}
-
-.quote-container {
-  background: #f8f4ef;
-  border-radius: 24rpx;
-  box-shadow: 0 16rpx 40rpx rgba(56, 49, 43, 0.06);
-  box-sizing: border-box;
-  padding: 40rpx 36rpx 32rpx;
-  color: #4a4742;
-  font-size: 26rpx;
-  line-height: 1.6;
-}
-
-.quote-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 32rpx;
-}
-
-.header-right {
-  text-align: right;
-}
-
-.client-name {
-  display: block;
-  font-size: 26rpx;
-  color: #8b8680;
-  margin-bottom: 8rpx;
-}
-
-.quote-title {
-  display: block;
-  font-size: 34rpx;
-  font-weight: 600;
-  letter-spacing: 4rpx;
-}
-
-.quote-section {
-  margin-top: 32rpx;
-}
-
-.section-title {
-  font-size: 26rpx;
-  font-weight: 600;
-  margin-bottom: 16rpx;
-}
-
-.section-table {
-  border-radius: 16rpx;
-  overflow: hidden;
-  border: 2rpx solid #d3cbc2;
-}
-
-.table-row {
-  display: flex;
-  background-color: #f9f5f0;
-}
-
-.table-header {
-  background: #e5ddd4;
-  font-weight: 600;
-}
-
-.section-table .table-row text {
-  padding: 16rpx 12rpx;
-  font-size: 24rpx;
-  border-bottom: 2rpx solid #e8dfd6;
-  box-sizing: border-box;
-}
-
-.col-name {
-  flex: 2;
-}
-
-.col-unit-price {
-  flex: 1.5;
-  text-align: center;
-}
-
-.col-quantity {
-  flex: 1;
-  text-align: center;
-}
-
-.col-delivery {
-  flex: 1.2;
-  text-align: center;
-}
-
-.section-body {
-  margin-top: 12rpx;
-  padding: 20rpx 24rpx;
-  background: #efe7df;
-  border-radius: 16rpx;
-}
-
-.section-text {
-  display: block;
-  font-size: 24rpx;
-  color: #6b665f;
-  line-height: 1.7;
-}
-
-.section-text + .section-text {
-  margin-top: 8rpx;
-}
-
 .bottom-dialog {
   position: fixed;
   padding: 0 24rpx;
@@ -153,11 +36,6 @@ page {
   background-color: #d3cbc2;
 }
 
-.bottom-dialog-body {
-  padding-bottom: 36rpx;
-  height: calc(100% - 60rpx);
-}
-
 .bottom-dialog-mask {
   position: fixed;
   left: 0;
@@ -178,21 +56,4 @@ page {
 .bottom-dialog-mask.hidden {
   background-color: rgba(0, 0, 0, 0);
   pointer-events: none;
-}
-
-@media screen and (max-width: 750px) {
-  .quote-container {
-    border-radius: 18rpx;
-    padding: 32rpx 24rpx 28rpx;
-    box-shadow: 0 12rpx 28rpx rgba(0, 0, 0, 0.05);
-  }
-
-  .quote-title {
-    font-size: 30rpx;
-  }
-
-  .section-table .table-row text {
-    padding: 12rpx 8rpx;
-    font-size: 22rpx;
-  }
 }
