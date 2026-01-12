@@ -2,12 +2,6 @@ page {
   background-color: #f3f0eb;
 }
 
-page ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  background: transparent;
-}
-
 .page-root {
   position: relative;
   min-height: 100vh;
