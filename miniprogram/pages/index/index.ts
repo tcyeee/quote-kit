@@ -1,86 +1,106 @@
 Page({
   data: {
-    title: '露台与地下空间设计报价及服务书',
-    projectName: '露台及地下空间氛围设计',
-    designScope: '整体空间设计',
-    feeItems: [
+    "client": {
+      "name": "熬夜汽水设计工作室",
+      "logoUrl": "https://example.com/assets/logo.png"
+    },
+    "pricingItems": [
       {
-        no: '01',
-        name: '露台空间设计',
-        area: '210（预估）',
-        unitPrice: '600',
-        total: '126000',
-        remark: '含前期资料、方案设计、现场勘查、深化设计及汇报调整',
+        "name": "品牌设计",
+        "items": [
+          {
+            "name": "标志(LOGO)设计",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 600,
+            "quantity": 1,
+            "deliveryPeriodDays": 5
+          },
+          {
+            "name": "品牌视觉识别(VI)设计",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 4000,
+            "quantity": 1,
+            "deliveryPeriodDays": -1
+          }
+        ]
       },
       {
-        no: '02',
-        name: '地下空间设计',
-        area: '预估',
-        unitPrice: '600',
-        total: '126000',
-        remark: '含整体空间动线梳理、设计方案及深化服务',
-      },
+        "name": "平面设计",
+        "items": [
+          {
+            "name": "海报设计",
+            "description": null,
+            "unit": "张",
+            "unitPrice": 200,
+            "quantity": 5,
+            "deliveryPeriodDays": 2
+          },
+          {
+            "name": "名片/会员卡设计",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "DM/宣传单",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "画册/手册/宣传册",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "三折页",
+            "description": null,
+            "unit": "张",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "展架/易拉宝设计",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "主KV画面设计",
+            "description": null,
+            "unit": "项",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          },
+          {
+            "name": "文化墙",
+            "description": null,
+            "unit": "平方米",
+            "unitPrice": 150,
+            "quantity": 1,
+            "deliveryPeriodDays": 15
+          }
+        ]
+      }
     ],
-    feeNotes: [
-      '楼上、楼梯等局部区域另行估算，大致预算以本单为参考。',
-      '备注：',
-      '1. 本报价为设计费用，不含施工及材料费用；',
-      '2. 本报价为暂估价，最终以实际完成工作量结算；',
-      '3. 若有新增区域或设计内容，将根据实际情况另行报价。',
-    ],
-    serviceMain: [
-      {
-        service: '品牌与整体策略',
-        detail: '品牌调研、定位梳理、空间形象基调确定、风格色彩体系建议。',
-      },
-      {
-        service: '空间平面与立面设计',
-        detail: '动线分析、功能划分、平面布置图、立面设计图、关键节点大样。',
-      },
-      {
-        service: '视觉与氛围设计',
-        detail: '空间氛围设定、陈列建议、软装搭配建议、局部图形与文字系统建议。',
-      },
-      {
-        service: '全流程汇报交付',
-        detail: '含阶段性线上线下沟通汇报，提供电子文件及可打印稿件。',
-      },
-    ],
-    serviceConstruction: [
-      {
-        service: '施工图纸配合',
-        detail: '对接施工单位，提供必要尺寸说明和深化建议。',
-      },
-      {
-        service: '施工过程设计跟进',
-        detail: '根据现场进度，对重要节点进行设计答疑与适配优化建议。',
-      },
-      {
-        service: '材料与样板建议',
-        detail: '就主要材料与工艺样板提供设计角度的建议与把控方向。',
-      },
-    ],
-    paymentPlans: [
-      {
-        times: '第一次',
-        ratio: '60%',
-        amount: '合同总额的 60%',
-        time: '合同签订后三个工作日内',
-      },
-      {
-        times: '第二次',
-        ratio: '30%',
-        amount: '合同总额的 30%',
-        time: '方案设计确认并进入深化阶段后三个工作日内',
-      },
-      {
-        times: '第三次',
-        ratio: '10%',
-        amount: '合同总额的 10%',
-        time: '施工图及相关成果交付完成后三个工作日内',
-      },
-    ],
-    footerDate: '20250305',
-    footerCompany: '北京介介设计有限公司',
+    "serviceProcess": {
+      "depositRatio": 0.3,
+      "finalPaymentRatio": 0.7
+    },
+    "overallDeliveryPeriodDays": 90,
+    "serviceTerms": "To be determined"
   },
 });

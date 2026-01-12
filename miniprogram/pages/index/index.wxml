@@ -1,104 +1,65 @@
 <scroll-view class="page" scroll-y>
-  <view class="quote-wrapper">
-    <view class="quote-card">
-      <view class="quote-header">
-        <text class="quote-title">{{title}}</text>
-        <view class="quote-meta">
-          <text class="meta-line">1. 项目名称：{{projectName}}</text>
-          <text class="meta-line">2. 设计内容：{{designScope}}</text>
+  <view class="quote-container">
+    <view class="quote-header">
+      <!-- <image class="client-logo" src="{{client.logoUrl}}" mode="aspectFit" /> -->
+      <view class="header-right">
+        <text class="client-name">{{client.name}}</text>
+        <text class="quote-title">服务报价单</text>
+      </view>
+    </view>
+
+    <view
+      class="quote-section"
+      wx:for="{{pricingItems}}"
+      wx:for-item="category"
+      wx:key="name"
+    >
+      <view class="section-title">{{category.name}}</view>
+      <view class="section-table">
+        <view class="table-row table-header">
+          <text class="col-name">项目</text>
+          <text class="col-unit-price">单价</text>
+          <text class="col-quantity">数量</text>
+          <text class="col-delivery">周期</text>
+        </view>
+        <view
+          class="table-row"
+          wx:for="{{category.items}}"
+          wx:for-item="service"
+          wx:key="name"
+        >
+          <text class="col-name">{{service.name}}</text>
+          <text class="col-unit-price"
+            >{{service.unitPrice}} 元/{{service.unit}}</text
+          >
+          <text class="col-quantity">{{service.quantity}}</text>
+          <text class="col-delivery"
+            >{{service.deliveryPeriodDays > 0 ? service.deliveryPeriodDays +
+            ' 天' : '待定'}}</text
+          >
         </view>
       </view>
+    </view>
 
-      <view class="quote-section">
-        <view class="section-title">
-          <text>3. 费用报价</text>
-        </view>
-        <view class="table table-fee">
-          <view class="table-row table-header">
-            <text class="col-no">序号</text>
-            <text class="col-content">内容</text>
-            <text class="col-area">面积㎡</text>
-            <text class="col-unit">单价(元/㎡)</text>
-            <text class="col-total">合计(元)</text>
-            <text class="col-remark">备注</text>
-          </view>
-          <view class="table-row" wx:for="{{feeItems}}" wx:key="no">
-            <text class="col-no">{{item.no}}</text>
-            <text class="col-content">{{item.name}}</text>
-            <text class="col-area">{{item.area}}</text>
-            <text class="col-unit">{{item.unitPrice}}</text>
-            <text class="col-total">{{item.total}}</text>
-            <text class="col-remark">{{item.remark}}</text>
-          </view>
-        </view>
-        <view class="section-notes">
-          <text class="note-line" wx:for="{{feeNotes}}" wx:key="*this">
-            {{item}}
-          </text>
-        </view>
+    <view class="quote-section">
+      <view class="section-title">服务流程与付款</view>
+      <view class="section-body">
+        <text class="section-text"
+          >定金比例：{{serviceProcess.depositRatio * 100}}%</text
+        >
+        <text class="section-text"
+          >尾款比例：{{serviceProcess.finalPaymentRatio * 100}}%</text
+        >
+        <text class="section-text"
+          >整体预计工期：{{overallDeliveryPeriodDays}} 天</text
+        >
       </view>
+    </view>
 
-      <view class="quote-section">
-        <view class="section-title">
-          <text>4. 服务说明</text>
-        </view>
-
-        <view class="subsection">
-          <view class="subsection-label">
-            <text>4.1 服务内容</text>
-          </view>
-          <view class="table table-service">
-            <view class="table-row table-header">
-              <text class="col-service-title">服务内容</text>
-              <text class="col-service-detail">所拟提供成果及服务</text>
-            </view>
-            <view class="table-row" wx:for="{{serviceMain}}" wx:key="service">
-              <text class="col-service-title">{{item.service}}</text>
-              <text class="col-service-detail">{{item.detail}}</text>
-            </view>
-          </view>
-        </view>
-
-        <view class="subsection">
-          <view class="subsection-label">
-            <text>4.2 施工配合</text>
-          </view>
-          <view class="table table-service">
-            <view class="table-row table-header">
-              <text class="col-service-title">服务内容</text>
-              <text class="col-service-detail">配合方式说明</text>
-            </view>
-            <view class="table-row" wx:for="{{serviceConstruction}}" wx:key="service">
-              <text class="col-service-title">{{item.service}}</text>
-              <text class="col-service-detail">{{item.detail}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="quote-section">
-        <view class="section-title">
-          <text>5. 付款比例</text>
-        </view>
-        <view class="table table-payment">
-          <view class="table-row table-header">
-            <text class="col-pay-times">付款次数</text>
-            <text class="col-pay-ratio">付款比例</text>
-            <text class="col-pay-amount">金额(元)</text>
-            <text class="col-pay-time">时间</text>
-          </view>
-          <view class="table-row" wx:for="{{paymentPlans}}" wx:key="times">
-            <text class="col-pay-times">{{item.times}}</text>
-            <text class="col-pay-ratio">{{item.ratio}}</text>
-            <text class="col-pay-amount">{{item.amount}}</text>
-            <text class="col-pay-time">{{item.time}}</text>
-          </view>
-        </view>
-      </view>
-
-      <view class="quote-footer">
-        <text class="footer-date">{{footerDate}}</text>
-        <text class="footer-company">{{footerCompany}}</text>
+    <view class="quote-section" wx:if="{{serviceTerms}}">
+      <view class="section-title">服务条款</view>
+      <view class="section-body">
+        <text class="section-text">{{serviceTerms}}</text>
       </view>
     </view>
   </view>
