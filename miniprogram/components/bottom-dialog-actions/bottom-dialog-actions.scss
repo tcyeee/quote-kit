@@ -1,0 +1,33 @@
+.bottom-dialog-body {
+  padding-bottom: 36rpx;
+  height: calc(100% - 60rpx);
+}
+
+.action-bar {
+  margin-top: 20rpx;
+  display: flex;
+  gap: 24rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  line-height: 88rpx;
+  text-align: center;
+  padding: 0;
+}
+
+.action-btn.secondary {
+  background-color: transparent;
+  border: 2rpx solid #c0a28a;
+  color: #6b665f;
+}
+
+.action-btn.primary {
+  background-color: #c0a28a;
+  border: 2rpx solid #c0a28a;
+  color: #fdfaf7;
+}
+

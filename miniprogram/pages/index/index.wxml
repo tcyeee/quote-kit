@@ -7,11 +7,6 @@
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog">
       <view class="bottom-dialog-handle"></view>
     </view>
-    <view class="bottom-dialog-body">
-      <view class="action-bar">
-        <button class="action-btn secondary">保存图片</button>
-        <button class="action-btn primary">发送报价单</button>
-      </view>
-    </view>
+    <bottom-dialog-actions />
   </view>
 </view>
