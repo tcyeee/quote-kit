@@ -1,5 +1,11 @@
 Page({
   data: {
+    options: {
+      // 底部弹窗收起时候高度(vh)
+      bottomDialogCollapsedHeight: 20,
+      // 底部弹窗展开时候高度(vh)
+      bottomDialogExpandedHeight: 85,
+    },
     client: {
       name: "熬夜汽水设计工作室",
       logoUrl: "https://example.com/assets/logo.png",

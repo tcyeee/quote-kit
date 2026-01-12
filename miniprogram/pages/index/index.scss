@@ -155,16 +155,11 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 10vh;
   background-color: #f8f4ef;
   border-top-left-radius: 24rpx;
   border-top-right-radius: 24rpx;
   box-shadow: 0 -10rpx 30rpx rgba(56, 49, 43, 0.12);
-  transition: height 250ms ease-out;
-}
-
-.bottom-dialog.expanded {
-  height: 80vh;
+  transition: height 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .bottom-dialog-header {
