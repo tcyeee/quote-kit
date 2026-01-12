@@ -7,20 +7,24 @@
     <view class="theme-label">主题选择</view>
     <view class="theme-options">
       <view class="theme-option active" data-theme="amber">
-        <view class="theme-preview amber"></view>
-        <text>琥珀</text>
+        <image class="theme-bg" src="../../assets/button_1.png" mode="aspectFill"></image>
+        <view class="theme-overlay"></view>
+        <text class="theme-name">琥珀</text>
       </view>
       <view class="theme-option" data-theme="neon">
-        <view class="theme-preview neon"></view>
-        <text>霓虹</text>
+        <image class="theme-bg" src="../../assets/button_2.png" mode="aspectFill"></image>
+        <view class="theme-overlay"></view>
+        <text class="theme-name">霓虹</text>
       </view>
       <view class="theme-option" data-theme="moonlight">
-        <view class="theme-preview moonlight"></view>
-        <text>月光</text>
+        <image class="theme-bg" src="../../assets/button_3.png" mode="aspectFill"></image>
+        <view class="theme-overlay"></view>
+        <text class="theme-name">月光</text>
       </view>
       <view class="theme-option" data-theme="deep-sea">
-        <view class="theme-preview deep-sea"></view>
-        <text>深海</text>
+        <image class="theme-bg" src="../../assets/button_4.png" mode="aspectFill"></image>
+        <view class="theme-overlay"></view>
+        <text class="theme-name">深海</text>
       </view>
     </view>
   </view>
