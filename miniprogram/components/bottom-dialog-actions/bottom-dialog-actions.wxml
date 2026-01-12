@@ -28,4 +28,26 @@
       </view>
     </view>
   </view>
+  <view class="quote-config">
+    <view class="config-section">
+      <view class="config-label">客户名称</view>
+      <input class="config-input" value="{{clientName}}" placeholder="请输入客户名称" bindinput="onClientNameInput" />
+    </view>
+    <view class="config-section">
+      <view class="config-label">整体工期(天)</view>
+      <input class="config-input" type="number" value="{{overallDeliveryPeriodDays}}" placeholder="请输入工期天数" bindinput="onOverallDeliveryPeriodInput" />
+    </view>
+    <view class="config-section">
+      <view class="config-label">定金比例(%)</view>
+      <input class="config-input" type="number" value="{{depositRatioPercent}}" placeholder="例如 30" bindinput="onDepositRatioInput" />
+    </view>
+    <view class="config-section">
+      <view class="config-label">尾款比例(%)</view>
+      <input class="config-input" type="number" value="{{finalPaymentRatioPercent}}" placeholder="例如 70" bindinput="onFinalPaymentRatioInput" />
+    </view>
+    <view class="config-section">
+      <view class="config-label">服务条款</view>
+      <textarea class="config-textarea" value="{{serviceTerms}}" placeholder="请输入服务条款" bindinput="onServiceTermsInput"></textarea>
+    </view>
+  </view>
 </view>

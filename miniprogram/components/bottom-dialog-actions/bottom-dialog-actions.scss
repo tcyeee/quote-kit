@@ -96,3 +96,40 @@
   border: 2rpx solid #c0a28a;
   color: #fdfaf7;
 }
+
+.quote-config {
+  margin-top: 40rpx;
+  padding: 24rpx 0 0;
+  border-top: 2rpx solid #e0d7ce;
+}
+
+.config-section + .config-section {
+  margin-top: 24rpx;
+}
+
+.config-label {
+  font-size: 24rpx;
+  color: #6b665f;
+  margin-bottom: 8rpx;
+}
+
+.config-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d6cdc4;
+  font-size: 24rpx;
+}
+
+.config-textarea {
+  width: 100%;
+  min-height: 140rpx;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d6cdc4;
+  font-size: 24rpx;
+}
