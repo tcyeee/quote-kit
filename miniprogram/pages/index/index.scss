@@ -1,22 +1,16 @@
 page {
-  background: #f4f3f1;
+  background: linear-gradient(180deg, #f4f3f1 0%, #e8edf8 100%);
 }
 
 .page {
   min-height: 100vh;
-  padding: 32rpx 24rpx;
+  padding: 12vh 24rpx 32rpx;
   box-sizing: border-box;
 }
 
-.quote-wrapper {
+.quote-container {
   max-width: 750rpx;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.quote-card {
-  width: 100%;
   background: #ffffff;
   border-radius: 24rpx;
   box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.06);
@@ -28,26 +22,28 @@ page {
 }
 
 .quote-header {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 32rpx;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.client-name {
+  display: block;
+  font-size: 26rpx;
+  color: #5f6368;
+  margin-bottom: 8rpx;
 }
 
 .quote-title {
   display: block;
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-weight: 600;
   letter-spacing: 4rpx;
-  margin-bottom: 24rpx;
-}
-
-.quote-meta {
-  text-align: left;
-  font-size: 26rpx;
-  color: #44413c;
-}
-
-.meta-line {
-  display: block;
 }
 
 .quote-section {
@@ -60,115 +56,68 @@ page {
   margin-bottom: 16rpx;
 }
 
-.table {
-  border-top: 2rpx solid #3c4043;
-  border-left: 2rpx solid #3c4043;
+.section-table {
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 2rpx solid #dadce0;
 }
 
 .table-row {
   display: flex;
-}
-
-.table-row text {
-  padding: 14rpx 12rpx;
-  font-size: 24rpx;
-  border-right: 2rpx solid #3c4043;
-  border-bottom: 2rpx solid #3c4043;
-  box-sizing: border-box;
+  background-color: #ffffff;
 }
 
 .table-header {
-  background: #f7f6f4;
+  background: #f8f9fa;
   font-weight: 600;
 }
 
-.table-fee .col-no {
-  flex: 0 0 80rpx;
+.section-table .table-row text {
+  padding: 16rpx 12rpx;
+  font-size: 24rpx;
+  border-bottom: 2rpx solid #f1f3f4;
+  box-sizing: border-box;
 }
 
-.table-fee .col-content {
+.col-name {
   flex: 2;
 }
 
-.table-fee .col-area {
-  flex: 1.1;
+.col-unit-price {
+  flex: 1.5;
   text-align: center;
 }
 
-.table-fee .col-unit {
+.col-quantity {
+  flex: 1;
+  text-align: center;
+}
+
+.col-delivery {
   flex: 1.2;
   text-align: center;
 }
 
-.table-fee .col-total {
-  flex: 1.4;
-  text-align: center;
+.section-body {
+  margin-top: 12rpx;
+  padding: 20rpx 24rpx;
+  background: #f7f6f4;
+  border-radius: 16rpx;
 }
 
-.table-fee .col-remark {
-  flex: 2.2;
-}
-
-.section-notes {
-  margin-top: 16rpx;
-  font-size: 22rpx;
-  color: #66625b;
-}
-
-.note-line {
+.section-text {
   display: block;
-}
-
-.subsection {
-  margin-top: 20rpx;
-}
-
-.subsection-label {
-  margin-bottom: 8rpx;
   font-size: 24rpx;
-  color: #55514b;
+  color: #44413c;
+  line-height: 1.7;
 }
 
-.table-service .col-service-title {
-  flex: 0.9;
-}
-
-.table-service .col-service-detail {
-  flex: 2.1;
-}
-
-.table-payment .col-pay-times {
-  flex: 0.9;
-}
-
-.table-payment .col-pay-ratio {
-  flex: 0.8;
-  text-align: center;
-}
-
-.table-payment .col-pay-amount {
-  flex: 1.5;
-}
-
-.table-payment .col-pay-time {
-  flex: 1.8;
-}
-
-.quote-footer {
-  margin-top: 40rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 22rpx;
-  color: #5f6368;
-}
-
-.footer-date {
-  margin-bottom: 4rpx;
+.section-text + .section-text {
+  margin-top: 8rpx;
 }
 
 @media screen and (max-width: 750px) {
-  .quote-card {
+  .quote-container {
     border-radius: 18rpx;
     padding: 32rpx 24rpx 28rpx;
     box-shadow: 0 12rpx 28rpx rgba(0, 0, 0, 0.05);
@@ -178,7 +127,7 @@ page {
     font-size: 30rpx;
   }
 
-  .table-row text {
+  .section-table .table-row text {
     padding: 12rpx 8rpx;
     font-size: 22rpx;
   }
