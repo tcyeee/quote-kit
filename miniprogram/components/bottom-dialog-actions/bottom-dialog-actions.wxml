@@ -3,5 +3,25 @@
     <button class="action-btn secondary">保存图片</button>
     <button class="action-btn primary">发送报价单</button>
   </view>
+  <view class="theme-selector">
+    <view class="theme-label">主题选择</view>
+    <view class="theme-options">
+      <view class="theme-option active" data-theme="amber">
+        <view class="theme-preview amber"></view>
+        <text>琥珀</text>
+      </view>
+      <view class="theme-option" data-theme="neon">
+        <view class="theme-preview neon"></view>
+        <text>霓虹</text>
+      </view>
+      <view class="theme-option" data-theme="moonlight">
+        <view class="theme-preview moonlight"></view>
+        <text>月光</text>
+      </view>
+      <view class="theme-option" data-theme="deep-sea">
+        <view class="theme-preview deep-sea"></view>
+        <text>深海</text>
+      </view>
+    </view>
+  </view>
 </view>
-
