@@ -74,50 +74,7 @@
                   </view>
                 </view>
                 <!-- 服务项目 -->
-                <view wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name" class="config-schema-pill">
-                  <view class="service-header flex">
-                    <view class="service-summary">
-                      <view class="service-title">{{service.name}}</view>
-                      <view class="service-meta">
-                        <text>¥{{service.unitPrice}}/{{service.unit}}</text>
-                        <text class="service-meta-separator">·</text>
-                        <text>x{{service.quantity}}</text>
-                        <text class="service-meta-separator">·</text>
-                        <text wx:if="{{service.deliveryPeriodDays <= 0}}">待定</text>
-                        <text wx:else>{{service.deliveryPeriodDays}}天</text>
-                      </view>
-                    </view>
-                    <view class="service-actions">
-                      <span class="icon--delete-16-regular icon-size-24 icon-color-error" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onDeleteService"></span>
-                      <span class="icon--move-y-circle icon-size-24" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" catchtouchstart="onServiceDragStart" catchtouchmove="onServiceDragMove" catchtouchend="onServiceDragEnd"></span>
-                      <service-collapse-icon collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onToggleServiceCollapse" />
-                    </view>
-                  </view>
-                  <view class="service-body {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? 'service-body--collapsed' : 'service-body--expanded'}}">
-                    <view class="service-field">
-                      <view class="service-field-label">项目名称</view>
-                      <input class="config-input" placeholder="项目名称" value="{{service.name}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceNameInput" bindblur="onServiceFieldBlur" />
-                    </view>
-                    <view class="service-field-grid">
-                      <view class="service-field-item">
-                        <view class="service-field-label">单价</view>
-                        <input class="config-input-small" type="digit" placeholder="单价" value="{{service.unitPrice}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceUnitPriceInput" bindblur="onServiceFieldBlur" />
-                      </view>
-                      <view class="service-field-item">
-                        <view class="service-field-label">单位</view>
-                        <input class="config-input-small" placeholder="单位" value="{{service.unit}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceUnitInput" bindblur="onServiceFieldBlur" />
-                      </view>
-                      <view class="service-field-item">
-                        <view class="service-field-label">数量</view>
-                        <input class="config-input-small" type="number" placeholder="数量" value="{{service.quantity}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceQuantityInput" bindblur="onServiceFieldBlur" />
-                      </view>
-                      <view class="service-field-item">
-                        <view class="service-field-label">周期(天)</view>
-                        <input class="config-input-small" type="number" placeholder="周期(天)" value="{{service.deliveryPeriodDays}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceDeliveryPeriodInput" bindblur="onServiceFieldBlur" />
-                      </view>
-                    </view>
-                  </view>
-                </view>
+                <service-item-card wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name" service="{{service}}" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" category-index="{{categoryIndex}}" service-index="{{serviceIndex}}" bind:delete="onDeleteService" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:fieldBlur="onServiceFieldBlur" bind:dragStart="onServiceDragStart" bind:dragMove="onServiceDragMove" bind:dragEnd="onServiceDragEnd" />
               </view>
               <view class="config-schema-pill config-schema-action">＋ 添加服务项</view>
             </view>

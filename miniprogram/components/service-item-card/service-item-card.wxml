@@ -1,0 +1,44 @@
+<view class="config-schema-pill">
+  <view class="service-header flex">
+    <view class="service-summary">
+      <view class="service-title">{{service.name}}</view>
+      <view class="service-meta">
+        <text>¥{{service.unitPrice}}/{{service.unit}}</text>
+        <text class="service-meta-separator">·</text>
+        <text>x{{service.quantity}}</text>
+        <text class="service-meta-separator">·</text>
+        <text wx:if="{{service.deliveryPeriodDays <= 0}}">待定</text>
+        <text wx:else>{{service.deliveryPeriodDays}}天</text>
+      </view>
+    </view>
+    <view class="service-actions">
+      <span class="icon--delete-16-regular icon-size-24 icon-color-error" bindtap="onDeleteTap"></span>
+      <span class="icon--move-y-circle icon-size-24" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd"></span>
+      <service-collapse-icon collapsed="{{collapsed}}" bindtap="onToggleCollapseTap" />
+    </view>
+  </view>
+  <view class="service-body {{collapsed ? 'service-body--collapsed' : 'service-body--expanded'}}">
+    <view class="service-field">
+      <view class="service-field-label">项目名称</view>
+      <input class="config-input" placeholder="项目名称" value="{{service.name}}" data-field="name" bindblur="onFieldBlur" />
+    </view>
+    <view class="service-field-grid">
+      <view class="service-field-item">
+        <view class="service-field-label">单价</view>
+        <input class="config-input-small" type="digit" placeholder="单价" value="{{service.unitPrice}}" data-field="unitPrice" bindblur="onFieldBlur" />
+      </view>
+      <view class="service-field-item">
+        <view class="service-field-label">单位</view>
+        <input class="config-input-small" placeholder="单位" value="{{service.unit}}" data-field="unit" bindblur="onFieldBlur" />
+      </view>
+      <view class="service-field-item">
+        <view class="service-field-label">数量</view>
+        <input class="config-input-small" type="number" placeholder="数量" value="{{service.quantity}}" data-field="quantity" bindblur="onFieldBlur" />
+      </view>
+      <view class="service-field-item">
+        <view class="service-field-label">周期(天)</view>
+        <input class="config-input-small" type="number" placeholder="周期(天)" value="{{service.deliveryPeriodDays}}" data-field="deliveryPeriodDays" bindblur="onFieldBlur" />
+      </view>
+    </view>
+  </view>
+</view>

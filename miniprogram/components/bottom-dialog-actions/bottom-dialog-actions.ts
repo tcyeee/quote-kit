@@ -154,57 +154,11 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    onServiceNameInput(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const name = e.detail.value as string
-      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
-        ...service,
-        name,
-      }))
-    },
-
-    onServiceUnitPriceInput(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const value = parseFloat(e.detail.value || "0")
-      const unitPrice = isNaN(value) ? 0 : value
-      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
-        ...service,
-        unitPrice,
-      }))
-    },
-
-    onServiceUnitInput(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const unit = e.detail.value as string
-      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
-        ...service,
-        unit,
-      }))
-    },
-
-    onServiceQuantityInput(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const value = parseInt(e.detail.value || "0", 10)
-      const quantity = isNaN(value) ? 0 : value
-      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
-        ...service,
-        quantity,
-      }))
-    },
-
-    onServiceDeliveryPeriodInput(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const value = parseInt(e.detail.value || "0", 10)
-      const deliveryPeriodDays = isNaN(value) ? 0 : value
-      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
-        ...service,
-        deliveryPeriodDays,
-      }))
+    onServiceChange(e: any) {
+      const categoryIndex = e.detail.categoryIndex as number
+      const serviceIndex = e.detail.serviceIndex as number
+      const service = e.detail.service as any
+      this.updateServiceItem(categoryIndex, serviceIndex, () => service)
     },
 
     onServiceFieldBlur() {
@@ -220,8 +174,8 @@ Component({
     },
 
     onToggleServiceCollapse(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const categoryIndex = e.detail.categoryIndex as number
+      const serviceIndex = e.detail.serviceIndex as number
       const status = this.data.serviceCollapseStatus.slice()
       const categoryStatus = (status[categoryIndex] || []).slice()
       categoryStatus[serviceIndex] = !categoryStatus[serviceIndex]
@@ -232,8 +186,8 @@ Component({
     },
 
     onDeleteService(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const categoryIndex = e.detail.categoryIndex as number
+      const serviceIndex = e.detail.serviceIndex as number
       const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
       const category = pricingItems[categoryIndex]
       if (!category) return
@@ -258,8 +212,8 @@ Component({
     },
 
     onServiceDragStart(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const categoryIndex = e.detail.categoryIndex as number
+      const serviceIndex = e.detail.serviceIndex as number
       const pricingItems = this.data.quoteDetail.pricingItems || []
       const category = pricingItems[categoryIndex]
       if (!category) return
@@ -269,8 +223,8 @@ Component({
       const query = wx.createSelectorQuery().in(this)
       const selector = `.service-list-box-${categoryIndex}`
       query.select(selector).boundingClientRect(rect => {
-        if (!rect || !e.changedTouches || !e.changedTouches[0]) return
-        const clientY = e.changedTouches[0].clientY
+        const clientY = e.detail.clientY as number | null
+        if (!rect || clientY === null || clientY === undefined) return
         const count = items.length || 1
         const { top } = this.calculateDragOverlayTop(clientY, rect, count)
         this.setData({
@@ -299,8 +253,8 @@ Component({
       const query = wx.createSelectorQuery().in(this)
       const selector = `.service-list-box-${categoryIndex}`
       query.select(selector).boundingClientRect(rect => {
-        if (!rect || !e.changedTouches || !e.changedTouches[0]) return
-        const clientY = e.changedTouches[0].clientY
+        const clientY = e.detail.clientY as number | null
+        if (!rect || clientY === null || clientY === undefined) return
         const count = items.length || 1
         const { top } = this.calculateDragOverlayTop(clientY, rect, count)
         this.setData({
@@ -327,11 +281,11 @@ Component({
       const query = wx.createSelectorQuery().in(this)
       const selector = `.service-list-box-${categoryIndex}`
       query.select(selector).boundingClientRect(rect => {
-        if (!rect || !e.changedTouches || !e.changedTouches[0]) {
+        const clientY = e.detail.clientY as number | null
+        if (!rect || clientY === null || clientY === undefined) {
           this.resetDragServiceState()
           return
         }
-        const clientY = e.changedTouches[0].clientY
         const count = items.length || 1
         const { top, itemHeight } = this.calculateDragOverlayTop(clientY, rect, count)
         let targetIndex = Math.round(itemHeight ? top / itemHeight : 0)
