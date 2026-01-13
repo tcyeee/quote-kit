@@ -192,6 +192,23 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onDeleteCategory(e: any) {
+      const categoryIndex = e.detail.categoryIndex as number
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
+      if (!pricingItems[categoryIndex]) return
+      pricingItems.splice(categoryIndex, 1)
+      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
+      serviceCollapseStatus.splice(categoryIndex, 1)
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus,
+      })
+      this.quoteDetailUpdate()
+    },
+
     onServiceDragStart() { },
 
     onServiceDragMove() { },

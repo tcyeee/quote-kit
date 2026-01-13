@@ -3,6 +3,7 @@
     <view class="service-summary-content" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
       <service-collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
       <view class="config-schema-label">{{category.name}}</view>
+      <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}"></span>
     </view>
     <view class="config-schema-row" wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
       <view class="service-list-box service-list-box-{{categoryIndex}}">

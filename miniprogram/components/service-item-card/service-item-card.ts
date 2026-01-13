@@ -63,6 +63,13 @@ Component({
       })
     },
 
+    onDeleteCategoryTap(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      this.triggerEvent("deleteCategory", {
+        categoryIndex,
+      })
+    },
+
     onToggleCategoryCollapseTap(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const current = (this.data as any).categoryCollapseStatus as boolean[] || []
