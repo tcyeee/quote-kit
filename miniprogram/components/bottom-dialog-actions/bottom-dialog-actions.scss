@@ -142,7 +142,7 @@
 
 .config-schema-header {
   display: flex;
-  gap: 5rpx;
+  gap: 7rpx;
   align-items: center;
   margin-bottom: 8rpx;
 }
@@ -157,6 +157,7 @@
   font-size: 26rpx;
   font-weight: 600;
   color: #6b665f;
+  padding-bottom: 7rpx;
 }
 
 .config-schema-group {
@@ -314,17 +315,6 @@
 
 .service-field-item {
   flex: 1;
-}
-
-.service-collapse-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-}
-
-.service-collapse-icon--collapsed {
-  transform: rotate(180deg);
 }
 
 .service-action-delete {

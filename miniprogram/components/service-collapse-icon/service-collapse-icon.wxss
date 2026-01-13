@@ -1,2 +1,12 @@
+.service-collapse-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  color: gray;
+}
 
+.service-collapse-icon--collapsed {
+  transform: rotate(180deg);
+}
 
