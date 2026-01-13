@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
+        "bindblur",
+        "bindinput",
         "bindtap",
         "bindtouchstart",
+        "catchtouchend",
         "catchtouchmove",
+        "catchtouchstart",
         "Miniprogram"
     ]
 }

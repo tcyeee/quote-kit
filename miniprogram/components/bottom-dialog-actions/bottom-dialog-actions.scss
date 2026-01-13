@@ -287,6 +287,21 @@
   gap: 12rpx;
 }
 
+.service-body {
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+}
+
+.service-body--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.service-body--expanded {
+  max-height: 600rpx;
+  opacity: 1;
+}
+
 .service-collapse-icon {
   display: inline-flex;
   align-items: center;
@@ -296,18 +311,6 @@
 
 .service-collapse-icon--collapsed {
   transform: rotate(180deg);
-}
-
-.service-action {
-  font-size: 22rpx;
-  color: #c0a28a;
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 999rpx;
-  border: 2rpx solid rgba(192, 162, 138, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .service-action-delete {
