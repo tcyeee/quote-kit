@@ -97,6 +97,7 @@
 .table-row {
   display: flex;
   background-color: #f9f5f0;
+  white-space: nowrap;
 }
 
 .table-header {
@@ -128,6 +129,7 @@
 .col-delivery {
   flex: 1.2;
   text-align: center;
+  white-space: nowrap;
 }
 
 .section-body {

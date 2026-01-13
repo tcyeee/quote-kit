@@ -26,18 +26,27 @@ Component({
   },
   methods: {
     onSaveImageTap() {
-      wx.showToast({
-        title: "当前版本不支持",
-        icon: "none",
-      })
+      wx.showToast({ title: "当前版本不支持", icon: "none" })
     },
 
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
       this.setData({ quoteDetail: { ...this.data.quoteDetail, theme } })
+      this.quoteDetailUpdate()
+    },
 
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail = { ...app.globalData.quoteDetail, theme }
+    onDomainNameInput(e: any) {
+      const name = e.detail.value as string
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          domain: {
+            ...this.data.quoteDetail.domain,
+            name,
+          },
+        },
+      })
+      this.quoteDetailUpdate()
     },
 
     onToggleSection(e: any) {
@@ -46,6 +55,11 @@ Component({
       this.setData({
         CollapseStatus: { ...CollapseStatus, [section]: !CollapseStatus[section] },
       })
+    },
+
+    quoteDetailUpdate() {
+      const app = getApp<IAppOption>()
+      app.globalData.quoteDetail = this.data.quoteDetail
     },
   },
 })
