@@ -18,6 +18,7 @@ Component({
     dragServiceIndex: -1,
     dragServiceSnapshot: {} as any,
     showDragServiceOverlay: false,
+    categoryCollapseStatus: [] as boolean[],
   },
   methods: {
     emitServiceChange(categoryIndex: number, serviceIndex: number, service: any) {
@@ -59,6 +60,16 @@ Component({
       this.triggerEvent("delete", {
         categoryIndex,
         serviceIndex,
+      })
+    },
+
+    onToggleCategoryCollapseTap(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const current = (this.data as any).categoryCollapseStatus as boolean[] || []
+      const next = current.slice()
+      next[categoryIndex] = !next[categoryIndex]
+      this.setData({
+        categoryCollapseStatus: next,
       })
     },
 

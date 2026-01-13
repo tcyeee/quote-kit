@@ -1,7 +1,10 @@
 <view>
   <view wx:for="{{pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
-    <view class="config-schema-label">{{category.name}}</view>
-    <view class="config-schema-row">
+    <view class="service-summary-content" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
+      <service-collapse-icon collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
+      <view class="config-schema-label">{{category.name}}</view>
+    </view>
+    <view class="config-schema-row" wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
       <view class="service-list-box service-list-box-{{categoryIndex}}">
         <view wx:if="{{showDragServiceOverlay && dragServiceCategoryIndex === categoryIndex}}" class="config-schema-pill service-drag-ghost" style="top: {{dragServiceOverlayTop}}px">
           <view class="service-header flex">
