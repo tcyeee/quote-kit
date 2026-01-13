@@ -5,6 +5,7 @@
         "bindtap",
         "bindtouchend",
         "bindtouchstart",
+        "catchtap",
         "catchtouchend",
         "catchtouchmove",
         "catchtouchstart",

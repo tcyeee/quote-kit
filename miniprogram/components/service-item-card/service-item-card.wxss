@@ -31,6 +31,11 @@
   color: #c0a28a;
   border-style: dashed;
   text-align: center;
+  border: 1rpx dashed #c0a28a;
+  border-radius: 14rpx;
+  padding: 12rpx 16rpx;
+  margin-left: 40rpx;
+  font-size: 22rpx;
 }
 
 .config-input {
@@ -83,11 +88,10 @@
 
 .service-meta {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 6rpx;
   font-size: 20rpx;
   color: #a19a92;
+  margin-left: 10rpx;
 }
 
 .service-meta-separator {
