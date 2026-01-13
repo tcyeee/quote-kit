@@ -1,5 +1,6 @@
 <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
   <view class="page">
+    <view>{{quoteDetail.domain.name}}</view>
     <view class="quote-container">
       <view class="quote-header">
         <view class="header-left">
@@ -48,6 +49,5 @@
         </view>
       </view>
     </view>
-    <view>{{quoteDetail.domain.name}}</view>
   </view>
 </scroll-view>

@@ -1,5 +1,5 @@
 let bottomDialogHeaderTouchStartY = 0
-// 首页报价预览页面
+const app = getApp<IAppOption>()
 Page({
   data: {
     options: {
@@ -33,5 +33,12 @@ Page({
     this.setData({
       bottomDialogExpanded: !this.data.bottomDialogExpanded,
     })
+  },
+  onQuoteDetailUpdate() {
+    const quoteDetail = app.globalData.quoteDetail
+    const preview = this.selectComponent("#quotePreview")
+    if (preview) {
+      preview.setData({ quoteDetail })
+    }
   },
 })

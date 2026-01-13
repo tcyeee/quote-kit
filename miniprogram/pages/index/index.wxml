@@ -1,5 +1,5 @@
 <view class="page-root">
-  <quote-preview />
+  <quote-preview id="quotePreview" />
   <!-- 底部对话框遮罩 -->
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
   <!-- 底部对话框 -->
@@ -7,6 +7,6 @@
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchmove="onBottomDialogHeaderTouchMove" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>
     </view>
-    <bottom-dialog-actions />
+    <bottom-dialog-actions bind:quoteDetailUpdate="onQuoteDetailUpdate" />
   </view>
 </view>

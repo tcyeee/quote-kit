@@ -46,6 +46,9 @@ Component({
           },
         },
       })
+    },
+
+    onDomainNameBlur() {
       this.quoteDetailUpdate()
     },
 
@@ -60,6 +63,7 @@ Component({
     quoteDetailUpdate() {
       const app = getApp<IAppOption>()
       app.globalData.quoteDetail = this.data.quoteDetail
+      this.triggerEvent("quoteDetailUpdate")
     },
   },
 })
