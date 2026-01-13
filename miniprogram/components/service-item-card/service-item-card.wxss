@@ -144,7 +144,7 @@
 .service-summary-content{
   display: flex;
   gap: 6rpx;
-  align-items: start;
+  align-items: center;
   padding: 12rpx 4rpx;
   border-radius: 12rpx;
 }
