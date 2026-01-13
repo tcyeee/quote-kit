@@ -1,34 +1,26 @@
+type CollapseStatus = {
+  theme: boolean,
+  company: boolean,
+  service: boolean,
+  payment: boolean,
+  remark: boolean,
+}
+
 Component({
   data: {
-    clientName: "",
-    depositRatioPercent: 0,
-    finalPaymentRatioPercent: 0,
-    overallDeliveryPeriodDays: 0,
-    serviceTerms: "",
-    currentTheme: "",
-    isThemeCollapsed: false,
-    isCompanyCollapsed: false,
-    isServiceCollapsed: false,
-    isPaymentCollapsed: false,
-    isRemarkCollapsed: false,
+    quoteDetail: {} as QuoteDetail,
+    CollapseStatus: {
+      theme: false,
+      company: false,
+      service: false,
+      payment: false,
+      remark: false,
+    }
   },
   lifetimes: {
     attached() {
-      const {
-        domain: client,
-        serviceProcess,
-        overallDeliveryPeriodDays,
-        serviceTerms,
-        theme,
-      } = getApp<IAppOption>().globalData.quoteDetail
-
       this.setData({
-        clientName: client.name,
-        depositRatioPercent: serviceProcess.depositRatio * 100,
-        finalPaymentRatioPercent: serviceProcess.finalPaymentRatio * 100,
-        overallDeliveryPeriodDays,
-        serviceTerms,
-        currentTheme: theme,
+        quoteDetail: getApp<IAppOption>().globalData.quoteDetail,
       })
     },
   },
@@ -39,80 +31,20 @@ Component({
         icon: "none",
       })
     },
-    onClientNameInput(e: any) {
-      const value = e.detail.value
-      this.setData({
-        clientName: value,
-      })
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.domain.name = value
-    },
-    onOverallDeliveryPeriodInput(e: any) {
-      const value = parseInt(e.detail.value, 10)
-      const days = Number.isNaN(value) ? 0 : value
-      this.setData({
-        overallDeliveryPeriodDays: days,
-      })
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.overallDeliveryPeriodDays = days
-    },
-    onDepositRatioInput(e: any) {
-      const value = parseFloat(e.detail.value)
-      const ratioPercent = Number.isNaN(value) ? 0 : value
-      this.setData({
-        depositRatioPercent: ratioPercent,
-      })
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.serviceProcess.depositRatio =
-        ratioPercent / 100
-    },
-    onFinalPaymentRatioInput(e: any) {
-      const value = parseFloat(e.detail.value)
-      const ratioPercent = Number.isNaN(value) ? 0 : value
-      this.setData({
-        finalPaymentRatioPercent: ratioPercent,
-      })
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.serviceProcess.finalPaymentRatio =
-        ratioPercent / 100
-    },
-    onServiceTermsInput(e: any) {
-      const value = e.detail.value
-      this.setData({
-        serviceTerms: value,
-      })
-      const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.serviceTerms = value
-    },
+
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
-      this.setData({ currentTheme: theme })
+      this.setData({ quoteDetail: { ...this.data.quoteDetail, theme } })
+
       const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.theme = theme
+      app.globalData.quoteDetail = { ...app.globalData.quoteDetail, theme }
     },
-    onToggleThemeSection() {
+
+    onToggleSection(e: any) {
+      const section = e.currentTarget.dataset.section as keyof CollapseStatus
+      const CollapseStatus = this.data.CollapseStatus
       this.setData({
-        isThemeCollapsed: !this.data.isThemeCollapsed,
-      })
-    },
-    onToggleCompanySection() {
-      this.setData({
-        isCompanyCollapsed: !this.data.isCompanyCollapsed,
-      })
-    },
-    onToggleServiceSection() {
-      this.setData({
-        isServiceCollapsed: !this.data.isServiceCollapsed,
-      })
-    },
-    onTogglePaymentSection() {
-      this.setData({
-        isPaymentCollapsed: !this.data.isPaymentCollapsed,
-      })
-    },
-    onToggleRemarkSection() {
-      this.setData({
-        isRemarkCollapsed: !this.data.isRemarkCollapsed,
+        CollapseStatus: { ...CollapseStatus, [section]: !CollapseStatus[section] },
       })
     },
   },
