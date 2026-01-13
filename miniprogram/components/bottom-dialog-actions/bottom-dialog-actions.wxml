@@ -59,29 +59,30 @@
           <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
             <view class="config-schema-label">{{category.name}}</view>
             <view class="config-schema-row">
+              <!-- 服务项目 -->
               <view wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name" class="config-schema-pill">
                 <view class="service-header flex">
-                  <view class="service-summary flex">
-                    <view class="font-bold">项目:</view>
-                    <view>{{service.name}}</view>
-                    <view class="font-bold ml-s">数量:</view>
-                    <view>{{service.unitPrice}}元/{{service.unit}}x{{service.quantity}}</view>
-                    <view class="font-bold ml-s">交付周期:</view>
-                    <view>{{service.deliveryPeriodDays}}天</view>
+                  <view class="service-summary">
+                    <view class="service-title">{{service.name}}</view>
+                    <view class="service-meta">
+                      <text>¥{{service.unitPrice}}/{{service.unit}}</text>
+                      <text class="service-meta-separator">·</text>
+                      <text>x{{service.quantity}}</text>
+                      <text class="service-meta-separator">·</text>
+                      <text>{{service.deliveryPeriodDays}}天</text>
+                    </view>
                   </view>
                   <view class="service-actions">
                     <text class="service-action" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onMoveServiceUp">
-                      上移
+                      ↑
                     </text>
                     <text class="service-action" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onMoveServiceDown">
-                      下移
+                      ↓
                     </text>
                     <text class="service-action" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onToggleServiceCollapse">
-                      {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? '展开' : '折叠'}}
+                      {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? '▾' : '▴'}}
                     </text>
-                    <text class="service-action service-action-delete" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onDeleteService">
-                      删除
-                    </text>
+                    <span class="icon--delete-16-regular icon-size-20 icon-color-error"></span>
                   </view>
                 </view>
                 <view wx:if="{{!(serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex])}}">
@@ -94,11 +95,11 @@
                   </view>
                 </view>
               </view>
-              <view class="config-schema-pill config-schema-action">添加服务项</view>
+              <view class="config-schema-pill config-schema-action">＋ 添加服务项</view>
             </view>
           </view>
         </view>
-        <view class="config-schema-footer">增加服务类别</view>
+        <view class="config-schema-footer">＋ 增加服务类别</view>
       </view>
     </view>
     <!-- 配置项:付款比例设置 -->

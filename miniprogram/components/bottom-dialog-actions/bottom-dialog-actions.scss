@@ -258,8 +258,28 @@
 }
 
 .service-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.service-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #4a4742;
+}
+
+.service-meta {
+  display: flex;
   flex-wrap: wrap;
-  gap: 8rpx;
+  align-items: center;
+  gap: 6rpx;
+  font-size: 20rpx;
+  color: #a19a92;
+}
+
+.service-meta-separator {
+  opacity: 0.5;
 }
 
 .service-actions {
@@ -270,8 +290,16 @@
 .service-action {
   font-size: 22rpx;
   color: #c0a28a;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid rgba(192, 162, 138, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-action-delete {
   color: #d35b5b;
+  border-color: rgba(211, 91, 91, 0.4);
 }
