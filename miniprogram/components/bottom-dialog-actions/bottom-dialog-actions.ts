@@ -30,7 +30,7 @@ Component({
     attached() {
       const quoteDetail = getApp<IAppOption>().globalData.quoteDetail
       const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category =>
-        (category.items || []).map(() => false),
+        (category.items || []).map(() => true),
       )
       this.setData({
         quoteDetail,

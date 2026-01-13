@@ -90,7 +90,7 @@
                       <text class="service-action" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" catchtouchstart="onServiceDragStart" catchtouchmove="onServiceDragMove" catchtouchend="onServiceDragEnd">
                         ☰
                       </text>
-                      <span class="icon--circle-chevron-up icon-size-20 service-collapse-icon {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? 'service-collapse-icon--collapsed' : ''}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onToggleServiceCollapse"></span>
+                      <span class="icon--circle-chevron-up icon-size-20 service-collapse-icon {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? '' : 'service-collapse-icon--collapsed'}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindtap="onToggleServiceCollapse"></span>
                       <span class="icon--delete-16-regular icon-size-19 icon-color-error"></span>
                     </view>
                   </view>
