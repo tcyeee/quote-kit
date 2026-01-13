@@ -6,22 +6,22 @@
   <view class="theme-selector">
     <view class="theme-label">主题选择</view>
     <view class="theme-options">
-      <view class="theme-option active" data-theme="amber">
+      <view class="theme-option {{currentTheme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
         <image class="theme-bg" src="../../assets/button_1.png" mode="aspectFill"></image>
         <view class="theme-overlay"></view>
         <text class="theme-name">月光</text>
       </view>
-      <view class="theme-option" data-theme="neon">
+      <view class="theme-option {{currentTheme === 'neon' ? 'active' : ''}}" data-theme="neon" bindtap="onThemeTap">
         <image class="theme-bg" src="../../assets/button_2.png" mode="aspectFill"></image>
         <view class="theme-overlay"></view>
         <text class="theme-name">深海</text>
       </view>
-      <view class="theme-option" data-theme="moonlight">
+      <view class="theme-option {{currentTheme === 'moonlight' ? 'active' : ''}}" data-theme="moonlight" bindtap="onThemeTap">
         <image class="theme-bg" src="../../assets/button_3.png" mode="aspectFill"></image>
         <view class="theme-overlay"></view>
         <text class="theme-name">琥珀</text>
       </view>
-      <view class="theme-option" data-theme="deep-sea">
+      <view class="theme-option {{currentTheme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
         <image class="theme-bg" src="../../assets/button_4.png" mode="aspectFill"></image>
         <view class="theme-overlay"></view>
         <text class="theme-name">霓虹</text>

@@ -11,6 +11,7 @@ Component({
     },
     overallDeliveryPeriodDays: 0,
     serviceTerms: "",
+    theme: "",
   },
 
   lifetimes: {
@@ -21,6 +22,7 @@ Component({
         serviceProcess,
         overallDeliveryPeriodDays,
         serviceTerms,
+        theme,
       } = getApp<IAppOption>().globalData.quoteDetail
 
       this.setData({
@@ -29,6 +31,7 @@ Component({
         serviceProcess,
         overallDeliveryPeriodDays,
         serviceTerms,
+        theme,
       })
     },
   },

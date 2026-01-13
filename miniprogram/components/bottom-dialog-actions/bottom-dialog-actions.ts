@@ -5,6 +5,7 @@ Component({
     finalPaymentRatioPercent: 0,
     overallDeliveryPeriodDays: 0,
     serviceTerms: "",
+    currentTheme: "",
   },
   lifetimes: {
     attached() {
@@ -13,6 +14,7 @@ Component({
         serviceProcess,
         overallDeliveryPeriodDays,
         serviceTerms,
+        theme,
       } = getApp<IAppOption>().globalData.quoteDetail
 
       this.setData({
@@ -21,6 +23,7 @@ Component({
         finalPaymentRatioPercent: serviceProcess.finalPaymentRatio * 100,
         overallDeliveryPeriodDays,
         serviceTerms,
+        currentTheme: theme,
       })
     },
   },
@@ -75,6 +78,12 @@ Component({
       })
       const app = getApp<IAppOption>()
       app.globalData.quoteDetail.serviceTerms = value
+    },
+    onThemeTap(e: any) {
+      const theme = e.currentTarget.dataset.theme as string
+      this.setData({ currentTheme: theme })
+      const app = getApp<IAppOption>()
+      app.globalData.quoteDetail.theme = theme
     },
   },
 })

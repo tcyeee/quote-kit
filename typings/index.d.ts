@@ -65,6 +65,7 @@ interface QuoteDetail {
   overallDeliveryPeriodDays: number,
   // 服务条款说明
   serviceTerms: string,
+  theme: string,
 }
 
 /**

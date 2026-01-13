@@ -4,6 +4,7 @@ App<IAppOption>({
   globalData: {
     // 当前小程序使用的默认报价详情
     quoteDetail: {
+      theme: "amber",
       // 报价对应的客户信息
       client: {
         name: "熬夜汽水设计工作室",
