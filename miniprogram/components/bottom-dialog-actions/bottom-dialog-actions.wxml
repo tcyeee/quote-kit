@@ -7,7 +7,7 @@
     <!-- 配置项:主题选择 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="theme">
-        <service-collapse-icon collapsed="{{CollapseStatus.theme}}" />
+        <service-collapse-icon size="15" collapsed="{{CollapseStatus.theme}}" />
         <view class="config-schema-title">主题选择</view>
       </view>
       <view wx:if="{{!CollapseStatus.theme}}">

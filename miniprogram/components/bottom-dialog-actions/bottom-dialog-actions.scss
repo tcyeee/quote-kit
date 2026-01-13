@@ -97,10 +97,10 @@
 .config-schema-header {
   display: flex;
   gap: 7rpx;
-  align-items: center;
-  background-color: #c0a28a8c;
-  padding: 5rpx;
+  background-color: #c0a28a43;
+  padding: 5rpx 7rpx;
   border-radius: 10rpx;
+  margin-bottom: 12rpx;
 }
 
 .config-schema-section + .config-schema-section {
@@ -113,6 +113,7 @@
   font-size: 26rpx;
   font-weight: 600;
   color: #6b665f;
+  line-height: 20px;
 }
 
 .config-schema-group {
