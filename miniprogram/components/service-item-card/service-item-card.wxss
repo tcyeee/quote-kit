@@ -2,9 +2,22 @@
   padding: 12rpx 16rpx;
   background-color: #f8f4ef;
   border: 2rpx solid #d6cdc4;
-  border-radius: 10rpx;
+  border-radius: 14rpx;
   font-size: 22rpx;
   color: #8b8680;
+}
+
+.config-schema-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.config-schema-label {
+  font-size: 24rpx;
+  color: #6b665f;
+  margin-top: 10rpx;
 }
 
 .config-input {
@@ -108,3 +121,25 @@
   flex: 1;
 }
 
+.service-summary-content{
+  display: flex;
+  flex-direction: row;
+  gap: 6rpx;
+}
+
+.service-list-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.service-drag-ghost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 0.96;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}

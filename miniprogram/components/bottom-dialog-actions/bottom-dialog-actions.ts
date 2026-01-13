@@ -20,11 +20,6 @@ Component({
       remark: false,
     },
     serviceCollapseStatus: [] as boolean[][],
-    dragServiceOverlayTop: 0,
-    dragServiceCategoryIndex: -1,
-    dragServiceIndex: -1,
-    dragServiceSnapshot: {} as any,
-    showDragServiceOverlay: false,
   },
   lifetimes: {
     attached() {
@@ -68,26 +63,12 @@ Component({
       this.updateQuoteDetail({ pricingItems })
     },
 
-    resetDragServiceState() {
-      this.setData({
-        showDragServiceOverlay: false,
-        dragServiceCategoryIndex: -1,
-        dragServiceIndex: -1,
-      })
-    },
+    resetDragServiceState() { },
 
-    calculateDragOverlayTop(clientY: number, rect: WechatMiniprogram.BoundingClientRectCallbackResult, count: number) {
-      const listTop = rect.top
-      const listHeight = rect.height || 0
-      const itemCount = count || 1
-      const itemHeight = itemCount > 0 && listHeight > 0 ? listHeight / itemCount : 60
-      let top = clientY - listTop - itemHeight / 2
-      if (top < 0) top = 0
-      const maxTop = Math.max(0, listHeight - itemHeight)
-      if (top > maxTop) top = maxTop
+    calculateDragOverlayTop() {
       return {
-        top,
-        itemHeight,
+        top: 0,
+        itemHeight: 0,
       }
     },
 
@@ -211,110 +192,11 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    onServiceDragStart(e: any) {
-      const categoryIndex = e.detail.categoryIndex as number
-      const serviceIndex = e.detail.serviceIndex as number
-      const pricingItems = this.data.quoteDetail.pricingItems || []
-      const category = pricingItems[categoryIndex]
-      if (!category) return
-      const items = category.items || []
-      const service = items[serviceIndex]
-      if (!service) return
-      const query = wx.createSelectorQuery().in(this)
-      const selector = `.service-list-box-${categoryIndex}`
-      query.select(selector).boundingClientRect(rect => {
-        const clientY = e.detail.clientY as number | null
-        if (!rect || clientY === null || clientY === undefined) return
-        const count = items.length || 1
-        const { top } = this.calculateDragOverlayTop(clientY, rect, count)
-        this.setData({
-          dragServiceOverlayTop: top,
-          dragServiceCategoryIndex: categoryIndex,
-          dragServiceIndex: serviceIndex,
-          dragServiceSnapshot: {
-            name: service.name,
-            unitPrice: service.unitPrice,
-            unit: service.unit,
-            quantity: service.quantity,
-            deliveryPeriodDays: service.deliveryPeriodDays,
-          },
-          showDragServiceOverlay: true,
-        })
-      }).exec()
-    },
+    onServiceDragStart() { },
 
-    onServiceDragMove(e: any) {
-      const categoryIndex = this.data.dragServiceCategoryIndex
-      if (categoryIndex < 0) return
-      const pricingItems = this.data.quoteDetail.pricingItems || []
-      const category = pricingItems[categoryIndex]
-      if (!category) return
-      const items = category.items || []
-      const query = wx.createSelectorQuery().in(this)
-      const selector = `.service-list-box-${categoryIndex}`
-      query.select(selector).boundingClientRect(rect => {
-        const clientY = e.detail.clientY as number | null
-        if (!rect || clientY === null || clientY === undefined) return
-        const count = items.length || 1
-        const { top } = this.calculateDragOverlayTop(clientY, rect, count)
-        this.setData({
-          dragServiceOverlayTop: top,
-        })
-      }).exec()
-    },
+    onServiceDragMove() { },
 
-    onServiceDragEnd(e: any) {
-      const categoryIndex = this.data.dragServiceCategoryIndex
-      const fromIndex = this.data.dragServiceIndex
-      if (categoryIndex < 0 || fromIndex < 0) {
-        this.resetDragServiceState()
-        return
-      }
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      if (!category) return
-      const items = (category.items || []).slice()
-      if (!items.length) {
-        this.resetDragServiceState()
-        return
-      }
-      const query = wx.createSelectorQuery().in(this)
-      const selector = `.service-list-box-${categoryIndex}`
-      query.select(selector).boundingClientRect(rect => {
-        const clientY = e.detail.clientY as number | null
-        if (!rect || clientY === null || clientY === undefined) {
-          this.resetDragServiceState()
-          return
-        }
-        const count = items.length || 1
-        const { top, itemHeight } = this.calculateDragOverlayTop(clientY, rect, count)
-        let targetIndex = Math.round(itemHeight ? top / itemHeight : 0)
-        if (targetIndex < 0) targetIndex = 0
-        if (targetIndex > items.length - 1) targetIndex = items.length - 1
-        if (targetIndex !== fromIndex) {
-          const moved = items.splice(fromIndex, 1)[0]
-          items.splice(targetIndex, 0, moved)
-          pricingItems[categoryIndex] = {
-            ...category,
-            items,
-          }
-          const status = this.data.serviceCollapseStatus.slice()
-          const categoryStatus = (status[categoryIndex] || []).slice()
-          const movedStatus = categoryStatus.splice(fromIndex, 1)[0]
-          categoryStatus.splice(targetIndex, 0, movedStatus)
-          status[categoryIndex] = categoryStatus
-          this.setData({
-            quoteDetail: {
-              ...this.data.quoteDetail,
-              pricingItems,
-            },
-            serviceCollapseStatus: status,
-          })
-          this.quoteDetailUpdate()
-        }
-        this.resetDragServiceState()
-      }).exec()
-    },
+    onServiceDragEnd() { },
 
     quoteDetailUpdate() {
       const app = getApp<IAppOption>()

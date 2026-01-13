@@ -56,31 +56,8 @@
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
-          <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
-            <view class="config-schema-label">{{category.name}}</view>
-            <view class="config-schema-row">
-              <view class="service-list-box service-list-box-{{categoryIndex}}">
-                <view wx:if="{{showDragServiceOverlay && dragServiceCategoryIndex === categoryIndex}}" class="config-schema-pill service-drag-ghost" style="top: {{dragServiceOverlayTop}}px">
-                  <view class="service-header flex">
-                    <view class="service-summary">
-                      <view class="service-title">{{dragServiceSnapshot.name}}</view>
-                      <view class="service-meta">
-                        <text>¥{{dragServiceSnapshot.unitPrice}}/{{dragServiceSnapshot.unit}}</text>
-                        <text>x{{dragServiceSnapshot.quantity}}</text>
-                        <text class="service-meta-separator">·</text>
-                        <text>{{dragServiceSnapshot.deliveryPeriodDays}}天</text>
-                      </view>
-                    </view>
-                  </view>
-                </view>
-                <!-- 服务项目 -->
-                <service-item-card wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name" service="{{service}}" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" category-index="{{categoryIndex}}" service-index="{{serviceIndex}}" bind:delete="onDeleteService" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:fieldBlur="onServiceFieldBlur" bind:dragStart="onServiceDragStart" bind:dragMove="onServiceDragMove" bind:dragEnd="onServiceDragEnd" />
-              </view>
-              <view class="config-schema-pill config-schema-action">＋ 添加服务项</view>
-            </view>
-          </view>
+          <service-item-card pricing-items="{{quoteDetail.pricingItems}}" service-collapse-status="{{serviceCollapseStatus}}" bind:delete="onDeleteService" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:fieldBlur="onServiceFieldBlur" />
         </view>
-        <view class="config-schema-footer">＋ 增加服务类别</view>
       </view>
     </view>
     <!-- 配置项:付款比例设置 -->
