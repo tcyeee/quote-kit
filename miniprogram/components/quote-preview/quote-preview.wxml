@@ -35,9 +35,9 @@
         <view class="section-title">服务流程与付款</view>
         <view class="section-body">
           <text class="section-text">定金比例：{{quoteDetail.serviceProcess.depositRatio * 100}}%</text>
-          <text class="section-text">
+          <view class="section-text">
             尾款比例：{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}%
-          </text>
+          </view>
           <text class="section-text">整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text>
         </view>
       </view>
