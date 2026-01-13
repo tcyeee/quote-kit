@@ -20,6 +20,11 @@ Component({
       remark: false,
     },
     serviceCollapseStatus: [] as boolean[][],
+    dragServiceOverlayTop: 0,
+    dragServiceCategoryIndex: -1,
+    dragServiceIndex: -1,
+    dragServiceSnapshot: {} as any,
+    showDragServiceOverlay: false,
   },
   lifetimes: {
     attached() {
@@ -283,70 +288,143 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    onMoveServiceUp(e: any) {
+    onServiceDragStart(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      if (serviceIndex === 0) return
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const pricingItems = this.data.quoteDetail.pricingItems || []
       const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const prevIndex = serviceIndex - 1
-      const current = items[serviceIndex]
-      const prev = items[prevIndex]
-      items[prevIndex] = current
-      items[serviceIndex] = prev
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      const status = this.data.serviceCollapseStatus.slice()
-      const categoryStatus = (status[categoryIndex] || []).slice()
-      const prevStatus = categoryStatus[prevIndex]
-      const currentStatus = categoryStatus[serviceIndex]
-      categoryStatus[prevIndex] = currentStatus
-      categoryStatus[serviceIndex] = prevStatus
-      status[categoryIndex] = categoryStatus
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-        serviceCollapseStatus: status,
-      })
-      this.quoteDetailUpdate()
+      if (!category) return
+      const items = category.items || []
+      const service = items[serviceIndex]
+      if (!service) return
+      const query = wx.createSelectorQuery().in(this)
+      const selector = `.service-list-box-${categoryIndex}`
+      query.select(selector).boundingClientRect(rect => {
+        if (!rect || !e.changedTouches || !e.changedTouches[0]) return
+        const clientY = e.changedTouches[0].clientY
+        const listTop = rect.top
+        const listHeight = rect.height || 0
+        const count = items.length || 1
+        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
+        let top = clientY - listTop - itemHeight / 2
+        if (top < 0) top = 0
+        const maxTop = Math.max(0, listHeight - itemHeight)
+        if (top > maxTop) top = maxTop
+        this.setData({
+          dragServiceOverlayTop: top,
+          dragServiceCategoryIndex: categoryIndex,
+          dragServiceIndex: serviceIndex,
+          dragServiceSnapshot: {
+            name: service.name,
+            unitPrice: service.unitPrice,
+            unit: service.unit,
+            quantity: service.quantity,
+            deliveryPeriodDays: service.deliveryPeriodDays,
+          },
+          showDragServiceOverlay: true,
+        })
+      }).exec()
     },
 
-    onMoveServiceDown(e: any) {
-      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+    onServiceDragMove(e: any) {
+      const categoryIndex = this.data.dragServiceCategoryIndex
+      if (categoryIndex < 0) return
+      const pricingItems = this.data.quoteDetail.pricingItems || []
+      const category = pricingItems[categoryIndex]
+      if (!category) return
+      const items = category.items || []
+      const query = wx.createSelectorQuery().in(this)
+      const selector = `.service-list-box-${categoryIndex}`
+      query.select(selector).boundingClientRect(rect => {
+        if (!rect || !e.changedTouches || !e.changedTouches[0]) return
+        const clientY = e.changedTouches[0].clientY
+        const listTop = rect.top
+        const listHeight = rect.height || 0
+        const count = items.length || 1
+        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
+        let top = clientY - listTop - itemHeight / 2
+        if (top < 0) top = 0
+        const maxTop = Math.max(0, listHeight - itemHeight)
+        if (top > maxTop) top = maxTop
+        this.setData({
+          dragServiceOverlayTop: top,
+        })
+      }).exec()
+    },
+
+    onServiceDragEnd(e: any) {
+      const categoryIndex = this.data.dragServiceCategoryIndex
+      const fromIndex = this.data.dragServiceIndex
+      if (categoryIndex < 0 || fromIndex < 0) {
+        this.setData({
+          showDragServiceOverlay: false,
+          dragServiceCategoryIndex: -1,
+          dragServiceIndex: -1,
+        })
+        return
+      }
       const pricingItems = this.data.quoteDetail.pricingItems.slice()
       const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      if (serviceIndex >= items.length - 1) return
-      const nextIndex = serviceIndex + 1
-      const current = items[serviceIndex]
-      const next = items[nextIndex]
-      items[nextIndex] = current
-      items[serviceIndex] = next
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
+      if (!category) return
+      const items = (category.items || []).slice()
+      if (!items.length) {
+        this.setData({
+          showDragServiceOverlay: false,
+          dragServiceCategoryIndex: -1,
+          dragServiceIndex: -1,
+        })
+        return
       }
-      const status = this.data.serviceCollapseStatus.slice()
-      const categoryStatus = (status[categoryIndex] || []).slice()
-      const nextStatus = categoryStatus[nextIndex]
-      const currentStatus = categoryStatus[serviceIndex]
-      categoryStatus[nextIndex] = currentStatus
-      categoryStatus[serviceIndex] = nextStatus
-      status[categoryIndex] = categoryStatus
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-        serviceCollapseStatus: status,
-      })
-      this.quoteDetailUpdate()
+      const query = wx.createSelectorQuery().in(this)
+      const selector = `.service-list-box-${categoryIndex}`
+      query.select(selector).boundingClientRect(rect => {
+        if (!rect || !e.changedTouches || !e.changedTouches[0]) {
+          this.setData({
+            showDragServiceOverlay: false,
+            dragServiceCategoryIndex: -1,
+            dragServiceIndex: -1,
+          })
+          return
+        }
+        const clientY = e.changedTouches[0].clientY
+        const listTop = rect.top
+        const listHeight = rect.height || 0
+        const count = items.length || 1
+        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
+        let top = clientY - listTop - itemHeight / 2
+        if (top < 0) top = 0
+        const maxTop = Math.max(0, listHeight - itemHeight)
+        if (top > maxTop) top = maxTop
+        let targetIndex = Math.round(itemHeight ? top / itemHeight : 0)
+        if (targetIndex < 0) targetIndex = 0
+        if (targetIndex > items.length - 1) targetIndex = items.length - 1
+        if (targetIndex !== fromIndex) {
+          const moved = items.splice(fromIndex, 1)[0]
+          items.splice(targetIndex, 0, moved)
+          pricingItems[categoryIndex] = {
+            ...category,
+            items,
+          }
+          const status = this.data.serviceCollapseStatus.slice()
+          const categoryStatus = (status[categoryIndex] || []).slice()
+          const movedStatus = categoryStatus.splice(fromIndex, 1)[0]
+          categoryStatus.splice(targetIndex, 0, movedStatus)
+          status[categoryIndex] = categoryStatus
+          this.setData({
+            quoteDetail: {
+              ...this.data.quoteDetail,
+              pricingItems,
+            },
+            serviceCollapseStatus: status,
+          })
+          this.quoteDetailUpdate()
+        }
+        this.setData({
+          showDragServiceOverlay: false,
+          dragServiceCategoryIndex: -1,
+          dragServiceIndex: -1,
+        })
+      }).exec()
     },
 
     quoteDetailUpdate() {

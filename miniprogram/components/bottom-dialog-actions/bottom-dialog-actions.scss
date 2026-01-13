@@ -287,6 +287,17 @@
   gap: 12rpx;
 }
 
+.service-collapse-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.service-collapse-icon--collapsed {
+  transform: rotate(180deg);
+}
+
 .service-action {
   font-size: 22rpx;
   color: #c0a28a;
@@ -302,4 +313,21 @@
 .service-action-delete {
   color: #d35b5b;
   border-color: rgba(211, 91, 91, 0.4);
+}
+
+.service-list-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.service-drag-ghost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 0.96;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.12);
+  pointer-events: none;
 }
