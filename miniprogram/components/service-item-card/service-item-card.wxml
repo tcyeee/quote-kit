@@ -22,9 +22,9 @@
         <view class="service-item" wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name">
           <span class="icon--move-y-circle icon-size-25" style="color:gray" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
           <view class="config-schema-pill">
-            <view class="service-header flex">
+            <view class="service-header flex" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
               <view class="service-summary">
-                <view class="service-item-content" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
+                <view class="service-item-content">
                   <service-collapse-icon size="14" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" />
                   <view class="service-title">{{service.name}}</view>
                 </view>
@@ -37,10 +37,7 @@
                   <text wx:else>{{service.deliveryPeriodDays}}天</text>
                 </view>
               </view>
-              <view class="service-actions">
-                <span class="icon--delete-16-regular icon-size-15 icon-color-error" bindtap="onDeleteTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
-                <span class="icon--move-y-circle icon-size-15" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
-              </view>
+              <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
             </view>
             <view class="service-body {{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex] ? 'service-body--collapsed' : 'service-body--expanded'}}">
               <view class="service-field">
