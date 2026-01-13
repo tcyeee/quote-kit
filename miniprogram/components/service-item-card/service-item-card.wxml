@@ -67,7 +67,9 @@
           </view>
         </view>
       </view>
-      <view class="config-schema-action">＋ 添加服务项</view>
+      <view class="config-schema-action" bindtap="onAddServiceTap" data-category-index="{{categoryIndex}}">
+        ＋ 添加服务项
+      </view>
     </view>
   </view>
   <view class="config-schema-footer">＋ 增加服务类别</view>

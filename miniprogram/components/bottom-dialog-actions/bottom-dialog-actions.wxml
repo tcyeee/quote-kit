@@ -56,7 +56,7 @@
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
-          <service-item-card pricing-items="{{quoteDetail.pricingItems}}" service-collapse-status="{{serviceCollapseStatus}}" bind:delete="onDeleteService" bind:deleteCategory="onDeleteCategory" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:fieldBlur="onServiceFieldBlur" />
+          <service-item-card pricing-items="{{quoteDetail.pricingItems}}" service-collapse-status="{{serviceCollapseStatus}}" bind:delete="onDeleteService" bind:deleteCategory="onDeleteCategory" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:addService="onAddService" bind:fieldBlur="onServiceFieldBlur" />
         </view>
       </view>
     </view>

@@ -142,6 +142,39 @@ Component({
       this.updateServiceItem(categoryIndex, serviceIndex, () => service)
     },
 
+    onAddService(e: any) {
+      const categoryIndex = e.detail.categoryIndex as number
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
+      const category = pricingItems[categoryIndex]
+      if (!category) return
+      const items = (category.items || []).slice()
+      const newService: QuoteServiceItem = {
+        name: "新建项目",
+        description: null,
+        unit: "项",
+        unitPrice: 0,
+        quantity: 1,
+        deliveryPeriodDays: 10,
+      }
+      items.push(newService)
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
+      const categoryStatus = (serviceCollapseStatus[categoryIndex] || []).slice()
+      categoryStatus.push(false)
+      serviceCollapseStatus[categoryIndex] = categoryStatus
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus,
+      })
+      this.quoteDetailUpdate()
+    },
+
     onServiceFieldBlur() {
       this.quoteDetailUpdate()
     },
