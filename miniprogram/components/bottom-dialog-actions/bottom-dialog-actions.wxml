@@ -1,9 +1,10 @@
 <view class="bottom-dialog-body">
   <view class="action-bar">
-    <button class="action-btn secondary" bindtap="onSaveImageTap">保存图片</button>
+    <button class="action-btn secondary" bindtap="onSaveImageTap">保存为图片</button>
     <button class="action-btn primary" open-type="share">发送报价单</button>
   </view>
-  <view class="theme-selector">
+  <!-- 配置项:主题选择 -->
+  <view class="config-schema-section">
     <view class="theme-label">主题选择</view>
     <view class="theme-options">
       <view class="theme-option {{currentTheme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
@@ -28,26 +29,51 @@
       </view>
     </view>
   </view>
-  <view class="quote-config">
-    <view class="config-section">
-      <view class="config-label">客户名称</view>
-      <input class="config-input" value="{{clientName}}" placeholder="请输入客户名称" bindinput="onClientNameInput" />
+  <!-- 配置项:我的公司信息 -->
+  <view class="config-schema-section">
+    <view class="config-schema-title">我的公司信息</view>
+    <view class="config-schema-group">
+      <view class="config-schema-pill">我的公司名称(可选)</view>
+      <view class="config-schema-pill">我的公司LOGO(可选)</view>
     </view>
-    <view class="config-section">
-      <view class="config-label">整体工期(天)</view>
-      <input class="config-input" type="number" value="{{overallDeliveryPeriodDays}}" placeholder="请输入工期天数" bindinput="onOverallDeliveryPeriodInput" />
+  </view>
+  <!-- 配置项:服务内容 -->
+  <view class="config-schema-section">
+    <view class="config-schema-title">服务内容</view>
+    <view class="config-schema-group">
+      <view class="config-schema-label">服务类别A</view>
+      <view class="config-schema-row">
+        <view class="config-schema-pill">服务项目A-1 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目A-2 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目A-3 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目A-4 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill config-schema-action">添加服务项A-n</view>
+      </view>
+      <view class="config-schema-label">服务类别B</view>
+      <view class="config-schema-row">
+        <view class="config-schema-pill">服务项目B-1 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目B-2 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目B-3 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill">服务项目B-4 (包含 项目名称/单价/数量/交付周期)</view>
+        <view class="config-schema-pill config-schema-action">添加服务项B-n</view>
+      </view>
     </view>
-    <view class="config-section">
-      <view class="config-label">定金比例(%)</view>
-      <input class="config-input" type="number" value="{{depositRatioPercent}}" placeholder="例如 30" bindinput="onDepositRatioInput" />
+    <view class="config-schema-footer">增加服务类别</view>
+  </view>
+  <!-- 配置项:付款比例设置 -->
+  <view class="config-schema-section">
+    <view class="config-schema-title">付款比例设置</view>
+    <view class="config-schema-group">
+      <view class="config-schema-pill">定金比例(%)</view>
+      <view class="config-schema-pill">尾款比例(%)</view>
+      <view class="config-schema-pill config-schema-action">增加交付节点</view>
     </view>
-    <view class="config-section">
-      <view class="config-label">尾款比例(%)</view>
-      <input class="config-input" type="number" value="{{finalPaymentRatioPercent}}" placeholder="例如 70" bindinput="onFinalPaymentRatioInput" />
-    </view>
-    <view class="config-section">
-      <view class="config-label">服务条款</view>
-      <textarea class="config-textarea" value="{{serviceTerms}}" placeholder="请输入服务条款" bindinput="onServiceTermsInput"></textarea>
+  </view>
+  <!-- 底部备注信息 -->
+  <view class="config-schema-section">
+    <view class="config-schema-title">备注</view>
+    <view class="config-schema-group">
+      <view class="config-schema-pill">输入备注信息</view>
     </view>
   </view>
 </view>

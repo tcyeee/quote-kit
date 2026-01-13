@@ -10,7 +10,8 @@
 .theme-label {
   font-size: 26rpx;
   color: #6b665f;
-  margin-bottom: 20rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
 }
 
 .theme-options {
@@ -70,7 +71,7 @@
 }
 
 .action-bar {
-  margin-top: 20rpx;
+  margin: 20rpx 0 50rpx 0;
   display: flex;
   gap: 24rpx;
 }
@@ -121,6 +122,67 @@
   background-color: #f2ece5;
   border: 2rpx solid #d6cdc4;
   font-size: 24rpx;
+}
+
+.config-schema {
+  margin-top: 40rpx;
+  padding: 24rpx 20rpx 28rpx;
+  border-radius: 20rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d3cbc2;
+  box-sizing: border-box;
+}
+
+.config-schema-section + .config-schema-section {
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx dashed #e0d7ce;
+}
+
+.config-schema-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #6b665f;
+  margin-bottom: 12rpx;
+}
+
+.config-schema-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.config-schema-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.config-schema-label {
+  font-size: 24rpx;
+  color: #6b665f;
+  margin-top: 10rpx;
+}
+
+.config-schema-pill {
+  padding: 12rpx 16rpx;
+  border-radius: 14rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
+.config-schema-action {
+  color: #c0a28a;
+  border-style: dashed;
+}
+
+.config-schema-footer {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #c0a28a;
 }
 
 .config-textarea {
