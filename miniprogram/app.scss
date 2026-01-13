@@ -8,16 +8,16 @@
   box-sizing: border-box;
 }
 
-.font-bold {
-  font-weight: bold;
-}
-
-.ml-s {
-  margin-left: 1rem;
-}
-
 .flex {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.ml-s {
+  margin-left: 8rpx;
 }

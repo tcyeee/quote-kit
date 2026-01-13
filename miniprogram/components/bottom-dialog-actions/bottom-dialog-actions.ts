@@ -7,6 +7,9 @@ type CollapseStatus = {
 }
 
 Component({
+  options: {
+    styleIsolation: 'apply-shared'
+  },
   data: {
     quoteDetail: {} as QuoteDetail,
     CollapseStatus: {
@@ -15,12 +18,18 @@ Component({
       service: false,
       payment: false,
       remark: false,
-    }
+    },
+    serviceCollapseStatus: [] as boolean[][],
   },
   lifetimes: {
     attached() {
+      const quoteDetail = getApp<IAppOption>().globalData.quoteDetail
+      const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category =>
+        (category.items || []).map(() => false),
+      )
       this.setData({
-        quoteDetail: getApp<IAppOption>().globalData.quoteDetail,
+        quoteDetail,
+        serviceCollapseStatus,
       })
     },
   },
@@ -235,6 +244,109 @@ Component({
       this.setData({
         CollapseStatus: { ...CollapseStatus, [section]: !CollapseStatus[section] },
       })
+    },
+
+    onToggleServiceCollapse(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const status = this.data.serviceCollapseStatus.slice()
+      const categoryStatus = (status[categoryIndex] || []).slice()
+      categoryStatus[serviceIndex] = !categoryStatus[serviceIndex]
+      status[categoryIndex] = categoryStatus
+      this.setData({
+        serviceCollapseStatus: status,
+      })
+    },
+
+    onDeleteService(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      items.splice(serviceIndex, 1)
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      const status = this.data.serviceCollapseStatus.slice()
+      const categoryStatus = (status[categoryIndex] || []).slice()
+      categoryStatus.splice(serviceIndex, 1)
+      status[categoryIndex] = categoryStatus
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus: status,
+      })
+      this.quoteDetailUpdate()
+    },
+
+    onMoveServiceUp(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      if (serviceIndex === 0) return
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const prevIndex = serviceIndex - 1
+      const current = items[serviceIndex]
+      const prev = items[prevIndex]
+      items[prevIndex] = current
+      items[serviceIndex] = prev
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      const status = this.data.serviceCollapseStatus.slice()
+      const categoryStatus = (status[categoryIndex] || []).slice()
+      const prevStatus = categoryStatus[prevIndex]
+      const currentStatus = categoryStatus[serviceIndex]
+      categoryStatus[prevIndex] = currentStatus
+      categoryStatus[serviceIndex] = prevStatus
+      status[categoryIndex] = categoryStatus
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus: status,
+      })
+      this.quoteDetailUpdate()
+    },
+
+    onMoveServiceDown(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      if (serviceIndex >= items.length - 1) return
+      const nextIndex = serviceIndex + 1
+      const current = items[serviceIndex]
+      const next = items[nextIndex]
+      items[nextIndex] = current
+      items[serviceIndex] = next
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      const status = this.data.serviceCollapseStatus.slice()
+      const categoryStatus = (status[categoryIndex] || []).slice()
+      const nextStatus = categoryStatus[nextIndex]
+      const currentStatus = categoryStatus[serviceIndex]
+      categoryStatus[nextIndex] = currentStatus
+      categoryStatus[serviceIndex] = nextStatus
+      status[categoryIndex] = categoryStatus
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus: status,
+      })
+      this.quoteDetailUpdate()
     },
 
     quoteDetailUpdate() {

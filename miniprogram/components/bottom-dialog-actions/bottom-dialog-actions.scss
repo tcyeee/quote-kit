@@ -227,11 +227,6 @@
   color: #4a4742;
 }
 
-.service-inline-row {
-  display: flex;
-  gap: 8rpx;
-}
-
 .config-input-small {
   flex: 1;
   box-sizing: border-box;
@@ -241,4 +236,42 @@
   border: 2rpx solid #d6cdc4;
   font-size: 22rpx;
   color: #4a4742;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.ml-s {
+  margin-left: 8rpx;
+}
+
+.service-header {
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.service-summary {
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.service-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.service-action {
+  font-size: 22rpx;
+  color: #c0a28a;
+}
+
+.service-action-delete {
+  color: #d35b5b;
 }
