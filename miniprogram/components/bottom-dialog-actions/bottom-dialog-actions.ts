@@ -135,6 +135,19 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onUpdatePricingItems(e: any) {
+      const pricingItems = e.detail.pricingItems as QuotePricingCategory[]
+      const serviceCollapseStatus = e.detail.serviceCollapseStatus as boolean[][]
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus,
+      })
+      this.quoteDetailUpdate()
+    },
+
     onServiceChange(e: any) {
       const categoryIndex = e.detail.categoryIndex as number
       const serviceIndex = e.detail.serviceIndex as number

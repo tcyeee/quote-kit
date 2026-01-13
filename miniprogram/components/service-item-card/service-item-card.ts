@@ -81,6 +81,23 @@ Component({
       })
     },
 
+    onCategoryNameBlur(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const rawValue = e.detail.value || ""
+      const pricingItems = (this.data.pricingItems || []).slice()
+      const category = pricingItems[categoryIndex]
+      if (!category) return
+      const updatedCategory = {
+        ...(category as any),
+        name: rawValue,
+      }
+      pricingItems[categoryIndex] = updatedCategory as any
+      this.triggerEvent("updatePricingItems", {
+        pricingItems,
+        serviceCollapseStatus: this.data.serviceCollapseStatus,
+      })
+    },
+
     onToggleCategoryCollapseTap(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const current = (this.data as any).categoryCollapseStatus as boolean[] || []
