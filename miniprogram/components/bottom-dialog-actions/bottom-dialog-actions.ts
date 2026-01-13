@@ -102,6 +102,133 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onServiceNameInput(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const name = e.detail.value as string
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const service = items[serviceIndex]
+      items[serviceIndex] = {
+        ...service,
+        name,
+      }
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+      })
+    },
+
+    onServiceUnitPriceInput(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const value = parseFloat(e.detail.value || "0")
+      const unitPrice = isNaN(value) ? 0 : value
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const service = items[serviceIndex]
+      items[serviceIndex] = {
+        ...service,
+        unitPrice,
+      }
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+      })
+    },
+
+    onServiceUnitInput(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const unit = e.detail.value as string
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const service = items[serviceIndex]
+      items[serviceIndex] = {
+        ...service,
+        unit,
+      }
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+      })
+    },
+
+    onServiceQuantityInput(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const value = parseInt(e.detail.value || "0", 10)
+      const quantity = isNaN(value) ? 0 : value
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const service = items[serviceIndex]
+      items[serviceIndex] = {
+        ...service,
+        quantity,
+      }
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+      })
+    },
+
+    onServiceDeliveryPeriodInput(e: any) {
+      const categoryIndex = e.currentTarget.dataset.categoryIndex as number
+      const serviceIndex = e.currentTarget.dataset.serviceIndex as number
+      const value = parseInt(e.detail.value || "0", 10)
+      const deliveryPeriodDays = isNaN(value) ? 0 : value
+      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const category = pricingItems[categoryIndex]
+      const items = category.items.slice()
+      const service = items[serviceIndex]
+      items[serviceIndex] = {
+        ...service,
+        deliveryPeriodDays,
+      }
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+      })
+    },
+
+    onServiceFieldBlur() {
+      this.quoteDetailUpdate()
+    },
+
     onToggleSection(e: any) {
       const section = e.currentTarget.dataset.section as keyof CollapseStatus
       const CollapseStatus = this.data.CollapseStatus

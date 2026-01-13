@@ -40,8 +40,7 @@
   align-items: center;
   justify-content: center;
   border: 2rpx solid transparent;
-  transition: transform 160ms ease-out, box-shadow 160ms ease-out,
-    border-color 160ms ease-out;
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out;
   box-sizing: border-box;
 }
 
@@ -214,4 +213,32 @@
   background-color: #f2ece5;
   border: 2rpx solid #d6cdc4;
   font-size: 24rpx;
+}
+
+.config-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8rpx;
+  padding: 8rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #4a4742;
+}
+
+.service-inline-row {
+  display: flex;
+  gap: 8rpx;
+}
+
+.config-input-small {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 8rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #4a4742;
 }

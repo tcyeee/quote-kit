@@ -56,11 +56,25 @@
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
-          <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
+          <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
             <view class="config-schema-label">{{category.name}}</view>
             <view class="config-schema-row">
-              <view wx:for="{{category.items}}" wx:for-item="service" wx:key="name" class="config-schema-pill">
-                {{service.name}} ({{service.unitPrice}}元/{{service.unit}} × {{service.quantity}}，{{service.deliveryPeriodDays}}天)
+              <view wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name" class="config-schema-pill">
+                <view class="flex">
+                  <view class="font-bold">项目:</view>
+                  <view>{{service.name}}</view>
+                  <view class="font-bold ml-s">数量:</view>
+                  <view>{{service.unitPrice}}元/{{service.unit}}x{{service.quantity}}</view>
+                  <view class="font-bold  ml-s">交付周期:</view>
+                  <view>{{service.deliveryPeriodDays}}天</view>
+                </view>
+                <input class="config-input" placeholder="项目名称" value="{{service.name}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceNameInput" bindblur="onServiceFieldBlur" />
+                <view class="service-inline-row">
+                  <input class="config-input-small" type="digit" placeholder="单价" value="{{service.unitPrice}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceUnitPriceInput" bindblur="onServiceFieldBlur" />
+                  <input class="config-input-small" placeholder="单位" value="{{service.unit}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceUnitInput" bindblur="onServiceFieldBlur" />
+                  <input class="config-input-small" type="number" placeholder="数量" value="{{service.quantity}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceQuantityInput" bindblur="onServiceFieldBlur" />
+                  <input class="config-input-small" type="number" placeholder="周期(天)" value="{{service.deliveryPeriodDays}}" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindinput="onServiceDeliveryPeriodInput" bindblur="onServiceFieldBlur" />
+                </view>
               </view>
               <view class="config-schema-pill config-schema-action">添加服务项</view>
             </view>
