@@ -56,21 +56,14 @@
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
-          <view class="config-schema-label">服务类别A</view>
-          <view class="config-schema-row">
-            <view class="config-schema-pill">服务项目A-1 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目A-2 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目A-3 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目A-4 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill config-schema-action">添加服务项A-n</view>
-          </view>
-          <view class="config-schema-label">服务类别B</view>
-          <view class="config-schema-row">
-            <view class="config-schema-pill">服务项目B-1 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目B-2 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目B-3 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill">服务项目B-4 (包含 项目名称/单价/数量/交付周期)</view>
-            <view class="config-schema-pill config-schema-action">添加服务项B-n</view>
+          <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
+            <view class="config-schema-label">{{category.name}}</view>
+            <view class="config-schema-row">
+              <view wx:for="{{category.items}}" wx:for-item="service" wx:key="name" class="config-schema-pill">
+                {{service.name}} ({{service.unitPrice}}元/{{service.unit}} × {{service.quantity}}，{{service.deliveryPeriodDays}}天)
+              </view>
+              <view class="config-schema-pill config-schema-action">添加服务项</view>
+            </view>
           </view>
         </view>
         <view class="config-schema-footer">增加服务类别</view>
@@ -84,8 +77,8 @@
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
         <view class="config-schema-group">
-          <view class="config-schema-pill">定金比例(%)</view>
-          <view class="config-schema-pill">尾款比例(%)</view>
+          <input class="config-schema-pill" type="digit" placeholder="定金比例(%)" value="{{quoteDetail.serviceProcess.depositRatio * 100}}" bindinput="onDepositRatioInput" bindblur="onDepositRatioBlur" />
+          <input class="config-schema-pill" type="digit" placeholder="尾款比例(%)" value="{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}" bindinput="onFinalPaymentRatioInput" bindblur="onFinalPaymentRatioBlur" />
           <view class="config-schema-pill config-schema-action">增加交付节点</view>
         </view>
       </view>
@@ -98,7 +91,7 @@
       </view>
       <view wx:if="{{!CollapseStatus.remark}}">
         <view class="config-schema-group">
-          <view class="config-schema-pill">输入备注信息</view>
+          <textarea class="config-textarea" placeholder="输入备注信息" value="{{quoteDetail.serviceTerms}}" bindinput="onServiceTermsInput" bindblur="onServiceTermsBlur" />
         </view>
       </view>
     </view>
