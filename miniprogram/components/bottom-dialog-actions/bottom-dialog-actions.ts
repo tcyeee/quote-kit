@@ -25,6 +25,12 @@ Component({
     },
   },
   methods: {
+    onSaveImageTap() {
+      wx.showToast({
+        title: "当前版本不支持",
+        icon: "none",
+      })
+    },
     onClientNameInput(e: any) {
       const value = e.detail.value
       this.setData({

@@ -1,7 +1,7 @@
 <view class="bottom-dialog-body">
   <view class="action-bar">
-    <button class="action-btn secondary">保存图片</button>
-    <button class="action-btn primary">发送报价单</button>
+    <button class="action-btn secondary" bindtap="onSaveImageTap">保存图片</button>
+    <button class="action-btn primary" open-type="share">发送报价单</button>
   </view>
   <view class="theme-selector">
     <view class="theme-label">主题选择</view>
