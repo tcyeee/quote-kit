@@ -302,6 +302,26 @@
   opacity: 1;
 }
 
+.service-field {
+  margin-bottom: 12rpx;
+}
+
+.service-field-label {
+  margin-bottom: 6rpx;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
+.service-field-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 8rpx;
+}
+
+.service-field-item {
+  flex: 1;
+}
+
 .service-collapse-icon {
   display: inline-flex;
   align-items: center;

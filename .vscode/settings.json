@@ -3,6 +3,7 @@
         "bindblur",
         "bindinput",
         "bindtap",
+        "bindtouchend",
         "bindtouchstart",
         "catchtouchend",
         "catchtouchmove",
