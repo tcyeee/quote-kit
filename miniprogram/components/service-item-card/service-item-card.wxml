@@ -1,7 +1,7 @@
 <view>
   <view wx:for="{{pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
     <view class="service-summary-content" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
-      <service-collapse-icon collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
+      <service-collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
       <view class="config-schema-label">{{category.name}}</view>
     </view>
     <view class="config-schema-row" wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
@@ -19,12 +19,13 @@
             </view>
           </view>
         </view>
-        <view wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name">
+        <view class="service-item" wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name">
+          <span class="icon--move-y-circle icon-size-25" style="color:gray" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
           <view class="config-schema-pill">
             <view class="service-header flex">
               <view class="service-summary">
-                <view class="service-summary-content" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
-                  <service-collapse-icon collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" />
+                <view class="service-item-content" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
+                  <service-collapse-icon size="14" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" />
                   <view class="service-title">{{service.name}}</view>
                 </view>
                 <view class="service-meta">
