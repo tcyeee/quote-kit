@@ -11,17 +11,6 @@
   min-height: 0;
 }
 
-.theme-selector {
-  margin-top: 40rpx;
-}
-
-.theme-label {
-  font-size: 26rpx;
-  color: #6b665f;
-  font-weight: 600;
-  margin-bottom: 16rpx;
-}
-
 .theme-options {
   display: flex;
   flex-direction: row;
@@ -105,41 +94,6 @@
   color: #fdfaf7;
 }
 
-.quote-config {
-  margin-top: 40rpx;
-  padding: 24rpx 0 0;
-  border-top: 2rpx solid #e0d7ce;
-}
-
-.config-section + .config-section {
-  margin-top: 24rpx;
-}
-
-.config-label {
-  font-size: 24rpx;
-  color: #6b665f;
-  margin-bottom: 8rpx;
-}
-
-.config-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16rpx 20rpx;
-  border-radius: 16rpx;
-  background-color: #f2ece5;
-  border: 2rpx solid #d6cdc4;
-  font-size: 24rpx;
-}
-
-.config-schema {
-  margin-top: 40rpx;
-  padding: 24rpx 20rpx 28rpx;
-  border-radius: 20rpx;
-  background-color: #f2ece5;
-  border: 2rpx solid #d3cbc2;
-  box-sizing: border-box;
-}
-
 .config-schema-header {
   display: flex;
   gap: 7rpx;
@@ -166,19 +120,6 @@
   gap: 12rpx;
 }
 
-.config-schema-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8rpx;
-  margin-top: 8rpx;
-}
-
-.config-schema-label {
-  font-size: 24rpx;
-  color: #6b665f;
-  margin-top: 10rpx;
-}
-
 .config-schema-pill {
   padding: 12rpx 16rpx;
   border-radius: 14rpx;
@@ -191,12 +132,6 @@
 .config-schema-action {
   color: #c0a28a;
   border-style: dashed;
-}
-
-.config-schema-footer {
-  margin-top: 16rpx;
-  font-size: 24rpx;
-  color: #c0a28a;
 }
 
 .config-textarea {

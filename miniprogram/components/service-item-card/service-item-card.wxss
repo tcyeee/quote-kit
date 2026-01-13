@@ -12,13 +12,18 @@
   flex-direction: column;
   gap: 8rpx;
   margin-top: 8rpx;
-  padding-left: 20rpx
+  padding-left: 20rpx;
 }
 
 .config-schema-label {
   font-size: 24rpx;
   color: #6b665f;
-  margin-top: 10rpx;
+}
+
+.config-schema-action {
+  color: #c0a28a;
+  border-style: dashed;
+  text-align: center;
 }
 
 .config-input {
@@ -26,6 +31,7 @@
   box-sizing: border-box;
   margin-bottom: 8rpx;
   padding: 8rpx 10rpx;
+  min-height: 64rpx;
   border-radius: 10rpx;
   background-color: #f8f4ef;
   border: 2rpx solid #d6cdc4;
@@ -37,6 +43,7 @@
   flex: 1;
   box-sizing: border-box;
   padding: 8rpx 10rpx;
+  min-height: 64rpx;
   border-radius: 10rpx;
   background-color: #f8f4ef;
   border: 2rpx solid #d6cdc4;
@@ -90,6 +97,7 @@
 .service-body {
   overflow: hidden;
   transition: max-height 0.2s ease, opacity 0.2s ease;
+  margin-top: 8rpx;
 }
 
 .service-body--collapsed {
@@ -126,6 +134,13 @@
   display: flex;
   flex-direction: row;
   gap: 6rpx;
+  align-items: center;
+  padding: 12rpx 4rpx;
+  border-radius: 12rpx;
+}
+
+.service-summary-content:active {
+  background-color: #f0e7dd;
 }
 
 .service-list-box {
@@ -149,4 +164,6 @@
   margin-top: 16rpx;
   font-size: 24rpx;
   color: #c0a28a;
+  text-align: center;
+  padding: 16rpx 0 24rpx;
 }
