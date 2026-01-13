@@ -15,7 +15,7 @@ Component({
   lifetimes: {
     attached() {
       const {
-        client,
+        domain: client,
         serviceProcess,
         overallDeliveryPeriodDays,
         serviceTerms,
@@ -45,7 +45,7 @@ Component({
         clientName: value,
       })
       const app = getApp<IAppOption>()
-      app.globalData.quoteDetail.client.name = value
+      app.globalData.quoteDetail.domain.name = value
     },
     onOverallDeliveryPeriodInput(e: any) {
       const value = parseInt(e.detail.value, 10)

@@ -16,22 +16,8 @@ Component({
 
   lifetimes: {
     attached() {
-      const {
-        client,
-        pricingItems,
-        serviceProcess,
-        overallDeliveryPeriodDays,
-        serviceTerms,
-        theme,
-      } = getApp<IAppOption>().globalData.quoteDetail
-
       this.setData({
-        client,
-        pricingItems,
-        serviceProcess,
-        overallDeliveryPeriodDays,
-        serviceTerms,
-        theme,
+        quoteDetail: getApp<IAppOption>().globalData.quoteDetail as QuoteDetail,
       })
     },
   },

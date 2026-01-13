@@ -33,7 +33,7 @@ interface QuotePricingCategory {
 /**
  * 报价对应的客户信息
  */
-interface QuoteClient {
+interface QuoteDomain {
   // 客户名称或公司名称
   name: string,
   // 客户 Logo 的图片地址
@@ -55,8 +55,10 @@ interface QuoteServiceProcess {
  * 包含客户信息、各项服务报价和服务条款等
  */
 interface QuoteDetail {
-  // 客户信息
-  client: QuoteClient,
+  // 客户名称
+  clientName: string,
+  // 我的公司信息
+  domain: QuoteDomain,
   // 报价条目列表
   pricingItems: QuotePricingCategory[],
   // 支付流程

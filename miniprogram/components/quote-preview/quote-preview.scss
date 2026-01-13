@@ -23,19 +23,40 @@
 .quote-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 32rpx;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
 }
 
 .header-right {
   text-align: right;
 }
 
+.quote-badge {
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background: rgba(192, 162, 138, 0.12);
+  border: 2rpx solid rgba(192, 162, 138, 0.45);
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+  color: #8b7761;
+}
+
+.quote-meta {
+  display: flex;
+  flex-direction: column;
+}
+
 .client-name {
   display: block;
   font-size: 26rpx;
-  color: #8b8680;
-  margin-bottom: 8rpx;
+  color: #4a4742;
+  font-weight: 600;
 }
 
 .quote-title {
@@ -43,6 +64,18 @@
   font-size: 34rpx;
   font-weight: 600;
   letter-spacing: 4rpx;
+}
+
+.quote-subtitle {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
+.client-label {
+  display: block;
+  font-size: 22rpx;
+  color: #8b8680;
 }
 
 .quote-section {
@@ -131,4 +164,3 @@
     font-size: 22rpx;
   }
 }
-
