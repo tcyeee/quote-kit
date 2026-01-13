@@ -191,7 +191,7 @@ Component({
     onAddCategory() {
       const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
       const newCategory: QuotePricingCategory = {
-        name: "新建建服务类型",
+        name: "新建服务类型",
         items: [],
       }
       pricingItems.push(newCategory)
