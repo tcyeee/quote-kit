@@ -21,6 +21,10 @@ Component({
     categoryCollapseStatus: [] as boolean[],
   },
   methods: {
+    onAddCategoryTap() {
+      this.triggerEvent("addCategory")
+    },
+
     onAddServiceTap(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       this.triggerEvent("addService", {

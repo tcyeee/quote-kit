@@ -72,5 +72,5 @@
       </view>
     </view>
   </view>
-  <view class="config-schema-footer">＋ 增加服务类别</view>
+  <view class="config-schema-footer" bindtap="onAddCategoryTap">＋ 增加服务类别</view>
 </view>

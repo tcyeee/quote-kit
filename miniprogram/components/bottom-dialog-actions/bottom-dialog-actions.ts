@@ -175,6 +175,25 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onAddCategory() {
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
+      const newCategory: QuotePricingCategory = {
+        name: "新建建服务类型",
+        items: [],
+      }
+      pricingItems.push(newCategory)
+      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
+      serviceCollapseStatus.push([])
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          pricingItems,
+        },
+        serviceCollapseStatus,
+      })
+      this.quoteDetailUpdate()
+    },
+
     onServiceFieldBlur() {
       this.quoteDetailUpdate()
     },
