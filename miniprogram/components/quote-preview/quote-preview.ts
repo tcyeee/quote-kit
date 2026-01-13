@@ -1,23 +1,12 @@
 Component({
   data: {
-    client: {
-      name: "",
-      logoUrl: "",
-    },
-    pricingItems: [] as QuotePricingCategory[],
-    serviceProcess: {
-      depositRatio: 0,
-      finalPaymentRatio: 0,
-    },
-    overallDeliveryPeriodDays: 0,
-    serviceTerms: "",
-    theme: "",
+    quoteDetail: {} as QuoteDetail,
   },
 
   lifetimes: {
     attached() {
       this.setData({
-        quoteDetail: getApp<IAppOption>().globalData.quoteDetail as QuoteDetail,
+        quoteDetail: getApp<IAppOption>().globalData.quoteDetail,
       })
     },
   },

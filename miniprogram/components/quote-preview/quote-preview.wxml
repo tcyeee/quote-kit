@@ -56,21 +56,21 @@
         <view class="section-title">服务流程与付款</view>
         <view class="section-body">
           <text class="section-text"
-            >定金比例：{{serviceProcess.depositRatio * 100}}%</text
+            >定金比例：{{quoteDetail.serviceProcess.depositRatio * 100}}%</text
           >
           <text class="section-text"
-            >尾款比例：{{serviceProcess.finalPaymentRatio * 100}}%</text
+            >尾款比例：{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}%</text
           >
           <text class="section-text"
-            >整体预计工期：{{overallDeliveryPeriodDays}} 天</text
+            >整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text
           >
         </view>
       </view>
 
-      <view class="quote-section" wx:if="{{serviceTerms}}">
+      <view class="quote-section" wx:if="{{quoteDetail.serviceTerms}}">
         <view class="section-title">服务条款</view>
         <view class="section-body">
-          <text class="section-text">{{serviceTerms}}</text>
+          <text class="section-text">{{quoteDetail.serviceTerms}}</text>
         </view>
       </view>
     </view>
