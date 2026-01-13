@@ -1,5 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "service-collapse-icon": "/components/service-collapse-icon/service-collapse-icon"
+  }
 }
-

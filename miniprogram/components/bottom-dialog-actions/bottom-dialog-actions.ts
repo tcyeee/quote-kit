@@ -29,9 +29,10 @@ Component({
   lifetimes: {
     attached() {
       const quoteDetail = getApp<IAppOption>().globalData.quoteDetail
-      const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category =>
-        (category.items || []).map(() => true),
-      )
+      const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category => {
+        const items = category.items || []
+        return items.map(() => true)
+      })
       this.setData({
         quoteDetail,
         serviceCollapseStatus,
@@ -39,27 +40,75 @@ Component({
     },
   },
   methods: {
+    updateQuoteDetail(partial: Partial<QuoteDetail>) {
+      this.setData({
+        quoteDetail: {
+          ...this.data.quoteDetail,
+          ...partial,
+        },
+      })
+    },
+
+    updateServiceItem(
+      categoryIndex: number,
+      serviceIndex: number,
+      updater: (service: any) => any,
+    ) {
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
+      const category = pricingItems[categoryIndex]
+      if (!category) return
+      const items = (category.items || []).slice()
+      const service = items[serviceIndex]
+      if (!service) return
+      items[serviceIndex] = updater(service)
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.updateQuoteDetail({ pricingItems })
+    },
+
+    resetDragServiceState() {
+      this.setData({
+        showDragServiceOverlay: false,
+        dragServiceCategoryIndex: -1,
+        dragServiceIndex: -1,
+      })
+    },
+
+    calculateDragOverlayTop(clientY: number, rect: WechatMiniprogram.BoundingClientRectCallbackResult, count: number) {
+      const listTop = rect.top
+      const listHeight = rect.height || 0
+      const itemCount = count || 1
+      const itemHeight = itemCount > 0 && listHeight > 0 ? listHeight / itemCount : 60
+      let top = clientY - listTop - itemHeight / 2
+      if (top < 0) top = 0
+      const maxTop = Math.max(0, listHeight - itemHeight)
+      if (top > maxTop) top = maxTop
+      return {
+        top,
+        itemHeight,
+      }
+    },
+
     onSaveImageTap() {
       wx.showToast({ title: "当前版本不支持", icon: "none" })
     },
 
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
-      this.setData({ quoteDetail: { ...this.data.quoteDetail, theme } })
+      this.updateQuoteDetail({ theme })
       this.quoteDetailUpdate()
     },
 
     onDomainNameInput(e: any) {
       const name = e.detail.value as string
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          domain: {
-            ...this.data.quoteDetail.domain,
-            name,
-          },
+      this.updateQuoteDetail({
+        domain: {
+          ...this.data.quoteDetail.domain,
+          name,
         },
-      })
+      } as any)
     },
 
     onDomainNameBlur() {
@@ -69,15 +118,12 @@ Component({
     onDepositRatioInput(e: any) {
       const value = parseFloat(e.detail.value || "0")
       const depositRatio = isNaN(value) ? 0 : value / 100
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          serviceProcess: {
-            ...this.data.quoteDetail.serviceProcess,
-            depositRatio,
-          },
+      this.updateQuoteDetail({
+        serviceProcess: {
+          ...this.data.quoteDetail.serviceProcess,
+          depositRatio,
         },
-      })
+      } as any)
     },
 
     onDepositRatioBlur() {
@@ -87,15 +133,12 @@ Component({
     onFinalPaymentRatioInput(e: any) {
       const value = parseFloat(e.detail.value || "0")
       const finalPaymentRatio = isNaN(value) ? 0 : value / 100
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          serviceProcess: {
-            ...this.data.quoteDetail.serviceProcess,
-            finalPaymentRatio,
-          },
+      this.updateQuoteDetail({
+        serviceProcess: {
+          ...this.data.quoteDetail.serviceProcess,
+          finalPaymentRatio,
         },
-      })
+      } as any)
     },
 
     onFinalPaymentRatioBlur() {
@@ -104,12 +147,7 @@ Component({
 
     onServiceTermsInput(e: any) {
       const serviceTerms = e.detail.value as string
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          serviceTerms,
-        },
-      })
+      this.updateQuoteDetail({ serviceTerms })
     },
 
     onServiceTermsBlur() {
@@ -120,24 +158,10 @@ Component({
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
       const name = e.detail.value as string
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const service = items[serviceIndex]
-      items[serviceIndex] = {
+      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
         ...service,
         name,
-      }
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-      })
+      }))
     },
 
     onServiceUnitPriceInput(e: any) {
@@ -145,48 +169,20 @@ Component({
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
       const value = parseFloat(e.detail.value || "0")
       const unitPrice = isNaN(value) ? 0 : value
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const service = items[serviceIndex]
-      items[serviceIndex] = {
+      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
         ...service,
         unitPrice,
-      }
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-      })
+      }))
     },
 
     onServiceUnitInput(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
       const unit = e.detail.value as string
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const service = items[serviceIndex]
-      items[serviceIndex] = {
+      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
         ...service,
         unit,
-      }
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-      })
+      }))
     },
 
     onServiceQuantityInput(e: any) {
@@ -194,24 +190,10 @@ Component({
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
       const value = parseInt(e.detail.value || "0", 10)
       const quantity = isNaN(value) ? 0 : value
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const service = items[serviceIndex]
-      items[serviceIndex] = {
+      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
         ...service,
         quantity,
-      }
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-      })
+      }))
     },
 
     onServiceDeliveryPeriodInput(e: any) {
@@ -219,24 +201,10 @@ Component({
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
       const value = parseInt(e.detail.value || "0", 10)
       const deliveryPeriodDays = isNaN(value) ? 0 : value
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
-      const category = pricingItems[categoryIndex]
-      const items = category.items.slice()
-      const service = items[serviceIndex]
-      items[serviceIndex] = {
+      this.updateServiceItem(categoryIndex, serviceIndex, service => ({
         ...service,
         deliveryPeriodDays,
-      }
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.setData({
-        quoteDetail: {
-          ...this.data.quoteDetail,
-          pricingItems,
-        },
-      })
+      }))
     },
 
     onServiceFieldBlur() {
@@ -266,8 +234,9 @@ Component({
     onDeleteService(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      const pricingItems = this.data.quoteDetail.pricingItems.slice()
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
       const category = pricingItems[categoryIndex]
+      if (!category) return
       const items = category.items.slice()
       items.splice(serviceIndex, 1)
       pricingItems[categoryIndex] = {
@@ -302,14 +271,8 @@ Component({
       query.select(selector).boundingClientRect(rect => {
         if (!rect || !e.changedTouches || !e.changedTouches[0]) return
         const clientY = e.changedTouches[0].clientY
-        const listTop = rect.top
-        const listHeight = rect.height || 0
         const count = items.length || 1
-        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
-        let top = clientY - listTop - itemHeight / 2
-        if (top < 0) top = 0
-        const maxTop = Math.max(0, listHeight - itemHeight)
-        if (top > maxTop) top = maxTop
+        const { top } = this.calculateDragOverlayTop(clientY, rect, count)
         this.setData({
           dragServiceOverlayTop: top,
           dragServiceCategoryIndex: categoryIndex,
@@ -338,14 +301,8 @@ Component({
       query.select(selector).boundingClientRect(rect => {
         if (!rect || !e.changedTouches || !e.changedTouches[0]) return
         const clientY = e.changedTouches[0].clientY
-        const listTop = rect.top
-        const listHeight = rect.height || 0
         const count = items.length || 1
-        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
-        let top = clientY - listTop - itemHeight / 2
-        if (top < 0) top = 0
-        const maxTop = Math.max(0, listHeight - itemHeight)
-        if (top > maxTop) top = maxTop
+        const { top } = this.calculateDragOverlayTop(clientY, rect, count)
         this.setData({
           dragServiceOverlayTop: top,
         })
@@ -356,11 +313,7 @@ Component({
       const categoryIndex = this.data.dragServiceCategoryIndex
       const fromIndex = this.data.dragServiceIndex
       if (categoryIndex < 0 || fromIndex < 0) {
-        this.setData({
-          showDragServiceOverlay: false,
-          dragServiceCategoryIndex: -1,
-          dragServiceIndex: -1,
-        })
+        this.resetDragServiceState()
         return
       }
       const pricingItems = this.data.quoteDetail.pricingItems.slice()
@@ -368,33 +321,19 @@ Component({
       if (!category) return
       const items = (category.items || []).slice()
       if (!items.length) {
-        this.setData({
-          showDragServiceOverlay: false,
-          dragServiceCategoryIndex: -1,
-          dragServiceIndex: -1,
-        })
+        this.resetDragServiceState()
         return
       }
       const query = wx.createSelectorQuery().in(this)
       const selector = `.service-list-box-${categoryIndex}`
       query.select(selector).boundingClientRect(rect => {
         if (!rect || !e.changedTouches || !e.changedTouches[0]) {
-          this.setData({
-            showDragServiceOverlay: false,
-            dragServiceCategoryIndex: -1,
-            dragServiceIndex: -1,
-          })
+          this.resetDragServiceState()
           return
         }
         const clientY = e.changedTouches[0].clientY
-        const listTop = rect.top
-        const listHeight = rect.height || 0
         const count = items.length || 1
-        const itemHeight = count > 0 && listHeight > 0 ? listHeight / count : 60
-        let top = clientY - listTop - itemHeight / 2
-        if (top < 0) top = 0
-        const maxTop = Math.max(0, listHeight - itemHeight)
-        if (top > maxTop) top = maxTop
+        const { top, itemHeight } = this.calculateDragOverlayTop(clientY, rect, count)
         let targetIndex = Math.round(itemHeight ? top / itemHeight : 0)
         if (targetIndex < 0) targetIndex = 0
         if (targetIndex > items.length - 1) targetIndex = items.length - 1
@@ -419,11 +358,7 @@ Component({
           })
           this.quoteDetailUpdate()
         }
-        this.setData({
-          showDragServiceOverlay: false,
-          dragServiceCategoryIndex: -1,
-          dragServiceIndex: -1,
-        })
+        this.resetDragServiceState()
       }).exec()
     },
 
