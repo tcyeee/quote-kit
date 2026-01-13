@@ -142,8 +142,8 @@
 
 .config-schema-header {
   display: flex;
+  gap: 5rpx;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 8rpx;
 }
 
@@ -157,12 +157,6 @@
   font-size: 26rpx;
   font-weight: 600;
   color: #6b665f;
-  margin-bottom: 12rpx;
-}
-
-.config-schema-arrow {
-  font-size: 22rpx;
-  color: #b3a79a;
 }
 
 .config-schema-group {

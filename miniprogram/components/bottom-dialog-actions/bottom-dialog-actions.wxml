@@ -7,8 +7,8 @@
     <!-- 配置项:主题选择 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="theme">
+        <service-collapse-icon collapsed="{{CollapseStatus.theme}}" />
         <view class="config-schema-title">主题选择</view>
-        <text class="config-schema-arrow">{{CollapseStatus.theme ? '展开' : '收起'}}</text>
       </view>
       <view wx:if="{{!CollapseStatus.theme}}">
         <view class="theme-options">
@@ -39,7 +39,9 @@
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="company">
         <view class="config-schema-title">我的公司信息</view>
-        <text class="config-schema-arrow">{{CollapseStatus.company ? '展开' : '收起'}}</text>
+        <view class="config-schema-arrow">
+          <service-collapse-icon collapsed="{{CollapseStatus.company}}" />
+        </view>
       </view>
       <view wx:if="{{!CollapseStatus.company}}">
         <view class="config-schema-group">
@@ -52,7 +54,9 @@
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="service">
         <view class="config-schema-title">服务内容</view>
-        <text class="config-schema-arrow">{{CollapseStatus.service ? '展开' : '收起'}}</text>
+        <view class="config-schema-arrow">
+          <service-collapse-icon collapsed="{{CollapseStatus.service}}" />
+        </view>
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
@@ -130,7 +134,9 @@
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="payment">
         <view class="config-schema-title">付款比例设置</view>
-        <text class="config-schema-arrow">{{CollapseStatus.payment ? '展开' : '收起'}}</text>
+        <view class="config-schema-arrow">
+          <service-collapse-icon collapsed="{{CollapseStatus.payment}}" />
+        </view>
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
         <view class="config-schema-group">
@@ -144,7 +150,9 @@
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="remark">
         <view class="config-schema-title">备注</view>
-        <text class="config-schema-arrow">{{CollapseStatus.remark ? '展开' : '收起'}}</text>
+        <view class="config-schema-arrow">
+          <service-collapse-icon collapsed="{{CollapseStatus.remark}}" />
+        </view>
       </view>
       <view wx:if="{{!CollapseStatus.remark}}">
         <view class="config-schema-group">
