@@ -98,7 +98,9 @@
   display: flex;
   gap: 7rpx;
   align-items: center;
-  margin-bottom: 8rpx;
+  background-color: #c0a28a8c;
+  padding: 5rpx;
+  border-radius: 10rpx;
 }
 
 .config-schema-section + .config-schema-section {
@@ -111,7 +113,6 @@
   font-size: 26rpx;
   font-weight: 600;
   color: #6b665f;
-  padding-bottom: 7rpx;
 }
 
 .config-schema-group {

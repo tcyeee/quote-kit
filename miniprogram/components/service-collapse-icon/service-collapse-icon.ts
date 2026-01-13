@@ -7,6 +7,9 @@ Component({
       type: Boolean,
       value: false,
     },
+    size: {
+      type: Number,
+      value: 15,
+    },
   },
 })
-
