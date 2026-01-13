@@ -6,6 +6,11 @@ Component({
     overallDeliveryPeriodDays: 0,
     serviceTerms: "",
     currentTheme: "",
+    isThemeCollapsed: false,
+    isCompanyCollapsed: false,
+    isServiceCollapsed: false,
+    isPaymentCollapsed: false,
+    isRemarkCollapsed: false,
   },
   lifetimes: {
     attached() {
@@ -84,6 +89,31 @@ Component({
       this.setData({ currentTheme: theme })
       const app = getApp<IAppOption>()
       app.globalData.quoteDetail.theme = theme
+    },
+    onToggleThemeSection() {
+      this.setData({
+        isThemeCollapsed: !this.data.isThemeCollapsed,
+      })
+    },
+    onToggleCompanySection() {
+      this.setData({
+        isCompanyCollapsed: !this.data.isCompanyCollapsed,
+      })
+    },
+    onToggleServiceSection() {
+      this.setData({
+        isServiceCollapsed: !this.data.isServiceCollapsed,
+      })
+    },
+    onTogglePaymentSection() {
+      this.setData({
+        isPaymentCollapsed: !this.data.isPaymentCollapsed,
+      })
+    },
+    onToggleRemarkSection() {
+      this.setData({
+        isRemarkCollapsed: !this.data.isRemarkCollapsed,
+      })
     },
   },
 })

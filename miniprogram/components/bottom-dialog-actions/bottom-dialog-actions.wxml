@@ -5,75 +5,100 @@
   </view>
   <!-- 配置项:主题选择 -->
   <view class="config-schema-section">
-    <view class="theme-label">主题选择</view>
-    <view class="theme-options">
-      <view class="theme-option {{currentTheme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
-        <image class="theme-bg" src="../../assets/button_1.png" mode="aspectFill"></image>
-        <view class="theme-overlay"></view>
-        <text class="theme-name">月光</text>
-      </view>
-      <view class="theme-option {{currentTheme === 'neon' ? 'active' : ''}}" data-theme="neon" bindtap="onThemeTap">
-        <image class="theme-bg" src="../../assets/button_2.png" mode="aspectFill"></image>
-        <view class="theme-overlay"></view>
-        <text class="theme-name">深海</text>
-      </view>
-      <view class="theme-option {{currentTheme === 'moonlight' ? 'active' : ''}}" data-theme="moonlight" bindtap="onThemeTap">
-        <image class="theme-bg" src="../../assets/button_3.png" mode="aspectFill"></image>
-        <view class="theme-overlay"></view>
-        <text class="theme-name">琥珀</text>
-      </view>
-      <view class="theme-option {{currentTheme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
-        <image class="theme-bg" src="../../assets/button_4.png" mode="aspectFill"></image>
-        <view class="theme-overlay"></view>
-        <text class="theme-name">霓虹</text>
+    <view class="config-schema-header" bindtap="onToggleThemeSection">
+      <view class="config-schema-title">主题选择</view>
+      <text class="config-schema-arrow">{{isThemeCollapsed ? '展开' : '收起'}}</text>
+    </view>
+    <view wx:if="{{!isThemeCollapsed}}">
+      <view class="theme-options">
+        <view class="theme-option {{currentTheme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../assets/button_1.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">月光</text>
+        </view>
+        <view class="theme-option {{currentTheme === 'neon' ? 'active' : ''}}" data-theme="neon" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../assets/button_2.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">深海</text>
+        </view>
+        <view class="theme-option {{currentTheme === 'moonlight' ? 'active' : ''}}" data-theme="moonlight" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../assets/button_3.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">琥珀</text>
+        </view>
+        <view class="theme-option {{currentTheme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../assets/button_4.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">霓虹</text>
+        </view>
       </view>
     </view>
   </view>
   <!-- 配置项:我的公司信息 -->
   <view class="config-schema-section">
-    <view class="config-schema-title">我的公司信息</view>
-    <view class="config-schema-group">
-      <view class="config-schema-pill">我的公司名称(可选)</view>
-      <view class="config-schema-pill">我的公司LOGO(可选)</view>
+    <view class="config-schema-header" bindtap="onToggleCompanySection">
+      <view class="config-schema-title">我的公司信息</view>
+      <text class="config-schema-arrow">{{isCompanyCollapsed ? '展开' : '收起'}}</text>
+    </view>
+    <view wx:if="{{!isCompanyCollapsed}}">
+      <view class="config-schema-group">
+        <view class="config-schema-pill">我的公司名称(可选)</view>
+        <view class="config-schema-pill">我的公司LOGO(可选)</view>
+      </view>
     </view>
   </view>
   <!-- 配置项:服务内容 -->
   <view class="config-schema-section">
-    <view class="config-schema-title">服务内容</view>
-    <view class="config-schema-group">
-      <view class="config-schema-label">服务类别A</view>
-      <view class="config-schema-row">
-        <view class="config-schema-pill">服务项目A-1 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目A-2 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目A-3 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目A-4 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill config-schema-action">添加服务项A-n</view>
-      </view>
-      <view class="config-schema-label">服务类别B</view>
-      <view class="config-schema-row">
-        <view class="config-schema-pill">服务项目B-1 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目B-2 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目B-3 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill">服务项目B-4 (包含 项目名称/单价/数量/交付周期)</view>
-        <view class="config-schema-pill config-schema-action">添加服务项B-n</view>
-      </view>
+    <view class="config-schema-header" bindtap="onToggleServiceSection">
+      <view class="config-schema-title">服务内容</view>
+      <text class="config-schema-arrow">{{isServiceCollapsed ? '展开' : '收起'}}</text>
     </view>
-    <view class="config-schema-footer">增加服务类别</view>
+    <view wx:if="{{!isServiceCollapsed}}">
+      <view class="config-schema-group">
+        <view class="config-schema-label">服务类别A</view>
+        <view class="config-schema-row">
+          <view class="config-schema-pill">服务项目A-1 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目A-2 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目A-3 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目A-4 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill config-schema-action">添加服务项A-n</view>
+        </view>
+        <view class="config-schema-label">服务类别B</view>
+        <view class="config-schema-row">
+          <view class="config-schema-pill">服务项目B-1 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目B-2 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目B-3 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill">服务项目B-4 (包含 项目名称/单价/数量/交付周期)</view>
+          <view class="config-schema-pill config-schema-action">添加服务项B-n</view>
+        </view>
+      </view>
+      <view class="config-schema-footer">增加服务类别</view>
+    </view>
   </view>
   <!-- 配置项:付款比例设置 -->
   <view class="config-schema-section">
-    <view class="config-schema-title">付款比例设置</view>
-    <view class="config-schema-group">
-      <view class="config-schema-pill">定金比例(%)</view>
-      <view class="config-schema-pill">尾款比例(%)</view>
-      <view class="config-schema-pill config-schema-action">增加交付节点</view>
+    <view class="config-schema-header" bindtap="onTogglePaymentSection">
+      <view class="config-schema-title">付款比例设置</view>
+      <text class="config-schema-arrow">{{isPaymentCollapsed ? '展开' : '收起'}}</text>
+    </view>
+    <view wx:if="{{!isPaymentCollapsed}}">
+      <view class="config-schema-group">
+        <view class="config-schema-pill">定金比例(%)</view>
+        <view class="config-schema-pill">尾款比例(%)</view>
+        <view class="config-schema-pill config-schema-action">增加交付节点</view>
+      </view>
     </view>
   </view>
   <!-- 底部备注信息 -->
   <view class="config-schema-section">
-    <view class="config-schema-title">备注</view>
-    <view class="config-schema-group">
-      <view class="config-schema-pill">输入备注信息</view>
+    <view class="config-schema-header" bindtap="onToggleRemarkSection">
+      <view class="config-schema-title">备注</view>
+      <text class="config-schema-arrow">{{isRemarkCollapsed ? '展开' : '收起'}}</text>
+    </view>
+    <view wx:if="{{!isRemarkCollapsed}}">
+      <view class="config-schema-group">
+        <view class="config-schema-pill">输入备注信息</view>
+      </view>
     </view>
   </view>
 </view>
