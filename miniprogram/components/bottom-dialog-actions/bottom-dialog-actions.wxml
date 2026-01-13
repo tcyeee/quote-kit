@@ -1,9 +1,9 @@
 <view class="bottom-dialog-body">
-  <view class="action-bar">
-    <button class="action-btn secondary" bindtap="onSaveImageTap">保存为图片</button>
-    <button class="action-btn primary" open-type="share">发送报价单</button>
-  </view>
-  <scroll-view>
+  <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view class="action-bar">
+      <button class="action-btn secondary" bindtap="onSaveImageTap">保存为图片</button>
+      <button class="action-btn primary" open-type="share">发送报价单</button>
+    </view>
     <!-- 配置项:主题选择 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="theme">
@@ -102,5 +102,6 @@
         </view>
       </view>
     </view>
+    <view style="height: 10vh;"></view>
   </scroll-view>
 </view>

@@ -1,6 +1,14 @@
 .bottom-dialog-body {
   padding-bottom: 36rpx;
   height: calc(100% - 60rpx);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.bottom-dialog-scroll {
+  flex: 1;
+  min-height: 0;
 }
 
 .theme-selector {
