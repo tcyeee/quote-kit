@@ -5,16 +5,10 @@
 .page {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 12vh 24rpx 25vh;
-  background: linear-gradient(180deg, #f3f0eb 0%, #e2ded7 100%);
-}
-
-.quote-container {
-  background: #f8f4ef;
-  box-shadow: 0 16rpx 40rpx rgba(56, 49, 43, 0.06);
-  padding: 40rpx 36rpx 32rpx;
-  color: #4a4742;
   line-height: 1.6;
+  color: #4a4742;
+  padding: 12vh 24rpx;
+  background: #f8f4ef;
 }
 
 .quote-header {
