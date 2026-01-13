@@ -1,5 +1,6 @@
 type CollapseStatus = {
   theme: boolean,
+  client: boolean,
   company: boolean,
   service: boolean,
   payment: boolean,
@@ -14,6 +15,7 @@ Component({
     quoteDetail: {} as QuoteDetail,
     CollapseStatus: {
       theme: false,
+      client: false,
       company: false,
       service: false,
       payment: false,
@@ -79,6 +81,15 @@ Component({
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
       this.updateQuoteDetail({ theme })
+      this.quoteDetailUpdate()
+    },
+
+    onClientNameInput(e: any) {
+      const clientName = e.detail.value as string
+      this.updateQuoteDetail({ clientName })
+    },
+
+    onClientNameBlur() {
       this.quoteDetailUpdate()
     },
 

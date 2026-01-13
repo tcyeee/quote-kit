@@ -35,6 +35,18 @@
         </view>
       </view>
     </view>
+    <!-- 配置项:甲方信息 -->
+    <view class="config-schema-section">
+      <view class="config-schema-header" bindtap="onToggleSection" data-section="client">
+        <service-collapse-icon collapsed="{{CollapseStatus.client}}" />
+        <view class="config-schema-title">甲方信息</view>
+      </view>
+      <view wx:if="{{!CollapseStatus.client}}">
+        <view class="config-schema-group">
+          <input class="config-schema-pill" placeholder="甲方名称 / 客户名称" value="{{quoteDetail.clientName}}" bindinput="onClientNameInput" bindblur="onClientNameBlur" />
+        </view>
+      </view>
+    </view>
     <!-- 配置项:我的公司信息 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="company">

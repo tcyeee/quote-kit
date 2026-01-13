@@ -8,9 +8,9 @@
           <text class="quote-subtitle">服务方案与费用说明</text>
         </view>
       </view>
-      <view class="header-right">
+      <view wx:if="{{quoteDetail.clientName}}" class="header-right">
         <text class="client-label">致</text>
-        <text class="client-name">{{quoteDetail.clientName || '未填写客户名称'}}</text>
+        <text class="client-name">{{quoteDetail.clientName}}</text>
       </view>
     </view>
     <view class="quote-section" wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
