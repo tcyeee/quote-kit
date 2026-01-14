@@ -77,10 +77,6 @@ Component({
       }
     },
 
-    onSaveImageTap() {
-      wx.showToast({ title: "当前版本不支持", icon: "none" })
-    },
-
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
       this.updateQuoteDetail({ theme })

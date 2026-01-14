@@ -73,7 +73,6 @@
 }
 
 .action-btn {
-  flex: 1;
   height: 88rpx;
   border-radius: 999rpx;
   font-size: 26rpx;
@@ -83,12 +82,14 @@
 }
 
 .action-btn.secondary {
+  flex: 0.382;
   background-color: transparent;
   border: 2rpx solid #c0a28a;
   color: #6b665f;
 }
 
 .action-btn.primary {
+  flex: 0.618;
   background-color: #c0a28a;
   border: 2rpx solid #c0a28a;
   color: #fdfaf7;
