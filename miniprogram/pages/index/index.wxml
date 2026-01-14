@@ -10,6 +10,6 @@
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>
     </view>
-    <bottom-dialog-actions bind:quoteDetailUpdate="onQuoteDetailUpdate" />
+    <edit-index bind:quoteDetailUpdate="onQuoteDetailUpdate" />
   </view>
 </view>

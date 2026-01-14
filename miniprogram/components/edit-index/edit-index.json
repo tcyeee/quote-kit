@@ -3,6 +3,6 @@
   "usingComponents": {
     "service-collapse-icon": "/components/service-collapse-icon/service-collapse-icon",
     "service-item-card": "/components/service-item-card/service-item-card",
-    "pay-nodes-editor": "/components/pay-nodes-editor/pay-nodes-editor"
+    "edit-pay-nodes": "/components/edit/pay-nodes/pay-nodes"
   }
 }

@@ -79,7 +79,7 @@
         <view class="config-schema-title">付款比例设置</view>
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
-        <pay-nodes-editor pay-nodes="{{quoteDetail.PayNodes}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
+        <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
       </view>
     </view>
     <!-- 底部备注信息 -->

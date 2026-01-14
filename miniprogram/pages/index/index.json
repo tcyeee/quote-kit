@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "quote-preview": "/components/quote-preview/quote-preview",
-    "bottom-dialog-actions": "/components/bottom-dialog-actions/bottom-dialog-actions"
+    "edit-index": "/components/edit-index/edit-index"
   }
 }
