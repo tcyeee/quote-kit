@@ -1,0 +1,235 @@
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  line-height: 1.6;
+  color: #f7fbff;
+  padding: 12vh 30rpx;
+  background: radial-gradient(circle at top, #230046 0, #050013 55%, #010007 100%);
+}
+
+.quote-container {
+  max-width: 700rpx;
+  margin: 0 auto;
+  background: rgba(3, 5, 24, 0.98);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx 32rpx;
+  box-shadow: 0 24rpx 60rpx rgba(0, 0, 0, 0.9);
+  border: 2rpx solid rgba(255, 72, 190, 0.6);
+}
+
+.quote-brand {
+  font-size: 22rpx;
+  color: #9ef5ff;
+  margin-bottom: 16rpx;
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.quote-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-name {
+  display: block;
+  font-size: 26rpx;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.quote-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: #ffffff;
+  text-shadow: 0 0 12rpx rgba(0, 255, 200, 0.7);
+}
+
+.quote-subtitle {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #ffe6ff;
+}
+
+.client-label {
+  display: block;
+  font-size: 22rpx;
+  color: #ffe6ff;
+}
+
+.quote-section {
+  margin-top: 32rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  color: #ffffff;
+  text-shadow: 0 0 10rpx rgba(0, 255, 170, 0.7);
+}
+
+.section-table {
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 2rpx solid rgba(0, 255, 200, 0.8);
+  box-shadow: 0 0 20rpx rgba(0, 255, 200, 0.4);
+}
+
+.table-row {
+  display: flex;
+  align-items: stretch;
+  background: radial-gradient(circle at left, rgba(0, 255, 170, 0.15), rgba(3, 5, 24, 0.98));
+  white-space: nowrap;
+}
+
+.table-header {
+  background: linear-gradient(90deg, #ff4bc0, #00ffd6);
+  font-weight: 600;
+}
+
+.section-table .table-row text {
+  padding: 16rpx 12rpx;
+  font-size: 24rpx;
+  border-bottom: 2rpx solid rgba(75, 255, 223, 0.7);
+  box-sizing: border-box;
+  color: #f7fbff;
+}
+
+.col-name {
+  flex: 2;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.col-unit-price {
+  flex: 1.5;
+  text-align: center;
+}
+
+.col-quantity {
+  flex: 1;
+  text-align: center;
+}
+
+.col-delivery {
+  flex: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.section-body {
+  margin-top: 12rpx;
+  padding: 20rpx 24rpx;
+  background: radial-gradient(circle at top left, rgba(255, 75, 192, 0.3), rgba(1, 7, 25, 0.98));
+  border-radius: 16rpx;
+  border: 2rpx solid rgba(0, 255, 200, 0.6);
+  box-shadow: 0 0 24rpx rgba(255, 75, 192, 0.45);
+}
+
+.section-text {
+  display: block;
+  font-size: 24rpx;
+  color: #f9fbff;
+  line-height: 1.7;
+}
+
+.section-text + .section-text {
+  margin-top: 8rpx;
+}
+
+.pay-nodes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.pay-node-card {
+  padding: 14rpx 16rpx;
+  border-radius: 14rpx;
+  background: radial-gradient(circle at right, rgba(0, 255, 200, 0.2), rgba(3, 5, 24, 0.98));
+  border: 2rpx solid rgba(255, 75, 192, 0.8);
+}
+
+.pay-node-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.pay-node-index {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #ff4bc0);
+  color: #140016;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-node-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-node-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.pay-node-meta {
+  margin-top: 4rpx;
+  display: flex;
+  font-size: 22rpx;
+  color: #e2f7ff;
+}
+
+.pay-node-meta-ratio {
+  font-weight: 600;
+}
+
+.pay-node-meta-separator {
+  margin: 0 6rpx;
+  opacity: 0.5;
+}
+
+.pay-node-overall {
+  margin-top: 16rpx;
+}
+
+@media screen and (max-width: 750px) {
+  .quote-container {
+    border-radius: 18rpx;
+    padding: 32rpx 24rpx 28rpx;
+    box-shadow: 0 16rpx 32rpx rgba(0, 0, 0, 0.8);
+  }
+
+  .quote-title {
+    font-size: 30rpx;
+  }
+
+  .section-table .table-row text {
+    padding: 12rpx 8rpx;
+    font-size: 22rpx;
+  }
+}
+

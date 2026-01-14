@@ -7,6 +7,7 @@ Page({
       bottomDialogExpandedHeight: 85,
     },
     bottomDialogExpanded: false,
+    currentTheme: 'amber',
   },
   showSavingToast() {
     const toast = this.selectComponent("#savingToast") as any
@@ -42,9 +43,18 @@ Page({
       bottomDialogExpanded: !this.data.bottomDialogExpanded,
     })
   },
+  onLoad() {
+    const quoteDetail = app.globalData.quoteDetail
+    this.setData({
+      currentTheme: quoteDetail.theme || 'amber',
+    })
+  },
   onQuoteDetailUpdate() {
     this.showSavingToast()
     const quoteDetail = app.globalData.quoteDetail
+    this.setData({
+      currentTheme: quoteDetail.theme || 'amber',
+    })
     const preview = this.selectComponent("#quotePreview")
     if (preview) {
       preview.setData({ quoteDetail })
