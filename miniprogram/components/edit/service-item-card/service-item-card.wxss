@@ -29,7 +29,6 @@
 }
 
 .config-schema-row--expanded {
-  max-height: 800rpx;
   opacity: 1;
 }
 
@@ -129,7 +128,7 @@
 }
 
 .service-body--expanded {
-  max-height: 600rpx;
+  max-height: 9999rpx;
   opacity: 1;
 }
 
