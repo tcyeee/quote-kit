@@ -31,19 +31,30 @@
     </view>
   </view>
   <view class="quote-section">
-    <view class="section-title">服务流程与付款</view>
-      <view class="section-body">
-      <view wx:for="{{quoteDetail.PayNodes}}" wx:for-item="node" wx:key="nodeName">
-        <text wx:if="{{node.nodeDate}}" class="section-text">
-          {{node.nodeName}}时间：{{node.nodeDate}}
-        </text>
-        <text class="section-text">{{node.nodeName}}比例：{{node.nodeRatio * 100}}%</text>
+    <view class="section-title">支付节点</view>
+    <view class="section-body">
+      <view class="pay-nodes-list">
+        <view class="pay-node-card" wx:for="{{quoteDetail.PayNodes}}" wx:for-item="node" wx:for-index="index" wx:key="nodeName">
+          <view class="pay-node-header">
+            <view class="pay-node-index">{{index + 1}}</view>
+            <view class="pay-node-main">
+              <view class="pay-node-title">{{node.nodeName}}</view>
+              <view class="pay-node-meta">
+                <text class="pay-node-meta-ratio">{{node.nodeRatio * 100}}%</text>
+                <text wx:if="{{node.nodeDate}}" class="pay-node-meta-separator">·</text>
+                <text wx:if="{{node.nodeDate}}">{{node.nodeDate}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
-      <text class="section-text">整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text>
+      <text class="section-text pay-node-overall">
+        整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天
+      </text>
     </view>
   </view>
   <view class="quote-section" wx:if="{{quoteDetail.serviceTerms}}">
-    <view class="section-title">服务条款</view>
+    <view class="section-title">备注</view>
     <view class="section-body">
       <text class="section-text">{{quoteDetail.serviceTerms}}</text>
     </view>
