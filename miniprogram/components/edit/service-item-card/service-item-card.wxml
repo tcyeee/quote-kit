@@ -21,7 +21,7 @@
           </view>
         </view>
         <view class="service-item" wx:for="{{category.items}}" wx:for-item="service" wx:for-index="serviceIndex" wx:key="name">
-          <span class="icon--move-y-circle icon-size-25" style="color:gray" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
+          <span class="icon--move-y-circle icon-size-15" style="color:gray;width:15px" catchtouchstart="onDragStart" catchtouchmove="onDragMove" catchtouchend="onDragEnd" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}"></span>
           <view class="config-schema-pill">
             <view class="service-header flex" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
               <view class="service-summary">

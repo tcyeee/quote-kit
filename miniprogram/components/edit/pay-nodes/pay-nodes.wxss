@@ -1,8 +1,6 @@
 .config-schema-group {
   display: flex;
-  flex-direction: column;
-  border: 1px solid #d6cdc4;
-  border-radius: 14rpx;
+  align-items: center;
   gap: 12rpx;
   margin-bottom: 12rpx;
   overflow: hidden;
@@ -13,6 +11,9 @@
   background-color: #f8f4ef;
   font-size: 22rpx;
   color: #8b8680;
+  width: 100%;
+  border: 1px solid #d6cdc4;
+  border-radius: 14rpx;
 }
 
 .config-schema-action {
@@ -160,4 +161,21 @@
 
 .pay-node-field-item {
   flex: 1;
+}
+
+.pay-node-list-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.pay-node-drag-ghost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 0.96;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.12);
+  pointer-events: none;
 }

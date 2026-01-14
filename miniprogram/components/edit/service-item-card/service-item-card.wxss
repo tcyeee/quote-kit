@@ -1,4 +1,5 @@
 .config-schema-pill {
+  width: 100%;
   padding: 12rpx 16rpx;
   background-color: #f8f4ef;
   border: 2rpx solid #d6cdc4;
