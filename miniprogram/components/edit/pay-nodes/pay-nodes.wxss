@@ -6,9 +6,7 @@
 
 .config-schema-pill {
   padding: 12rpx 16rpx;
-  border-radius: 14rpx;
   background-color: #f8f4ef;
-  border: 2rpx solid #d6cdc4;
   font-size: 22rpx;
   color: #8b8680;
 }
@@ -16,5 +14,61 @@
 .config-schema-action {
   color: #c0a28a;
   border-style: dashed;
+  text-align: center;
+  border: 1rpx dashed #c0a28a;
+  border-radius: 14rpx;
+  padding: 12rpx 16rpx;
+  margin-left: 40rpx;
+  font-size: 22rpx;
 }
 
+.config-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8rpx;
+  padding: 8rpx 10rpx;
+  min-height: 64rpx;
+  border-radius: 10rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #4a4742;
+}
+
+.config-input-small {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 8rpx 10rpx;
+  min-height: 64rpx;
+  border-radius: 10rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #4a4742;
+}
+
+.pay-node-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.pay-node-name-input {
+  flex: 1;
+}
+
+.pay-node-ratio {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  width: 220rpx;
+}
+
+.pay-node-ratio-input {
+  flex: 1;
+}
+
+.pay-node-ratio-suffix {
+  font-size: 22rpx;
+  color: #8b8680;
+}

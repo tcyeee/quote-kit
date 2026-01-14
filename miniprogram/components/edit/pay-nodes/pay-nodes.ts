@@ -9,6 +9,25 @@ Component({
     },
   },
   methods: {
+    onNodeNameBlur(e: any) {
+      const index = e.currentTarget.dataset.index as number
+      const rawValue = e.detail.value || ""
+      const payNodes = (this.data.payNodes || []).slice()
+      const node = payNodes[index]
+      if (!node) return
+      payNodes[index] = {
+        ...node,
+        nodeName: rawValue,
+      }
+      this.setData({
+        payNodes,
+      })
+      this.triggerEvent("change", {
+        payNodes,
+      })
+      this.triggerEvent("blur")
+    },
+
     onRatioInput(e: any) {
       const index = e.currentTarget.dataset.index as number
       const value = parseFloat(e.detail.value || "0")
@@ -26,6 +45,20 @@ Component({
       this.triggerEvent("change", {
         payNodes,
       })
+    },
+
+    onDeleteNodeTap(e: any) {
+      const index = e.currentTarget.dataset.index as number
+      const payNodes = (this.data.payNodes || []).slice()
+      if (index < 0 || index >= payNodes.length) return
+      payNodes.splice(index, 1)
+      this.setData({
+        payNodes,
+      })
+      this.triggerEvent("change", {
+        payNodes,
+      })
+      this.triggerEvent("blur")
     },
 
     onBlur() {
@@ -50,4 +83,3 @@ Component({
     },
   },
 })
-

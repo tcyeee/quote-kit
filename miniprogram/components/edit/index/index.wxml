@@ -72,11 +72,11 @@
         </view>
       </view>
     </view>
-    <!-- 配置项:付款比例设置 -->
+    <!-- 配置项:交付节点设置 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="payment">
         <collapse-icon collapsed="{{CollapseStatus.payment}}" />
-        <view class="config-schema-title">付款比例设置</view>
+        <view class="config-schema-title">交付节点设置</view>
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
         <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />

@@ -1,17 +1,17 @@
 <view>
   <view class="config-schema-group" wx:for="{{payNodes}}" wx:for-item="node" wx:for-index="index" wx:key="index">
-    <input
-      class="config-schema-pill"
-      type="digit"
-      placeholder="{{node.nodeName}}比例(%)"
-      value="{{node.nodeRatio * 100}}"
-      data-index="{{index}}"
-      bindinput="onRatioInput"
-      bindblur="onBlur"
-    />
+    <view class="config-schema-pill">
+      <view class="pay-node-row">
+        <input class="config-input pay-node-name-input" placeholder="节点名称" value="{{node.nodeName}}" data-index="{{index}}" bindblur="onNodeNameBlur" />
+        <view class="pay-node-ratio">
+          <input class="config-input-small pay-node-ratio-input" type="digit" placeholder="比例(%)" value="{{node.nodeRatio * 100}}" data-index="{{index}}" bindinput="onRatioInput" bindblur="onBlur" />
+          <text class="pay-node-ratio-suffix">%</text>
+        </view>
+        <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteNodeTap" data-index="{{index}}"></span>
+      </view>
+    </view>
   </view>
   <view class="config-schema-group">
-    <view class="config-schema-pill config-schema-action" bindtap="onAddNode">增加交付节点</view>
+    <view class="config-schema-pill config-schema-action" bindtap="onAddNode">＋ 增加交付节点</view>
   </view>
 </view>
-
