@@ -1,7 +1,7 @@
 <view>
   <view wx:for="{{pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
     <view class="service-summary-content" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
-      <service-collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
+      <collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
       <input class="config-input" placeholder="服务类别名称" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
       <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}"></span>
     </view>
@@ -26,7 +26,7 @@
             <view class="service-header flex" bindtap="onToggleCollapseTap" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}">
               <view class="service-summary">
                 <view class="service-item-content">
-                  <service-collapse-icon size="14" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" />
+                  <collapse-icon size="14" collapsed="{{serviceCollapseStatus[categoryIndex] && serviceCollapseStatus[categoryIndex][serviceIndex]}}" />
                   <view class="service-title">{{service.name}}</view>
                 </view>
                 <view class="service-meta">

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "quote-preview": "/components/quote-preview/quote-preview",
-    "edit-index": "/components/edit-index/edit-index"
+    "preview": "/components/preview/preview",
+    "edit-index": "/components/edit/index/index"
   }
 }

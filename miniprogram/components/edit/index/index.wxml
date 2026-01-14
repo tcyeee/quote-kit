@@ -7,7 +7,7 @@
     <!-- 配置项:主题选择 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="theme">
-        <service-collapse-icon size="15" collapsed="{{CollapseStatus.theme}}" />
+        <collapse-icon size="15" collapsed="{{CollapseStatus.theme}}" />
         <view class="config-schema-title">主题选择</view>
       </view>
       <view wx:if="{{!CollapseStatus.theme}}">
@@ -38,7 +38,7 @@
     <!-- 配置项:甲方信息 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="client">
-        <service-collapse-icon collapsed="{{CollapseStatus.client}}" />
+        <collapse-icon collapsed="{{CollapseStatus.client}}" />
         <view class="config-schema-title">甲方信息</view>
       </view>
       <view wx:if="{{!CollapseStatus.client}}">
@@ -50,7 +50,7 @@
     <!-- 配置项:我的公司信息 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="company">
-        <service-collapse-icon collapsed="{{CollapseStatus.company}}" />
+        <collapse-icon collapsed="{{CollapseStatus.company}}" />
         <view class="config-schema-title">我的公司信息</view>
       </view>
       <view wx:if="{{!CollapseStatus.company}}">
@@ -63,7 +63,7 @@
     <!-- 配置项:服务内容 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="service">
-        <service-collapse-icon collapsed="{{CollapseStatus.service}}" />
+        <collapse-icon collapsed="{{CollapseStatus.service}}" />
         <view class="config-schema-title">服务内容</view>
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
@@ -75,7 +75,7 @@
     <!-- 配置项:付款比例设置 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="payment">
-        <service-collapse-icon collapsed="{{CollapseStatus.payment}}" />
+        <collapse-icon collapsed="{{CollapseStatus.payment}}" />
         <view class="config-schema-title">付款比例设置</view>
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
@@ -85,7 +85,7 @@
     <!-- 底部备注信息 -->
     <view class="config-schema-section">
       <view class="config-schema-header" bindtap="onToggleSection" data-section="remark">
-        <service-collapse-icon collapsed="{{CollapseStatus.remark}}" />
+        <collapse-icon collapsed="{{CollapseStatus.remark}}" />
         <view class="config-schema-title">备注</view>
       </view>
       <view wx:if="{{!CollapseStatus.remark}}">

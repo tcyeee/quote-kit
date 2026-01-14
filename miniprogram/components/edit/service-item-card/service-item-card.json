@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "collapse-icon": "/components/edit/collapse-icon/collapse-icon"
+  }
+}
+

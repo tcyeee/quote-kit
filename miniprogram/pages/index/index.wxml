@@ -1,6 +1,6 @@
 <view class="page-root">
   <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <quote-preview id="quotePreview" />
+    <preview id="quotePreview" />
     <view style="height:15vh" />
   </scroll-view>
   <!-- 底部对话框遮罩 -->

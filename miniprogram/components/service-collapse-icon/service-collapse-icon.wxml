@@ -1,1 +1,0 @@
-<span class="icon--circle-chevron-up icon-size-{{size}}  service-collapse-icon {{collapsed ? '' : 'service-collapse-icon--collapsed'}}"></span>
