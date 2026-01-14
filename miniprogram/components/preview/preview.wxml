@@ -32,10 +32,10 @@
   </view>
   <view class="quote-section">
     <view class="section-title">服务流程与付款</view>
-    <view class="section-body">
+      <view class="section-body">
       <view wx:for="{{quoteDetail.PayNodes}}" wx:for-item="node" wx:key="nodeName">
         <text wx:if="{{node.nodeDate}}" class="section-text">
-          {{node.nodeName}}日期：{{node.nodeDate.toLocaleDateString()}}
+          {{node.nodeName}}时间：{{node.nodeDate}}
         </text>
         <text class="section-text">{{node.nodeName}}比例：{{node.nodeRatio * 100}}%</text>
       </view>

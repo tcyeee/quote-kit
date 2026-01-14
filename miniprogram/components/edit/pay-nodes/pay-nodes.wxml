@@ -1,17 +1,44 @@
 <view>
   <view class="config-schema-group" wx:for="{{payNodes}}" wx:for-item="node" wx:for-index="index" wx:key="index">
     <view class="config-schema-pill">
-      <view class="pay-node-row">
-        <input class="config-input pay-node-name-input" placeholder="节点名称" value="{{node.nodeName}}" data-index="{{index}}" bindblur="onNodeNameBlur" />
-        <view class="pay-node-ratio">
-          <input class="config-input-small pay-node-ratio-input" type="digit" placeholder="比例(%)" value="{{node.nodeRatio * 100}}" data-index="{{index}}" bindinput="onRatioInput" bindblur="onBlur" />
-          <text class="pay-node-ratio-suffix">%</text>
+      <view class="pay-node-header flex" bindtap="onToggleCollapseTap" data-index="{{index}}">
+        <view class="pay-node-summary">
+          <view class="pay-node-item-content">
+            <collapse-icon size="14" collapsed="{{payNodeCollapseStatus[index]}}" />
+            <view class="pay-node-title">{{node.nodeName}}</view>
+          </view>
+          <view class="pay-node-meta">
+            <text>{{node.nodeRatio * 100}}%</text>
+            <text class="pay-node-meta-separator">·</text>
+            <text wx:if="{{node.nodeDate}}">{{node.nodeDate}}</text>
+            <text wx:else>时间待定</text>
+          </view>
         </view>
         <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteNodeTap" data-index="{{index}}"></span>
       </view>
+      <view class="pay-node-body {{payNodeCollapseStatus[index] ? 'pay-node-body--collapsed' : 'pay-node-body--expanded'}}">
+        <view class="pay-node-field">
+          <view class="pay-node-field-label">节点名称</view>
+          <input class="config-input" placeholder="节点名称" value="{{node.nodeName}}" data-index="{{index}}" bindblur="onNodeNameBlur" />
+        </view>
+        <view class="pay-node-field-grid">
+          <view class="pay-node-field-item">
+            <view class="pay-node-field-label">节点时间</view>
+            <view class="pay-node-time">
+              <picker mode="date" value="{{node.nodeDate}}" data-index="{{index}}" bindchange="onNodeDateChange">
+                <view class="config-input-small pay-node-time-display">
+                  {{node.nodeDate || '选择日期(可选)'}}
+                </view>
+              </picker>
+            </view>
+          </view>
+          <view class="pay-node-field-item">
+            <view class="pay-node-field-label">比例(%)</view>
+            <input class="config-input-small pay-node-ratio-input" type="digit" placeholder="比例(%)" value="{{node.nodeRatio * 100}}" data-index="{{index}}" bindinput="onRatioInput" bindblur="onBlur" />
+          </view>
+        </view>
+      </view>
     </view>
   </view>
-  <view class="config-schema-group">
-    <view class="config-schema-pill config-schema-action" bindtap="onAddNode">＋ 增加交付节点</view>
-  </view>
+  <view class="config-schema-pill config-schema-action" bindtap="onAddNode">＋ 增加交付节点</view>
 </view>

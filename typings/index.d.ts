@@ -48,8 +48,8 @@ interface QuotePayNode {
   nodeName: string,
   // 节点支付比例，例如 0.7 表示 70%
   nodeRatio: number,
-  // 节点日期
-  nodeDate?: Date,
+  // 节点时间（可选），例如“2025-01-01”或“5月中旬”
+  nodeDate?: string,
 }
 
 /**
