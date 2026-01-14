@@ -1,1 +1,85 @@
-/* pages/analyse.wxss */
+.analyse-page {
+  min-height: 100vh;
+  padding: 32rpx;
+  background-color: #f3f0eb;
+}
+
+.analyse-safe-top {
+  background-color: #f3f0eb;
+}
+
+.analyse-header {
+  margin-bottom: 32rpx;
+}
+
+.analyse-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #38312b;
+}
+
+.analyse-subtitle {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #8a7e72;
+}
+
+.analyse-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 40rpx;
+}
+
+.analyse-card {
+  flex: 1 1 30%;
+  min-width: 200rpx;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  box-shadow: 0 6rpx 16rpx rgba(56, 49, 43, 0.06);
+}
+
+.analyse-card-label {
+  font-size: 24rpx;
+  color: #8a7e72;
+  margin-bottom: 12rpx;
+}
+
+.analyse-card-value {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #38312b;
+}
+
+.analyse-section {
+  margin-top: 16rpx;
+}
+
+.analyse-section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #38312b;
+  margin-bottom: 16rpx;
+}
+
+.analyse-category-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  border-radius: 16rpx;
+  background-color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(56, 49, 43, 0.04);
+  margin-bottom: 12rpx;
+}
+
+.analyse-category-name {
+  font-size: 26rpx;
+  color: #38312b;
+}
+
+.analyse-category-meta {
+  font-size: 24rpx;
+  color: #8a7e72;
+}

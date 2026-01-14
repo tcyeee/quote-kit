@@ -40,6 +40,12 @@ Component({
     },
   },
   methods: {
+    onAnalyseTap() {
+      wx.navigateTo({
+        url: "/pages/analyse/analyse",
+      })
+    },
+
     updateQuoteDetail(partial: Partial<QuoteDetail>) {
       this.setData({
         quoteDetail: {

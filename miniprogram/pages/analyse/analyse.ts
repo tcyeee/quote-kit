@@ -1,66 +1,44 @@
-// pages/analyse.ts
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    quoteDetail: {} as QuoteDetail,
+    totalAmount: 0,
+    totalServices: 0,
+    totalCategories: 0,
+    safeTop: 0,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad() {
-
+    const app = getApp<IAppOption>()
+    const systemInfo = wx.getSystemInfoSync()
+    const safeTop = systemInfo.statusBarHeight || 0
+    const quoteDetail = app.globalData.quoteDetail
+    const { totalAmount, totalServices, totalCategories } = this.calculateStatistics(quoteDetail)
+    this.setData({
+      quoteDetail,
+      totalAmount,
+      totalServices,
+      totalCategories,
+      safeTop,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  calculateStatistics(quoteDetail: QuoteDetail) {
+    const pricingItems = quoteDetail.pricingItems || []
+    let totalAmount = 0
+    let totalServices = 0
 
+    pricingItems.forEach(category => {
+      const items = category.items || []
+      totalServices += items.length
+      items.forEach(item => {
+        totalAmount += item.unitPrice * item.quantity
+      })
+    })
+
+    return {
+      totalAmount,
+      totalServices,
+      totalCategories: pricingItems.length,
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

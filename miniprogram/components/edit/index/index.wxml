@@ -1,7 +1,7 @@
 <view class="bottom-dialog-body">
   <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
     <view class="action-bar">
-      <button class="action-btn secondary" bindtap="onSaveImageTap">数据统计</button>
+      <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>
       <button class="action-btn primary" open-type="share">发送报价单</button>
     </view>
     <!-- 配置项:主题选择 -->

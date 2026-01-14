@@ -1,2 +1,30 @@
-<!--pages/analyse.wxml-->
-<text>pages/analyse.wxml</text>
+<view class="analyse-page">
+  <view class="analyse-safe-top" style="height: {{safeTop}}px;"></view>
+  <view class="analyse-header">
+    <view class="analyse-title">数据统计</view>
+    <view class="analyse-subtitle">{{quoteDetail.clientName || '未填写客户名称'}}</view>
+  </view>
+  <view class="analyse-cards">
+    <view class="analyse-card">
+      <view class="analyse-card-label">总金额</view>
+      <view class="analyse-card-value">¥{{totalAmount}}</view>
+    </view>
+    <view class="analyse-card">
+      <view class="analyse-card-label">服务类别数</view>
+      <view class="analyse-card-value">{{totalCategories}}</view>
+    </view>
+    <view class="analyse-card">
+      <view class="analyse-card-label">服务项目数</view>
+      <view class="analyse-card-value">{{totalServices}}</view>
+    </view>
+  </view>
+  <view class="analyse-section">
+    <view class="analyse-section-title">按类别统计</view>
+    <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:for-index="index" wx:key="name" class="analyse-category-row">
+      <view class="analyse-category-name">{{category.name}}</view>
+      <view class="analyse-category-meta">
+        <view class="analyse-category-count">{{category.items.length}} 项</view>
+      </view>
+    </view>
+  </view>
+</view>
