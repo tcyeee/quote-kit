@@ -1,4 +1,4 @@
-.service-collapse-icon {
+.collapse-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -6,7 +6,6 @@
   color: gray;
 }
 
-.service-collapse-icon--collapsed {
+.collapse-icon--collapsed {
   transform: rotate(180deg);
 }
-
