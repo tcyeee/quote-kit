@@ -1,8 +1,7 @@
 <view class="analyse-page">
   <view class="analyse-safe-top" style="height: {{safeTop}}px;"></view>
-  <view class="analyse-header">
-    <view class="analyse-title">数据统计</view>
-    <view class="analyse-subtitle">{{quoteDetail.clientName || '未填写客户名称'}}</view>
+  <view class="analyse-header-bar">
+    <span class="icon--return icon-size-70 analyse-back-button" bindtap="onBackTap" />
   </view>
   <view class="analyse-cards">
     <view class="analyse-card">

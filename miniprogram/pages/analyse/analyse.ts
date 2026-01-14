@@ -7,6 +7,10 @@ Page({
     safeTop: 0,
   },
 
+  onBackTap() {
+    wx.navigateBack()
+  },
+
   onLoad() {
     const app = getApp<IAppOption>()
     const systemInfo = wx.getSystemInfoSync()

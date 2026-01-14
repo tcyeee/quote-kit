@@ -12,6 +12,23 @@
   margin-bottom: 32rpx;
 }
 
+.analyse-header-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.analyse-back-button {
+  margin-right: 16rpx;
+  padding: 8rpx 16rpx;
+  font-size: 28rpx;
+  color: gray;
+}
+
+.analyse-back-button:active {
+  opacity: 0.6;
+}
+
 .analyse-title {
   font-size: 36rpx;
   font-weight: 600;
