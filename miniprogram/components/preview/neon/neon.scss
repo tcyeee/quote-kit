@@ -104,7 +104,10 @@
   font-weight: 600;
 }
 
-.section-table .table-row text {
+.section-table .table-row .col-name,
+.section-table .table-row .col-unit-price,
+.section-table .table-row .col-quantity,
+.section-table .table-row .col-delivery {
   padding: 16rpx 12rpx;
   font-size: 24rpx;
   border-bottom: 2rpx solid rgba(75, 255, 223, 0.7);
@@ -227,9 +230,11 @@
     font-size: 30rpx;
   }
 
-  .section-table .table-row text {
+  .section-table .table-row .col-name,
+  .section-table .table-row .col-unit-price,
+  .section-table .table-row .col-quantity,
+  .section-table .table-row .col-delivery {
     padding: 12rpx 8rpx;
     font-size: 22rpx;
   }
 }
-

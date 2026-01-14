@@ -68,7 +68,7 @@
       </view>
       <view wx:if="{{!CollapseStatus.service}}">
         <view class="config-schema-group">
-          <service-item-card pricing-items="{{quoteDetail.pricingItems}}" service-collapse-status="{{serviceCollapseStatus}}" bind:delete="onDeleteService" bind:deleteCategory="onDeleteCategory" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:addService="onAddService" bind:addCategory="onAddCategory" bind:fieldBlur="onServiceFieldBlur" bind:updatePricingItems="onUpdatePricingItems" />
+          <service-item-card pricing-items="{{quoteDetail.pricingItems || []}}" service-collapse-status="{{serviceCollapseStatus}}" bind:delete="onDeleteService" bind:deleteCategory="onDeleteCategory" bind:toggleCollapse="onToggleServiceCollapse" bind:serviceChange="onServiceChange" bind:addService="onAddService" bind:addCategory="onAddCategory" bind:fieldBlur="onServiceFieldBlur" bind:updatePricingItems="onUpdatePricingItems" />
         </view>
       </view>
     </view>
@@ -79,7 +79,7 @@
         <view class="config-schema-title">交付节点设置</view>
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
-        <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
+        <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes || []}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
       </view>
     </view>
     <!-- 底部备注信息 -->
