@@ -23,7 +23,7 @@
   border: 1rpx dashed #c0a28a;
   border-radius: 14rpx;
   padding: 12rpx 16rpx;
-  margin-left: 20rpx;
+  margin-left: 40rpx;
   font-size: 22rpx;
 }
 

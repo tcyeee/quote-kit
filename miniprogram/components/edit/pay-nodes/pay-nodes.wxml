@@ -58,5 +58,5 @@
       </view>
     </view>
   </view>
-  <view class="config-schema-pill config-schema-action" bindtap="onAddNode">＋ 增加交付节点</view>
+  <view class="config-schema-action" bindtap="onAddNode">＋ 增加交付节点</view>
 </view>

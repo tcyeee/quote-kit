@@ -20,7 +20,8 @@ Component({
       const payNodes = this.data.payNodes || []
       const length = payNodes.length || 0
       if (!length) return
-      const status = new Array<boolean>(length).fill(false)
+      const status = new Array<boolean>(length).fill(true)
+      status[0] = false
       this.setData({
         payNodeCollapseStatus: status,
       })
@@ -139,9 +140,9 @@ Component({
     onToggleCollapseTap(e: any) {
       const index = e.currentTarget.dataset.index as number
       const current = ((this.data as any).payNodeCollapseStatus as boolean[]) || []
-      const next = current.slice()
-      const currentValue = !!next[index]
-      next[index] = !currentValue
+      const isCollapsed = !!current[index]
+      const next = current.map(() => true)
+      next[index] = !isCollapsed
       this.setData({
         payNodeCollapseStatus: next,
       })
@@ -238,7 +239,7 @@ Component({
       payNodes.push(newNode)
       const currentStatus = ((this.data as any).payNodeCollapseStatus as boolean[]) || []
       const nextStatus = currentStatus.slice()
-      nextStatus.push(false)
+      nextStatus.push(true)
       this.setData({
         payNodes,
         payNodeCollapseStatus: nextStatus,

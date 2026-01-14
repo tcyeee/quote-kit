@@ -185,9 +185,12 @@
 }
 
 .config-schema-footer {
-  margin-top: 16rpx;
-  font-size: 24rpx;
   color: #c0a28a;
+  border-style: dashed;
   text-align: center;
-  padding: 16rpx 0 24rpx;
+  border: 1rpx dashed #c0a28a;
+  border-radius: 14rpx;
+  padding: 12rpx 16rpx;
+  margin-left: 30rpx;
+  font-size: 22rpx;
 }
