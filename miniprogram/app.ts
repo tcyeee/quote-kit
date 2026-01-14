@@ -5,7 +5,7 @@ App<IAppOption>({
     // 当前小程序使用的默认报价详情
     quoteDetail: {
       theme: "amber",
-      clientName: "杭州幼儿园",
+      clientName: "某不愿透露姓名甲方",
       overallDeliveryPeriodDays: 90,
       serviceTerms: "To be determined",
       domain: {
