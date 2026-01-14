@@ -2,7 +2,7 @@ Component({
   data: {
     visible: false,
     topPadding: 0,
-    duration: 1800,
+    duration: 500,
   },
   lifetimes: {
     attached() {
