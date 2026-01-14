@@ -1,5 +1,8 @@
 <view class="page-root">
-  <quote-preview id="quotePreview" />
+  <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <quote-preview id="quotePreview" />
+    <view style="height:15vh" />
+  </scroll-view>
   <!-- 底部对话框遮罩 -->
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
   <!-- 底部对话框 -->

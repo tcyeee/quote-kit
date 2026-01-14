@@ -6,7 +6,7 @@ Page({
       bottomDialogCollapsedHeight: 20,
       bottomDialogExpandedHeight: 85,
     },
-    bottomDialogExpanded: true,
+    bottomDialogExpanded: false,
   },
   onBottomDialogMaskTouchMove() { },
   onBottomDialogHeaderTouchStart(e: WechatMiniprogram.TouchEvent) {

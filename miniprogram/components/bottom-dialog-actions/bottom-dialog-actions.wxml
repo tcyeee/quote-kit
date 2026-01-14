@@ -43,7 +43,7 @@
       </view>
       <view wx:if="{{!CollapseStatus.client}}">
         <view class="config-schema-group">
-          <input class="config-schema-pill" placeholder="甲方名称 / 客户名称" value="{{quoteDetail.clientName}}" bindinput="onClientNameInput" bindblur="onClientNameBlur" />
+          <input class="config-schema-pill" placeholder="甲方名称 / 客户名称(可选)" value="{{quoteDetail.clientName}}" bindinput="onClientNameInput" bindblur="onClientNameBlur" />
         </view>
       </view>
     </view>

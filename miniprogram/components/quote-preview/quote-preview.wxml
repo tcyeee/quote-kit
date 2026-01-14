@@ -1,52 +1,47 @@
-<scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-  <view class="page">
-    <view>{{quoteDetail.domain.name}}</view>
-    <view class="quote-header">
-      <view class="header-left">
-        <view class="quote-meta">
-          <text class="quote-title">报价单</text>
-          <text class="quote-subtitle">服务方案与费用说明</text>
-        </view>
-      </view>
-      <view wx:if="{{quoteDetail.clientName}}" class="header-right">
-        <text class="client-label">致</text>
-        <text class="client-name">{{quoteDetail.clientName}}</text>
+<view class="page">
+  <view>{{quoteDetail.domain.name}}</view>
+  <view class="quote-header">
+    <view class="header-left">
+      <view class="quote-meta">
+        <text class="quote-title">报价单</text>
+        <text class="quote-subtitle">服务方案与费用说明</text>
       </view>
     </view>
-    <view class="quote-section" wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
-      <view class="section-title">{{category.name}}</view>
-      <view class="section-table">
-        <view class="table-row table-header">
-          <text class="col-name">项目</text>
-          <text class="col-unit-price">单价</text>
-          <text class="col-quantity">数量</text>
-          <text class="col-delivery">周期</text>
-        </view>
-        <view class="table-row" wx:for="{{quoteDetail.theme ? category.items : quoteDetail.pricingItems}}" wx:for-item="service" wx:key="name">
-          <text class="col-name">{{service.name}}</text>
-          <text class="col-unit-price">{{service.unitPrice}} 元/{{service.unit}}</text>
-          <text class="col-quantity">{{service.quantity}}</text>
-          <text wx:if="{{ service.deliveryPeriodDays <= 0 }}" class="col-delivery">待定</text>
-          <text wx:else class="col-delivery">{{ service.deliveryPeriodDays }} 天</text>
-        </view>
-      </view>
+    <view wx:if="{{quoteDetail.clientName}}" class="header-right">
+      <text class="client-label">致</text>
+      <text class="client-name">{{quoteDetail.clientName}}</text>
     </view>
-    <view class="quote-section">
-      <view class="section-title">服务流程与付款</view>
-      <view class="section-body">
-        <text class="section-text">定金比例：{{quoteDetail.serviceProcess.depositRatio * 100}}%</text>
-        <view class="section-text">
-          尾款比例：{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}%
-        </view>
-        <text class="section-text">整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text>
+  </view>
+  <view class="quote-section" wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
+    <view class="section-title">{{category.name}}</view>
+    <view class="section-table">
+      <view class="table-row table-header">
+        <text class="col-name">项目</text>
+        <text class="col-unit-price">单价</text>
+        <text class="col-quantity">数量</text>
+        <text class="col-delivery">周期</text>
       </view>
-    </view>
-    <view class="quote-section" wx:if="{{quoteDetail.serviceTerms}}">
-      <view class="section-title">服务条款</view>
-      <view class="section-body">
-        <text class="section-text">{{quoteDetail.serviceTerms}}</text>
+      <view class="table-row" wx:for="{{quoteDetail.theme ? category.items : quoteDetail.pricingItems}}" wx:for-item="service" wx:key="name">
+        <text class="col-name">{{service.name}}</text>
+        <text class="col-unit-price">{{service.unitPrice}} 元/{{service.unit}}</text>
+        <text class="col-quantity">{{service.quantity}}</text>
+        <text wx:if="{{ service.deliveryPeriodDays <= 0 }}" class="col-delivery">待定</text>
+        <text wx:else class="col-delivery">{{ service.deliveryPeriodDays }} 天</text>
       </view>
     </view>
   </view>
-  <view style="height:20vh" />
-</scroll-view>
+  <view class="quote-section">
+    <view class="section-title">服务流程与付款</view>
+    <view class="section-body">
+      <text class="section-text">定金比例：{{quoteDetail.serviceProcess.depositRatio * 100}}%</text>
+      <view class="section-text">尾款比例：{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}%</view>
+      <text class="section-text">整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text>
+    </view>
+  </view>
+  <view class="quote-section" wx:if="{{quoteDetail.serviceTerms}}">
+    <view class="section-title">服务条款</view>
+    <view class="section-body">
+      <text class="section-text">{{quoteDetail.serviceTerms}}</text>
+    </view>
+  </view>
+</view>
