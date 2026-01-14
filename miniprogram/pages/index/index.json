@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "preview": "/components/preview/preview",
-    "edit-index": "/components/edit/index/index"
+    "edit-index": "/components/edit/index/index",
+    "saving-toast": "/components/edit/saving-toast/saving-toast"
   }
 }

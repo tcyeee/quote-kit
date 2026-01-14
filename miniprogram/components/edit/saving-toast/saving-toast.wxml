@@ -1,0 +1,4 @@
+<view class="saving-toast-root" wx:if="{{visible}}">
+  <text class="saving-toast-text">保存中</text>
+</view>
+

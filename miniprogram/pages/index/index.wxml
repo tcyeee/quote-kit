@@ -1,11 +1,10 @@
 <view class="page-root">
+  <saving-toast id="savingToast" />
   <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
     <preview id="quotePreview" />
     <view style="height:15vh" />
   </scroll-view>
-  <!-- 底部对话框遮罩 -->
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
-  <!-- 底部对话框 -->
   <view class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}" style="height: {{bottomDialogExpanded ? options.bottomDialogExpandedHeight : options.bottomDialogCollapsedHeight}}vh;" catchtouchmove="onBottomDialogMaskTouchMove">
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>

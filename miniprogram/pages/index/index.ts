@@ -8,7 +8,15 @@ Page({
     },
     bottomDialogExpanded: false,
   },
-  onBottomDialogMaskTouchMove() { },
+  showSavingToast() {
+    const toast = this.selectComponent("#savingToast") as any
+    if (toast && typeof toast.show === "function") {
+      toast.show()
+    }
+  },
+  onBottomDialogMaskTouchMove() {
+    this.showSavingToast()
+  },
   onBottomDialogHeaderTouchStart(e: WechatMiniprogram.TouchEvent) {
     const touch = e.touches[0]
     if (!touch) return
@@ -35,6 +43,7 @@ Page({
     })
   },
   onQuoteDetailUpdate() {
+    this.showSavingToast()
     const quoteDetail = app.globalData.quoteDetail
     const preview = this.selectComponent("#quotePreview")
     if (preview) {
