@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "preview": "/components/preview/preview",
+    "default-theme-preview": "/components/preview/default-theme/default-theme",
     "edit-index": "/components/edit/index/index",
     "saving-toast": "/components/edit/saving-toast/saving-toast"
   }

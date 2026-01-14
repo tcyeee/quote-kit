@@ -1,7 +1,7 @@
 <view class="page-root">
   <saving-toast id="savingToast" />
   <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <preview id="quotePreview" />
+    <default-theme-preview id="quotePreview" />
     <view style="height:15vh" />
   </scroll-view>
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
