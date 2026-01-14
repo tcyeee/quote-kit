@@ -28,7 +28,10 @@ Component({
       const quoteDetail = getApp<IAppOption>().globalData.quoteDetail
       const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category => {
         const items = category.items || []
-        return items.map(() => true)
+        if (!items.length) return []
+        const status = new Array<boolean>(items.length).fill(true)
+        status[0] = false
+        return status
       })
       this.setData({
         quoteDetail,
@@ -165,9 +168,9 @@ Component({
         items,
       }
       const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
-      const categoryStatus = (serviceCollapseStatus[categoryIndex] || []).slice()
-      categoryStatus.push(false)
-      serviceCollapseStatus[categoryIndex] = categoryStatus
+      const nextCategoryStatus = new Array<boolean>(items.length).fill(true)
+      nextCategoryStatus[items.length - 1] = false
+      serviceCollapseStatus[categoryIndex] = nextCategoryStatus
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
@@ -214,7 +217,11 @@ Component({
       const serviceIndex = e.detail.serviceIndex as number
       const status = this.data.serviceCollapseStatus.slice()
       const categoryStatus = (status[categoryIndex] || []).slice()
-      categoryStatus[serviceIndex] = !categoryStatus[serviceIndex]
+      const current = !!categoryStatus[serviceIndex]
+      for (let i = 0; i < categoryStatus.length; i++) {
+        categoryStatus[i] = true
+      }
+      categoryStatus[serviceIndex] = !current
       status[categoryIndex] = categoryStatus
       this.setData({
         serviceCollapseStatus: status,
