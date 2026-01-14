@@ -1,0 +1,9 @@
+<view class="page-root">
+  <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" />
+    <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" />
+    <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" />
+    <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" />
+    <view style="height:15vh" />
+  </scroll-view>
+</view>

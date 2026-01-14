@@ -60,4 +60,15 @@ Page({
       preview.setData({ quoteDetail })
     }
   },
+  onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
+    const quoteDetail = app.globalData.quoteDetail
+    const content: WechatMiniprogram.Page.ICustomShareContent = {
+      title: "报价单",
+      path: "/pages/view/view?id=019bbc4b-2d05-723d-8f5f-156613014502",
+    }
+    if (quoteDetail && quoteDetail.domain && quoteDetail.domain.logoUrl) {
+      content.imageUrl = quoteDetail.domain.logoUrl
+    }
+    return content
+  },
 })

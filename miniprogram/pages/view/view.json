@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "amber-preview": "/components/preview/amber/amber",
+    "moonlight-preview": "/components/preview/moonlight/moonlight",
+    "neon-preview": "/components/preview/neon/neon",
+    "deep-sea-preview": "/components/preview/deep-sea/deep-sea"
+  }
+}
