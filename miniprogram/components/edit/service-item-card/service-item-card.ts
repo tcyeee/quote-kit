@@ -20,6 +20,18 @@ Component({
     showDragServiceOverlay: false,
     categoryCollapseStatus: [] as boolean[],
   },
+  lifetimes: {
+    attached() {
+      const pricingItems = this.data.pricingItems || []
+      const length = pricingItems.length || 0
+      if (!length) return
+      const status = new Array<boolean>(length).fill(true)
+      status[0] = false
+      this.setData({
+        categoryCollapseStatus: status,
+      })
+    },
+  },
   methods: {
     onAddCategoryTap() {
       this.triggerEvent("addCategory")
@@ -100,9 +112,13 @@ Component({
 
     onToggleCategoryCollapseTap(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
-      const current = (this.data as any).categoryCollapseStatus as boolean[] || []
+      const current = ((this.data as any).categoryCollapseStatus as boolean[]) || []
       const next = current.slice()
-      next[categoryIndex] = !next[categoryIndex]
+      const currentValue = !!next[categoryIndex]
+      for (let i = 0; i < next.length; i++) {
+        next[i] = true
+      }
+      next[categoryIndex] = !currentValue
       this.setData({
         categoryCollapseStatus: next,
       })
