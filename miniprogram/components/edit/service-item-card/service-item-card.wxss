@@ -19,6 +19,18 @@
   gap: 8rpx;
   margin-top: 8rpx;
   padding-left: 20rpx;
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+}
+
+.config-schema-row--collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.config-schema-row--expanded {
+  max-height: 800rpx;
+  opacity: 1;
 }
 
 .config-schema-label {

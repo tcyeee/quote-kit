@@ -13,22 +13,22 @@
       <view wx:if="{{!CollapseStatus.theme}}">
         <view class="theme-options">
           <view class="theme-option {{quoteDetail.theme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
-            <image class="theme-bg" src="../../assets/button_1.png" mode="aspectFill"></image>
+            <image class="theme-bg" src="../../../assets/button_1.png" mode="aspectFill"></image>
             <view class="theme-overlay"></view>
             <text class="theme-name">月光</text>
           </view>
           <view class="theme-option {{quoteDetail.theme === 'neon' ? 'active' : ''}}" data-theme="neon" bindtap="onThemeTap">
-            <image class="theme-bg" src="../../assets/button_2.png" mode="aspectFill"></image>
+            <image class="theme-bg" src="../../../assets/button_2.png" mode="aspectFill"></image>
             <view class="theme-overlay"></view>
             <text class="theme-name">深海</text>
           </view>
           <view class="theme-option {{quoteDetail.theme === 'moonlight' ? 'active' : ''}}" data-theme="moonlight" bindtap="onThemeTap">
-            <image class="theme-bg" src="../../assets/button_3.png" mode="aspectFill"></image>
+            <image class="theme-bg" src="../../../assets/button_3.png" mode="aspectFill"></image>
             <view class="theme-overlay"></view>
             <text class="theme-name">琥珀</text>
           </view>
           <view class="theme-option {{quoteDetail.theme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
-            <image class="theme-bg" src="../../assets/button_4.png" mode="aspectFill"></image>
+            <image class="theme-bg" src="../../../assets/button_4.png" mode="aspectFill"></image>
             <view class="theme-overlay"></view>
             <text class="theme-name">霓虹</text>
           </view>

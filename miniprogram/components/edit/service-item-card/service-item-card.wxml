@@ -5,7 +5,7 @@
       <input class="config-input" placeholder="服务类别名称" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
       <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}"></span>
     </view>
-    <view class="config-schema-row" wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
+    <view class="config-schema-row {{categoryCollapseStatus[categoryIndex] ? 'config-schema-row--collapsed' : 'config-schema-row--expanded'}}">
       <view class="service-list-box service-list-box-{{categoryIndex}}">
         <view wx:if="{{showDragServiceOverlay && dragServiceCategoryIndex === categoryIndex}}" class="config-schema-pill service-drag-ghost" style="top: {{dragServiceOverlayTop}}px">
           <view class="service-header flex">
