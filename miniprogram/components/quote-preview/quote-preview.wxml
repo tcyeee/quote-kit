@@ -33,8 +33,12 @@
   <view class="quote-section">
     <view class="section-title">服务流程与付款</view>
     <view class="section-body">
-      <text class="section-text">定金比例：{{quoteDetail.serviceProcess.depositRatio * 100}}%</text>
-      <view class="section-text">尾款比例：{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}%</view>
+      <view wx:for="{{quoteDetail.PayNodes}}" wx:for-item="node" wx:key="nodeName">
+        <text wx:if="{{node.nodeDate}}" class="section-text">
+          {{node.nodeName}}日期：{{node.nodeDate.toLocaleDateString()}}
+        </text>
+        <text class="section-text">{{node.nodeName}}比例：{{node.nodeRatio * 100}}%</text>
+      </view>
       <text class="section-text">整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天</text>
     </view>
   </view>

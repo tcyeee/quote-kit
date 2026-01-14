@@ -43,11 +43,13 @@ interface QuoteDomain {
 /**
  * 服务款项的支付流程信息
  */
-interface QuoteServiceProcess {
-  // 定金比例，例如 0.3 表示 30%
-  depositRatio: number,
-  // 尾款比例，例如 0.7 表示 70%
-  finalPaymentRatio: number,
+interface QuotePayNode {
+  // 节点名称
+  nodeName: string,
+  // 节点支付比例，例如 0.7 表示 70%
+  nodeRatio: number,
+  // 节点日期
+  nodeDate?: Date,
 }
 
 /**
@@ -61,8 +63,8 @@ interface QuoteDetail {
   domain: QuoteDomain,
   // 报价条目列表
   pricingItems: QuotePricingCategory[],
-  // 支付流程
-  serviceProcess: QuoteServiceProcess,
+  // 支付节点
+  PayNodes: QuotePayNode[],
   // 总体交付周期（天）
   overallDeliveryPeriodDays: number,
   // 服务条款说明

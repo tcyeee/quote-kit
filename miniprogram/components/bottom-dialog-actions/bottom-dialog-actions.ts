@@ -112,7 +112,7 @@ Component({
       const depositRatio = isNaN(value) ? 0 : value / 100
       this.updateQuoteDetail({
         serviceProcess: {
-          ...this.data.quoteDetail.serviceProcess,
+          ...this.data.quoteDetail.PayNodes,
           depositRatio,
         },
       } as any)
@@ -127,7 +127,7 @@ Component({
       const finalPaymentRatio = isNaN(value) ? 0 : value / 100
       this.updateQuoteDetail({
         serviceProcess: {
-          ...this.data.quoteDetail.serviceProcess,
+          ...this.data.quoteDetail.PayNodes,
           finalPaymentRatio,
         },
       } as any)

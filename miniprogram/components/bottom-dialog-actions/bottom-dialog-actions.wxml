@@ -80,8 +80,8 @@
       </view>
       <view wx:if="{{!CollapseStatus.payment}}">
         <view class="config-schema-group">
-          <input class="config-schema-pill" type="digit" placeholder="定金比例(%)" value="{{quoteDetail.serviceProcess.depositRatio * 100}}" bindinput="onDepositRatioInput" bindblur="onDepositRatioBlur" />
-          <input class="config-schema-pill" type="digit" placeholder="尾款比例(%)" value="{{quoteDetail.serviceProcess.finalPaymentRatio * 100}}" bindinput="onFinalPaymentRatioInput" bindblur="onFinalPaymentRatioBlur" />
+          <input class="config-schema-pill" type="digit" placeholder="定金比例(%)" value="{{quoteDetail.PayNodes[0].nodeRatio * 100}}" bindinput="onDepositRatioInput" bindblur="onDepositRatioBlur" />
+          <input class="config-schema-pill" type="digit" placeholder="尾款比例(%)" value="{{quoteDetail.PayNodes[1].nodeRatio * 100}}" bindinput="onFinalPaymentRatioInput" bindblur="onFinalPaymentRatioBlur" />
           <view class="config-schema-pill config-schema-action">增加交付节点</view>
         </view>
       </view>

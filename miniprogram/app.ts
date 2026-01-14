@@ -12,10 +12,13 @@ App<IAppOption>({
         name: "熬夜汽水设计工作室",
         logoUrl: "https://example.com/assets/logo.png",
       },
-      serviceProcess: {
-        depositRatio: 0.3,
-        finalPaymentRatio: 0.7,
-      },
+      PayNodes: [{
+        nodeName: "定金",
+        nodeRatio: 0.3,
+      }, {
+        nodeName: "尾款",
+        nodeRatio: 0.7,
+      }],
       pricingItems: [{
         name: "品牌设计",
         items: [
