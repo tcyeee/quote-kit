@@ -1,0 +1,17 @@
+<view>
+  <view class="config-schema-group" wx:for="{{payNodes}}" wx:for-item="node" wx:for-index="index" wx:key="index">
+    <input
+      class="config-schema-pill"
+      type="digit"
+      placeholder="{{node.nodeName}}比例(%)"
+      value="{{node.nodeRatio * 100}}"
+      data-index="{{index}}"
+      bindinput="onRatioInput"
+      bindblur="onBlur"
+    />
+  </view>
+  <view class="config-schema-group">
+    <view class="config-schema-pill config-schema-action" bindtap="onAddNode">增加交付节点</view>
+  </view>
+</view>
+

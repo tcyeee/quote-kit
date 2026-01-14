@@ -1,0 +1,20 @@
+.config-schema-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.config-schema-pill {
+  padding: 12rpx 16rpx;
+  border-radius: 14rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
+.config-schema-action {
+  color: #c0a28a;
+  border-style: dashed;
+}
+

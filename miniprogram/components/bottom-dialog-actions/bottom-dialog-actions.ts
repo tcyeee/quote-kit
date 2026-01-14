@@ -107,33 +107,12 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    onDepositRatioInput(e: any) {
-      const value = parseFloat(e.detail.value || "0")
-      const depositRatio = isNaN(value) ? 0 : value / 100
-      this.updateQuoteDetail({
-        serviceProcess: {
-          ...this.data.quoteDetail.PayNodes,
-          depositRatio,
-        },
-      } as any)
+    onPayNodesChange(e: any) {
+      const PayNodes = e.detail.payNodes as QuotePayNode[]
+      this.updateQuoteDetail({ PayNodes })
     },
 
-    onDepositRatioBlur() {
-      this.quoteDetailUpdate()
-    },
-
-    onFinalPaymentRatioInput(e: any) {
-      const value = parseFloat(e.detail.value || "0")
-      const finalPaymentRatio = isNaN(value) ? 0 : value / 100
-      this.updateQuoteDetail({
-        serviceProcess: {
-          ...this.data.quoteDetail.PayNodes,
-          finalPaymentRatio,
-        },
-      } as any)
-    },
-
-    onFinalPaymentRatioBlur() {
+    onPayNodesBlur() {
       this.quoteDetailUpdate()
     },
 
