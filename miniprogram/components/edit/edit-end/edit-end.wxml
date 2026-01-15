@@ -16,7 +16,19 @@
             </view>
             <view class="edit-end-row">
                 <view class="edit-end-label">链接有效期</view>
-                <view class="edit-end-value">{{linkExpireDays}} 天</view>
+                <view class="edit-end-value">
+                    <view class="expire-options">
+                        <view class="expire-option {{linkExpireDays === 1 ? 'active' : ''}}" data-days="1" bindtap="onExpireDaysTap">
+                            1天
+                        </view>
+                        <view class="expire-option {{linkExpireDays === 7 ? 'active' : ''}}" data-days="7" bindtap="onExpireDaysTap">
+                            7天
+                        </view>
+                        <view class="expire-option {{linkExpireDays === 14 ? 'active' : ''}}" data-days="14" bindtap="onExpireDaysTap">
+                            14天
+                        </view>
+                    </view>
+                </view>
             </view>
         </view>
         <view class="edit-end-tip">发送完成后，系统将持续追踪报价单查看情况</view>

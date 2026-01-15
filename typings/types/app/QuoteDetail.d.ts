@@ -18,9 +18,11 @@ interface QuoteDetail {
 }
 
 interface QuoteComputeData {
-    // 项目创建时间（ISO 字符串）
+    // 项目创建时间
     createdAt: Date,
-    // 链接过期时间（ISO 字符串）
+    // 链接有效期（天）
+    expiresDays: number,
+    // 链接过期时间（计算属性）
     expiresAt: Date,
 }
 

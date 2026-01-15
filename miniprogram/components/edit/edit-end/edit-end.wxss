@@ -48,6 +48,28 @@
   color: #4a4742;
 }
 
+.expire-options {
+  display: flex;
+  gap: 12rpx;
+}
+
+.expire-option {
+  min-width: 96rpx;
+  padding: 8rpx 16rpx;
+  box-sizing: border-box;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  text-align: center;
+  border: 2rpx solid #d6cdc4;
+  color: #6b665f;
+}
+
+.expire-option.active {
+  border-color: #c0a28a;
+  background-color: #c0a28a;
+  color: #fdfaf7;
+}
+
 .edit-end-tip {
   margin-top: 28rpx;
   font-size: 22rpx;

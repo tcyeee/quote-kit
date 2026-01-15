@@ -24,6 +24,11 @@ export function appDefaultQuote(): QuoteDetail {
         clientName: "某不愿透露姓名甲方",
         overallDeliveryPeriodDays: 90,
         serviceTerms: "To be determined",
+        computeData: {
+            createdAt: new Date(),
+            expiresDays: 7,
+            expiresAt: new Date(),
+        },
         domain: {
             name: "熬夜汽水设计工作室",
             logoUrl: "https://example.com/assets/logo.png",
