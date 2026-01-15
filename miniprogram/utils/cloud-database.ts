@@ -4,8 +4,15 @@ function getDbInstance() {
     return db || (db = wx.cloud.database())
 }
 
-/* 存入默认的报价单数据 */
-export async function setQuoteDetail() {
+/* 默认的报价单数据 GET */
+export async function getDefaultQuoteDetail() {
+    const db = getDbInstance()
+    const info = await db.collection("UserDefaultQuote").get()
+    return info.data[0] || appDefaultQuote()
+}
+
+/* 默认的报价单数据 SET */
+export async function setDefaultQuoteDetail() {
     const db = getDbInstance()
     const info = appDefaultQuote()
     db.collection("UserDefaultQuote").add({ data: info })

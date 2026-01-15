@@ -1,4 +1,4 @@
-import { appDefaultQuote, setQuoteDetail } from './utils/cloud-database'
+import { appDefaultQuote, getDefaultQuoteDetail } from './utils/cloud-database'
 import { cloudInit, getUserId } from './utils/cloud-function'
 
 App<IAppOption>({
@@ -9,6 +9,6 @@ App<IAppOption>({
   async onLaunch() {
     await cloudInit()
     await getUserId()
-    await setQuoteDetail()
+    await getDefaultQuoteDetail()
   },
 })
