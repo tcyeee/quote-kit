@@ -4,18 +4,18 @@ function getDbInstance() {
     return db || (db = wx.cloud.database())
 }
 
-/* 默认的报价单数据 GET */
+/* 用户正在编辑的报价单数据 GET */
 export async function getDefaultQuoteDetail() {
     const db = getDbInstance()
-    const info = await db.collection("UserDefaultQuote").get()
+    const info = await db.collection("UserEditQuote").get()
     return info.data[0] || appDefaultQuote()
 }
 
-/* 默认的报价单数据 SET */
+/* 用户正在编辑的报价单数据 SET */
 export async function setDefaultQuoteDetail() {
     const db = getDbInstance()
     const info = appDefaultQuote()
-    db.collection("UserDefaultQuote").add({ data: info })
+    db.collection("UserEditQuote").add({ data: info })
 }
 
 export function appDefaultQuote(): QuoteDetail {

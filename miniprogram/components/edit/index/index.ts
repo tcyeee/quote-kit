@@ -22,6 +22,7 @@ Component({
       remark: false,
     },
     serviceCollapseStatus: [] as boolean[][],
+    showConfirmDialog: false,
   },
   lifetimes: {
     attached() {
@@ -74,7 +75,10 @@ Component({
       this.updateQuoteDetail({ pricingItems })
     },
 
-    resetDragServiceState() { },
+    onSendTap() {
+      this.setData({ showConfirmDialog: true })
+      this.triggerEvent("collapseBottomDialog")
+    },
 
     calculateDragOverlayTop() {
       return {
