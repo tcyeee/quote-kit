@@ -1,10 +1,11 @@
+import { calculateOverallDeliveryPeriodDays, calculateTotalAmount } from '../../../utils/quote-utils'
+
 Component({
   options: {
     styleIsolation: 'apply-shared',
   },
   data: {
     quoteDetail: {} as QuoteDetail,
-    totalAmount: 0,
     linkExpireDays: 7,
   },
   lifetimes: {
@@ -12,28 +13,25 @@ Component({
     attached() {
       const app = getApp<IAppOption>()
       const quoteDetail = app.globalData.quoteDetail
-      const totalAmount = this.calculateTotalAmount(quoteDetail)
-      const linkExpireDays = this.getInitialLinkExpireDays(quoteDetail)
+      const totalAmount = calculateTotalAmount(quoteDetail)
+      const overallDeliveryPeriodDays = calculateOverallDeliveryPeriodDays(quoteDetail)
+      const nextQuoteDetail: QuoteDetail = {
+        ...quoteDetail,
+        computeData: {
+          ...quoteDetail.computeData,
+          totalAmount,
+          overallDeliveryPeriodDays,
+        },
+      }
+      const linkExpireDays = this.getInitialLinkExpireDays(nextQuoteDetail)
       this.setData({
-        quoteDetail,
-        totalAmount,
+        quoteDetail: nextQuoteDetail,
         linkExpireDays,
       })
+      app.globalData.quoteDetail = nextQuoteDetail
     },
   },
   methods: {
-    // 计算当前报价单的总金额
-    calculateTotalAmount(quoteDetail: QuoteDetail) {
-      const pricingItems = quoteDetail.pricingItems || []
-      let totalAmount = 0
-      pricingItems.forEach(category => {
-        const items = category.items || []
-        items.forEach(item => {
-          totalAmount += item.unitPrice * item.quantity
-        })
-      })
-      return totalAmount
-    },
 
     // 获取初始的链接有效期（天），带默认值兜底
     getInitialLinkExpireDays(quoteDetail: QuoteDetail) {
@@ -95,6 +93,11 @@ Component({
     updateGlobalQuoteDetail(quoteDetail: QuoteDetail) {
       const app = getApp<IAppOption>()
       app.globalData.quoteDetail = quoteDetail
+    },
+
+    // 发送
+    send() {
+      this.triggerEvent("send")
     },
   },
 })

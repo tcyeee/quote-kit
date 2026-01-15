@@ -1,3 +1,5 @@
+import { calculateOverallDeliveryPeriodDays } from '../../../utils/quote-utils'
+
 type CollapseStatus = {
   theme: boolean,
   client: boolean,
@@ -84,22 +86,6 @@ Component({
         top: 0,
         itemHeight: 0,
       }
-    },
-
-    calculateOverallDeliveryPeriodDays(quoteDetail: QuoteDetail) {
-      const pricingItems = quoteDetail.pricingItems || []
-      let total = 0
-      pricingItems.forEach(category => {
-        const items = category.items || []
-        items.forEach(item => {
-          const days = typeof item.deliveryPeriodDays === "number" ? item.deliveryPeriodDays : 0
-          const quantity = typeof item.quantity === "number" ? item.quantity : 0
-          if (days > 0 && quantity > 0) {
-            total += days * quantity
-          }
-        })
-      })
-      return total
     },
 
     onThemeTap(e: any) {
@@ -295,7 +281,7 @@ Component({
     quoteDetailUpdate() {
       const app = getApp<IAppOption>()
       const quoteDetail = this.data.quoteDetail
-      const overallDeliveryPeriodDays = this.calculateOverallDeliveryPeriodDays(quoteDetail)
+      const overallDeliveryPeriodDays = calculateOverallDeliveryPeriodDays(quoteDetail)
       const nextQuoteDetail: QuoteDetail = {
         ...quoteDetail,
         computeData: {

@@ -16,14 +16,16 @@ interface QuoteDetail {
 }
 
 interface QuoteComputeData {
-    // 总体交付周期（天）
-    overallDeliveryPeriodDays?: number,
     // 项目创建时间
     createdAt?: Date,
     // 链接有效期（天）
     expiresDays?: number,
     // 链接过期时间（计算属性）
     expiresAt?: Date,
+    // 项目总金额
+    totalAmount?: number,
+    // 整体预计工期（天）
+    overallDeliveryPeriodDays?: number,
 }
 
 /**
