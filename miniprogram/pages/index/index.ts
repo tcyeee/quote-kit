@@ -60,7 +60,7 @@ Page({
       preview.setData({ quoteDetail })
     }
   },
-  onCollapseBottomDialog() {
+  onExpandBottomDialog() {
     this.setData({ bottomDialogExpanded: true })
   },
   // onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {

@@ -13,6 +13,6 @@
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>
     </view>
-    <edit-index bind:quoteDetailUpdate="onQuoteDetailUpdate" bind:collapseBottomDialog="onCollapseBottomDialog" />
+    <edit-index bind:quoteDetailUpdate="onQuoteDetailUpdate" bind:expandBottomDialog="onExpandBottomDialog" />
   </view>
 </view>

@@ -77,7 +77,7 @@ Component({
 
     onSendTap() {
       this.setData({ showConfirmDialog: true })
-      this.triggerEvent("collapseBottomDialog")
+      this.triggerEvent("expandBottomDialog")
     },
 
     calculateDragOverlayTop() {

@@ -1,4 +1,1 @@
-<view class="confirm-share-root">
-  <text class="confirm-share-text">确认单, 确认是否分享</text>
-</view>
-
+<view>hello world</view>
