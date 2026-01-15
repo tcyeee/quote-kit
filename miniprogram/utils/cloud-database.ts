@@ -20,6 +20,22 @@ export async function setDefaultQuoteDetail() {
     db.collection("UserEditQuote").add({ data: info })
 }
 
+/* 分享信息查看日志 SET */
+export async function setShareQuoteLog(quoteId: string) {
+    const db = getDbInstance()
+    const systemInfo = wx.getSystemInfoSync()
+    const app = getApp<IAppOption>()
+    var globalData = app.globalData
+    const info = {
+        quoteId: quoteId,
+        viewerId: globalData.uid || "unknown",
+        viewerDevice: systemInfo.platform,
+        viewerSystem: systemInfo.system,
+        viewTime: new Date(),
+    }
+    db.collection("ShareQuoteViewLog").add({ data: info })
+}
+
 /* 用户正在编辑的报价单数据 SET */
 export async function setShareQuote(): Promise<string> {
     const db = getDbInstance()

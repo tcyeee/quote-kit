@@ -1,12 +1,14 @@
+import { setShareQuoteLog } from "../../utils/cloud-database"
+
 Page({
   data: {
-    options: {
-    },
+  },
+
+  onLoad(options: Record<string, string>) {
+    setShareQuoteLog(options.id)
   },
 
   goHome() {
-    wx.reLaunch({
-      url: "/pages/index/index",
-    })
+    wx.reLaunch({ url: "/pages/index/index" })
   },
 })
