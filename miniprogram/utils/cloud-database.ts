@@ -18,6 +18,17 @@ export async function setDefaultQuoteDetail() {
     db.collection("UserEditQuote").add({ data: info })
 }
 
+/* 用户正在编辑的报价单数据 SET */
+export async function setShareQuote(): Promise<string> {
+    const db = getDbInstance()
+    const app = getApp<IAppOption>()
+    return db.collection("UserShareQuote").add({
+        data: app.globalData.quoteDetail
+    }).then((res) => {
+        return res._id as string
+    })
+}
+
 export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "amber",
