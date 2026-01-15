@@ -14,6 +14,6 @@
       <view class="bottom-dialog-handle"></view>
     </view>
     <edit-index wx:if="{{!showEditEnd}}" bind:quoteDetailUpdate="onQuoteDetailUpdate" bind:toggleConfirmDialog="toggleConfirmDialog" />
-    <edit-end wx:else bind:toggleConfirmDialog="toggleConfirmDialog" bind:onSend="onSend" />
+    <edit-end wx:else bind:toggleConfirmDialog="toggleConfirmDialog" />
   </view>
 </view>

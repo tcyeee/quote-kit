@@ -94,10 +94,5 @@ Component({
       const app = getApp<IAppOption>()
       app.globalData.quoteDetail = quoteDetail
     },
-
-    // 发送
-    send() {
-      this.triggerEvent("onSend")
-    },
   },
 })

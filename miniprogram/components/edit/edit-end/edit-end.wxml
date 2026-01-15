@@ -37,6 +37,7 @@
     </view>
     <view class="edit-end-actions">
         <button class="action-btn secondary" bindtap="toggleConfirmDialog">重新编辑</button>
-        <button class="action-btn primary" bindtap="send">确认发送</button>
+        <!-- 微信分享按钮 -->
+        <button class="action-btn primary" open-type="share">确认发送</button>
     </view>
 </view>

@@ -65,27 +65,25 @@ Page({
       showEditEnd: event.detail
     })
   },
-  onSend() {
-    // TODO 
-  }
 
-  // onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
-  //   // 创建分享数据
-  //   wx.showModal({
-  //     title: "报价单创建成功",
-  //     content: "请在统计面板中追踪后续点击情况",
-  //     showCancel: false,
-  //     success(res) {
-  //       if (res.confirm) {
-  //         wx.navigateTo({ url: "/pages/analyse/analyse" })
-  //       }
-  //     },
-  //   })
-  //   console.log("quote-kit: 报价单分享完成")
-  //   const content: WechatMiniprogram.Page.ICustomShareContent = {
-  //     title: "报价单",
-  //     path: "/pages/view/view?id=019bbc4b-2d05-723d-8f5f-156613014502",
-  //   }
-  //   return content
-  // },
+  onShareAppMessage() {
+    console.log("===");
+    //   // 创建分享数据
+    //   wx.showModal({
+    //     title: "报价单创建成功",
+    //     content: "请在统计面板中追踪后续点击情况",
+    //     showCancel: false,
+    //     success(res) {
+    //       if (res.confirm) {
+    //         wx.navigateTo({ url: "/pages/analyse/analyse" })
+    //       }
+    //     },
+    //   })
+    //   console.log("quote-kit: 报价单分享完成")
+    //   const content: WechatMiniprogram.Page.ICustomShareContent = {
+    //     title: "报价单",
+    //     path: "/pages/view/view?id=019bbc4b-2d05-723d-8f5f-156613014502",
+    //   }
+    //   return content
+  },
 })
