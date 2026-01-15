@@ -12,5 +12,6 @@
         "catchtouchstart",
         "getopenid",
         "Miniprogram"
-    ]
+    ],
+    "chatgpt.commentCodeLensEnabled": false
 }

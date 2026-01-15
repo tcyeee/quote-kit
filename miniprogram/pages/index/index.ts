@@ -65,6 +65,10 @@ Page({
       showEditEnd: event.detail
     })
   },
+  onSend() {
+    // TODO 
+  }
+
   // onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
   //   // 创建分享数据
   //   wx.showModal({

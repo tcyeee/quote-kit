@@ -97,7 +97,7 @@ Component({
 
     // 发送
     send() {
-      this.triggerEvent("send")
+      this.triggerEvent("onSend")
     },
   },
 })
