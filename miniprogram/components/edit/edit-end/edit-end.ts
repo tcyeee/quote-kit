@@ -2,6 +2,6 @@ Page({
   data: {
   },
   toggleConfirmDialog() {
-    this.triggerEvent("toggleConfirmDialog", true)
+    this.triggerEvent("toggleConfirmDialog", false)
   },
 })

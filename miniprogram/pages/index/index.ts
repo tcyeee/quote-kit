@@ -63,7 +63,7 @@ Page({
   },
   toggleConfirmDialog(event: any) {
     this.setData({
-      bottomDialogExpanded: false,
+      bottomDialogExpanded: true,
       showEditEnd: event.detail
     })
   },
