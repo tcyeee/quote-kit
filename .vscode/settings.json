@@ -10,6 +10,7 @@
         "catchtouchend",
         "catchtouchmove",
         "catchtouchstart",
+        "getopenid",
         "Miniprogram"
     ]
 }

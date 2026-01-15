@@ -78,6 +78,8 @@ interface QuoteDetail {
  */
 interface IAppOption {
   globalData: {
+    // 全局用户 ID
+    uid?: string,
     // 微信用户信息，可选
     userInfo?: WechatMiniprogram.UserInfo,
     // 当前展示的报价详情

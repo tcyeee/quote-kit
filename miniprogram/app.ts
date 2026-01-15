@@ -1,8 +1,8 @@
-// app.ts
-// 小程序全局入口，负责初始化全局数据和生命周期
+import { cloudInit, getUserId } from './utils/cloud'
+
 App<IAppOption>({
   globalData: {
-    // 当前小程序使用的默认报价详情
+    uid: undefined,
     quoteDetail: {
       theme: "amber",
       clientName: "某不愿透露姓名甲方",
@@ -40,5 +40,8 @@ App<IAppOption>({
       }],
     },
   },
-  onLaunch() { },
+  async onLaunch() {
+    await cloudInit()
+    await getUserId()
+  },
 })

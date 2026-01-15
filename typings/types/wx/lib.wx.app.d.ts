@@ -262,7 +262,7 @@ declare namespace WechatMiniprogram.App {
     }
 
     interface GetApp {
-        <T = IAnyObject>(opts?: GetAppOption): Instance<T>
+        <T = IAnyObject>(opts?: GetAppOption): Instance<T & IAnyObject>
     }
 }
 
