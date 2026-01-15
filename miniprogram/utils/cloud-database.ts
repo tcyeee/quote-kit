@@ -1,3 +1,5 @@
+import { calculateExpiresAt } from "./base-utils"
+
 let db: DB.Database | undefined
 
 function getDbInstance() {
@@ -22,9 +24,13 @@ export async function setDefaultQuoteDetail() {
 export async function setShareQuote(): Promise<string> {
     const db = getDbInstance()
     const app = getApp<IAppOption>()
-    return db.collection("UserShareQuote").add({
-        data: app.globalData.quoteDetail
-    }).then((res) => {
+    var data = app.globalData.quoteDetail
+    // 添加上shareData
+    data.shareDate = {
+        createdAt: new Date(),
+        expiresAt: calculateExpiresAt(new Date(), data.computeData?.expiresDays || 7),
+    }
+    return db.collection("UserShareQuote").add({ data: data }).then((res) => {
         return res._id as string
     })
 }

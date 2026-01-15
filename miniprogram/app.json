@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/analyse/analyse"
+    "pages/analyse/analyse",
+    "pages/view/view"
   ],
   "window": {
     "navigationBarTextStyle": "black",
