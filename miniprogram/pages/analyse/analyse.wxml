@@ -6,19 +6,19 @@
   <view class="analyse-cards">
     <view class="analyse-card">
       <view class="analyse-card-label">总查看次数</view>
-      <view class="analyse-card-value">¥{{totalAmount}}</view>
+      <view class="analyse-card-value">10</view>
     </view>
     <view class="analyse-card">
       <view class="analyse-card-label">报价单数量</view>
-      <view class="analyse-card-value">{{totalCategories}}</view>
+      <view class="analyse-card-value">{{quoteList.length}}</view>
     </view>
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <view wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:for-index="index" wx:key="name" class="analyse-category-row">
-      <view class="analyse-category-name">{{category.name}}</view>
+    <view wx:for="{{quoteList}}" wx:for-item="quoteDetail" wx:for-index="index" wx:key="quoteId" class="analyse-category-row">
+      <view class="analyse-category-name">{{quoteDetail.clientName}}</view>
       <view class="analyse-category-meta">
-        <view class="analyse-category-count">{{category.items.length}} 项</view>
+        <view class="analyse-category-count">{{quoteDetail.computeData.totalAmount}} 元</view>
       </view>
     </view>
   </view>

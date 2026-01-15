@@ -20,6 +20,13 @@ export async function setDefaultQuoteDetail() {
     db.collection("UserEditQuote").add({ data: info })
 }
 
+/* 分享信息查看日志 GET */
+export async function getShareQuoteLog(quoteId: string) {
+    const db = getDbInstance()
+    const res = await db.collection("ShareQuoteViewLog").where({ quoteId }).get()
+    return res.data
+}
+
 /* 分享信息查看日志 SET */
 export async function setShareQuoteLog(quoteId: string) {
     const db = getDbInstance()
@@ -36,7 +43,14 @@ export async function setShareQuoteLog(quoteId: string) {
     db.collection("ShareQuoteViewLog").add({ data: info })
 }
 
-/* 用户正在编辑的报价单数据 SET */
+/* 分享的报价单信息 GET */
+export async function getShareQuote(): Promise<Array<QuoteDetail>> {
+    const db = getDbInstance()
+    const res = await db.collection("UserShareQuote").get()
+    return res.data as Array<QuoteDetail>
+}
+
+/* 分享的报价单信息 SET */
 export async function setShareQuote(): Promise<string> {
     const db = getDbInstance()
     const app = getApp<IAppOption>()
