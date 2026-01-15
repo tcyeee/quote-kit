@@ -4,6 +4,9 @@
     <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" />
     <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" />
     <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" />
-    <view style="height:15vh" />
+    <view class="view-footer">
+      <view class="view-footer-text">报价单由 Quote Kit 生成</view>
+      <button class="view-footer-button" type="primary" bindtap="goHome">回到首页</button>
+    </view>
   </scroll-view>
 </view>

@@ -1,0 +1,32 @@
+page {
+  background-color: #f3f0eb;
+}
+
+.page-root {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-scroll {
+  height: 100vh;
+}
+
+.view-footer {
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f4ef;
+  border-radius: 24rpx 24rpx 0 0;
+  margin-top: 32rpx;
+  box-shadow: 0 -6rpx 16rpx rgba(56, 49, 43, 0.04);
+}
+
+.view-footer-text {
+  font-size: 24rpx;
+  color: #8a7e72;
+}
+
+.view-footer-button {
+  min-width: 200rpx;
+}
