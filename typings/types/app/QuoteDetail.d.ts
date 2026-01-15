@@ -11,17 +11,21 @@ interface QuoteDetail {
     serviceTerms: string,
     theme: string,
 
+    /* 分享属性 */
+    shareDate?: QuoteShareInfo,
     /* 计算属性 */
     computeData?: QuoteComputeData,
 }
 
-interface QuoteComputeData {
-    // 项目创建时间
+interface QuoteShareInfo {
+    // 链接创建时间
     createdAt?: Date,
+    // 链接过期时间
+    expiresAt?: Date,
+}
+interface QuoteComputeData {
     // 链接有效期（天）
     expiresDays?: number,
-    // 链接过期时间（计算属性）
-    expiresAt?: Date,
     // 项目总金额
     totalAmount?: number,
     // 整体预计工期（天）
