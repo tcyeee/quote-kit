@@ -74,8 +74,8 @@ Component({
       this.updateQuoteDetail({ pricingItems })
     },
 
-    onSendTap() {
-      this.triggerEvent("showConfirmDialog", true)
+    toggleConfirmDialog() {
+      this.triggerEvent("toggleConfirmDialog", true)
     },
 
     calculateDragOverlayTop() {

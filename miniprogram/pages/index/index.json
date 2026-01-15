@@ -5,6 +5,7 @@
     "neon-preview": "/components/preview/neon/neon",
     "deep-sea-preview": "/components/preview/deep-sea/deep-sea",
     "edit-index": "/components/edit/index/index",
-    "saving-toast": "/components/edit/saving-toast/saving-toast"
+    "saving-toast": "/components/edit/saving-toast/saving-toast",
+    "edit-end": "/components/edit/edit-end/edit-end"
   }
 }

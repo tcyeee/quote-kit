@@ -7,6 +7,7 @@ Page({
       bottomDialogExpandedHeight: 85,
     },
     bottomDialogExpanded: false,
+    showEditEnd: false,
     currentTheme: 'amber',
   },
   showSavingToast() {
@@ -60,9 +61,11 @@ Page({
       preview.setData({ quoteDetail })
     }
   },
-  showConfirmDialog(event: any) {
-    const shouldShow = event.detail
-    console.log(shouldShow)
+  toggleConfirmDialog(event: any) {
+    this.setData({
+      bottomDialogExpanded: false,
+      showEditEnd: event.detail
+    })
   },
   // onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
   //   // 创建分享数据

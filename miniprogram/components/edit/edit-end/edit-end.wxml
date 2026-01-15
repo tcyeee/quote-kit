@@ -1,0 +1,4 @@
+<view>
+    <view>hello world</view>
+    <button class="action-btn primary" bindtap="toggleConfirmDialog">发送报价单</button>
+</view>
