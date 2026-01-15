@@ -15,11 +15,13 @@
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <view wx:for="{{quoteList}}" wx:for-item="quoteDetail" wx:for-index="index" wx:key="quoteId" class="analyse-category-row">
+    <view wx:for="{{quoteList}}" wx:for-item="quoteDetail" wx:for-index="index" wx:key="_id" class="analyse-category-row">
       <view class="analyse-category-name">{{quoteDetail.clientName}}</view>
       <view class="analyse-category-meta">
         <view class="analyse-category-count">{{quoteDetail.computeData.totalAmount}} 元</view>
       </view>
+      <!-- 分享时间  -->
+      <!-- 截止时间  -->
     </view>
   </view>
 </view>

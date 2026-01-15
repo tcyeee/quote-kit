@@ -1,4 +1,5 @@
 import { getShareQuote } from "../../utils/cloud-database"
+import { calculateTotalAmount } from "../../utils/quote-utils"
 
 Page({
   data: {
@@ -21,7 +22,19 @@ Page({
   },
 
   async queryShareList() {
-    const quoteList = await getShareQuote()
+    const rawList = await getShareQuote()
+    const quoteList = (rawList || []).map(item => {
+      const computeData = item.computeData || {}
+      const hasTotalAmount = typeof computeData.totalAmount === "number"
+      const totalAmount = hasTotalAmount ? computeData.totalAmount : calculateTotalAmount(item)
+      return {
+        ...item,
+        computeData: {
+          ...computeData,
+          totalAmount,
+        },
+      }
+    })
     this.setData({ quoteList })
   }
 })
