@@ -60,8 +60,9 @@ Page({
       preview.setData({ quoteDetail })
     }
   },
-  onExpandBottomDialog() {
-    this.setData({ bottomDialogExpanded: true })
+  showConfirmDialog(event: any) {
+    const shouldShow = event.detail
+    console.log(shouldShow)
   },
   // onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
   //   // 创建分享数据

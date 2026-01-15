@@ -22,7 +22,6 @@ Component({
       remark: false,
     },
     serviceCollapseStatus: [] as boolean[][],
-    showConfirmDialog: false,
   },
   lifetimes: {
     attached() {
@@ -76,8 +75,7 @@ Component({
     },
 
     onSendTap() {
-      this.setData({ showConfirmDialog: true })
-      this.triggerEvent("expandBottomDialog")
+      this.triggerEvent("showConfirmDialog", true)
     },
 
     calculateDragOverlayTop() {
@@ -276,12 +274,6 @@ Component({
       })
       this.quoteDetailUpdate()
     },
-
-    onServiceDragStart() { },
-
-    onServiceDragMove() { },
-
-    onServiceDragEnd() { },
 
     quoteDetailUpdate() {
       const app = getApp<IAppOption>()

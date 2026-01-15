@@ -1,5 +1,5 @@
 <view class="bottom-dialog-body">
-  <scroll-view wx:if="{{!showConfirmDialog}}" class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+  <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
     <view class="action-bar">
       <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>
       <button class="action-btn primary" bindtap="onSendTap">发送报价单</button>
@@ -96,7 +96,4 @@
     </view>
     <view style="height: 10vh;"></view>
   </scroll-view>
-  <view wx:else>
-    <confirm-share />
-  </view>
 </view>
