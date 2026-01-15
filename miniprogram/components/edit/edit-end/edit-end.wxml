@@ -4,19 +4,19 @@
         <view class="edit-end-summary">
             <view class="edit-end-row">
                 <view class="edit-end-label">项目甲方</view>
-                <view class="edit-end-value">xxx</view>
+                <view class="edit-end-value">{{quoteDetail.clientName}}</view>
             </view>
             <view class="edit-end-row">
                 <view class="edit-end-label">总价</view>
-                <view class="edit-end-value">xx 元</view>
+                <view class="edit-end-value">{{totalAmount}} 元</view>
             </view>
             <view class="edit-end-row">
                 <view class="edit-end-label">周期</view>
-                <view class="edit-end-value">xx 天</view>
+                <view class="edit-end-value">{{quoteDetail.overallDeliveryPeriodDays}} 天</view>
             </view>
             <view class="edit-end-row">
                 <view class="edit-end-label">链接有效期</view>
-                <view class="edit-end-value">xx 天</view>
+                <view class="edit-end-value">{{linkExpireDays}} 天</view>
             </view>
         </view>
         <view class="edit-end-tip">发送完成后，系统将持续追踪报价单查看情况</view>

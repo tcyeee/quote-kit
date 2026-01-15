@@ -57,9 +57,7 @@ Page({
       currentTheme: quoteDetail.theme || 'amber',
     })
     const preview = this.selectComponent("#quotePreview")
-    if (preview) {
-      preview.setData({ quoteDetail })
-    }
+    if (preview) preview.setData({ quoteDetail })
   },
   toggleConfirmDialog(event: any) {
     this.setData({
