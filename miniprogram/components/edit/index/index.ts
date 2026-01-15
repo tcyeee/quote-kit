@@ -85,6 +85,22 @@ Component({
       }
     },
 
+    calculateOverallDeliveryPeriodDays(quoteDetail: QuoteDetail) {
+      const pricingItems = quoteDetail.pricingItems || []
+      let total = 0
+      pricingItems.forEach(category => {
+        const items = category.items || []
+        items.forEach(item => {
+          const days = typeof item.deliveryPeriodDays === "number" ? item.deliveryPeriodDays : 0
+          const quantity = typeof item.quantity === "number" ? item.quantity : 0
+          if (days > 0 && quantity > 0) {
+            total += days * quantity
+          }
+        })
+      })
+      return total
+    },
+
     onThemeTap(e: any) {
       const theme = e.currentTarget.dataset.theme as string
       this.updateQuoteDetail({ theme })
@@ -277,7 +293,19 @@ Component({
 
     quoteDetailUpdate() {
       const app = getApp<IAppOption>()
-      app.globalData.quoteDetail = this.data.quoteDetail
+      const quoteDetail = this.data.quoteDetail
+      const overallDeliveryPeriodDays = this.calculateOverallDeliveryPeriodDays(quoteDetail)
+      const nextQuoteDetail: QuoteDetail = {
+        ...quoteDetail,
+        computeData: {
+          ...quoteDetail.computeData,
+          overallDeliveryPeriodDays,
+        },
+      }
+      this.setData({
+        quoteDetail: nextQuoteDetail,
+      })
+      app.globalData.quoteDetail = nextQuoteDetail
       this.triggerEvent("quoteDetailUpdate")
     },
   },

@@ -11,7 +11,7 @@
                 <view class="edit-end-value">{{totalAmount}} 元</view>
             </view>
             <view class="edit-end-row">
-                <view class="edit-end-label">周期</view>
+                <view class="edit-end-label">项目周期</view>
                 <view class="edit-end-value">{{quoteDetail.overallDeliveryPeriodDays}} 天</view>
             </view>
             <view class="edit-end-row">

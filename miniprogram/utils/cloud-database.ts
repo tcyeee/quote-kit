@@ -22,7 +22,6 @@ export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "amber",
         clientName: "某不愿透露姓名甲方",
-        overallDeliveryPeriodDays: 90,
         serviceTerms: "To be determined",
         computeData: {
             createdAt: new Date(),

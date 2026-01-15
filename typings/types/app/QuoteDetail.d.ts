@@ -7,8 +7,6 @@ interface QuoteDetail {
     pricingItems: QuotePricingCategory[],
     // 支付节点
     PayNodes: QuotePayNode[],
-    // 总体交付周期（天）
-    overallDeliveryPeriodDays: number,
     // 服务条款说明
     serviceTerms: string,
     theme: string,
@@ -18,12 +16,14 @@ interface QuoteDetail {
 }
 
 interface QuoteComputeData {
+    // 总体交付周期（天）
+    overallDeliveryPeriodDays?: number,
     // 项目创建时间
-    createdAt: Date,
+    createdAt?: Date,
     // 链接有效期（天）
-    expiresDays: number,
+    expiresDays?: number,
     // 链接过期时间（计算属性）
-    expiresAt: Date,
+    expiresAt?: Date,
 }
 
 /**
