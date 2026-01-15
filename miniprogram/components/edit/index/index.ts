@@ -37,6 +37,7 @@ Component({
         quoteDetail,
         serviceCollapseStatus,
       })
+      this.quoteDetailUpdate()
     },
   },
   methods: {

@@ -50,7 +50,7 @@
           </view>
         </view>
         <text class="section-text pay-node-overall">
-          整体预计工期：{{quoteDetail.overallDeliveryPeriodDays}} 天
+          整体预计工期：{{quoteDetail.computeData.overallDeliveryPeriodDays}} 天
         </text>
       </view>
     </view>
@@ -62,4 +62,3 @@
     </view>
   </view>
 </view>
-

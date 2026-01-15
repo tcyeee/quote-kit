@@ -9,6 +9,7 @@ App<IAppOption>({
   async onLaunch() {
     await cloudInit()
     await getUserId()
-    await getDefaultQuoteDetail()
+    const quoteDetail = await getDefaultQuoteDetail()
+    this.globalData.quoteDetail = quoteDetail as QuoteDetail
   },
 })
