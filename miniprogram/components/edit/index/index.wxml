@@ -97,6 +97,6 @@
     <view style="height: 10vh;"></view>
   </scroll-view>
   <view wx:else>
-    <span>确认单, 确认是否分享</span>
+    <confirm-share />
   </view>
 </view>
