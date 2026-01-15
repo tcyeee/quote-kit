@@ -12,8 +12,17 @@ interface QuoteDetail {
     // 服务条款说明
     serviceTerms: string,
     theme: string,
+
+    /* 计算属性 */
+    computeData?: QuoteComputeData,
 }
 
+interface QuoteComputeData {
+    // 项目创建时间（ISO 字符串）
+    createdAt: Date,
+    // 链接过期时间（ISO 字符串）
+    expiresAt: Date,
+}
 
 /**
  * 单个服务条目的报价信息
