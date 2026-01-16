@@ -11,7 +11,6 @@
       分享时间：{{item.shareTimeText || '—'}} · 截止时间：{{item.expireTimeText || '—'}}
     </view>
   </view>
-
   <view class="analyse-metrics">
     <view class="analyse-metric">
       <view class="analyse-metric-label">总金额</view>
@@ -22,19 +21,17 @@
       <view class="analyse-metric-value">{{item.viewCountDisplay}}</view>
     </view>
   </view>
-
   <view class="analyse-card-footer">
-    <view class="analyse-card-footer-spacer"></view>
+    <view class="analyse-card-footer-left">
+      <span class="icon--delete-16-regular icon-size-10 icon-color-error analyse-delete-icon" bindtap="onDeleteTap"></span>
+    </view>
     <view class="analyse-actions">
       <block wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}">
-        <button size="mini" class="analyse-action-button" bindtap="onOfflineTap">
-          下架
-        </button>
+        <button size="mini" class="analyse-action-button" bindtap="onOfflineTap">下架</button>
       </block>
       <block wx:else>
         <view class="analyse-actions-status">已下架</view>
       </block>
-      <button size="mini" class="analyse-action-button analyse-action-button--danger" bindtap="onDeleteTap">删除</button>
     </view>
   </view>
 </view>

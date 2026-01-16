@@ -83,8 +83,9 @@
   justify-content: space-between;
 }
 
-.analyse-card-footer-spacer {
-  flex: 1;
+.analyse-card-footer-left {
+  display: flex;
+  align-items: center;
 }
 
 .analyse-actions {
@@ -92,6 +93,14 @@
   justify-content: flex-end;
   align-items: center;
   gap: 16rpx;
+}
+
+.analyse-delete-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx;
+  border-radius: 999rpx;
 }
 
 .analyse-actions button {
