@@ -5,10 +5,6 @@
   </view>
   <view class="analyse-cards">
     <view class="analyse-card">
-      <view class="analyse-card-label">总查看次数</view>
-      <view class="analyse-card-value">10</view>
-    </view>
-    <view class="analyse-card">
       <view class="analyse-card-label">报价单数量</view>
       <view class="analyse-card-value">{{quoteList.length}}</view>
     </view>
@@ -19,9 +15,10 @@
       <view class="analyse-category-name">{{quoteDetail.clientName}}</view>
       <view class="analyse-category-meta">
         <view class="analyse-category-count">{{quoteDetail.computeData.totalAmount}} 元</view>
+        <view>分享时间：{{quoteDetail.analyseMeta.shareTimeText}}</view>
+        <view>截止时间：{{quoteDetail.analyseMeta.expireTimeText}}</view>
+        <view>查看次数：{{quoteDetail.analyseMeta.viewCountDisplay}}</view>
       </view>
-      <!-- 分享时间  -->
-      <!-- 截止时间  -->
     </view>
   </view>
 </view>

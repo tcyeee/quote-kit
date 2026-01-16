@@ -10,6 +10,7 @@
         "catchtouchend",
         "catchtouchmove",
         "catchtouchstart",
+        "cloudbase",
         "getopenid",
         "Miniprogram"
     ],
