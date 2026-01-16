@@ -6,18 +6,18 @@
   <view class="analyse-cards">
     <view class="analyse-card">
       <view class="analyse-card-label">报价单数量</view>
-      <view class="analyse-card-value">{{quoteList.length}}</view>
+      <view class="analyse-card-value">{{list.length}}</view>
     </view>
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <view wx:for="{{quoteList}}" wx:for-item="quoteDetail" wx:for-index="index" wx:key="_id" class="analyse-category-row">
-      <view class="analyse-category-name">{{quoteDetail.clientName}}</view>
+    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" class="analyse-category-row">
+      <view class="analyse-category-name">{{item.quote.clientName}}</view>
       <view class="analyse-category-meta">
-        <view class="analyse-category-count">{{quoteDetail.computeData.totalAmount}} 元</view>
-        <view>分享时间：{{quoteDetail.analyseMeta.shareTimeText}}</view>
-        <view>截止时间：{{quoteDetail.analyseMeta.expireTimeText}}</view>
-        <view>查看次数：{{quoteDetail.analyseMeta.viewCountDisplay}}</view>
+        <view class="analyse-category-count">{{item.quote.computeData.totalAmount}} 元</view>
+        <view>分享时间：{{item.shareTimeText}}</view>
+        <view>截止时间：{{item.expireTimeText}}</view>
+        <view>查看次数：{{item.viewCountDisplay}}</view>
       </view>
     </view>
   </view>

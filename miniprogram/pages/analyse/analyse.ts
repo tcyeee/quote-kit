@@ -1,22 +1,22 @@
 import { getShareQuote, getShareQuoteLog } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
+import { formatDateTime } from "../../utils/base-utils"
 
-function formatDateTime(value?: any) {
-  if (!value) return ""
-  const date = value instanceof Date ? value : new Date(value)
-  if (!date || typeof date.getTime !== "function" || Number.isNaN(date.getTime())) return ""
-  const year = date.getFullYear()
-  const month = `${date.getMonth() + 1}`.padStart(2, "0")
-  const day = `${date.getDate()}`.padStart(2, "0")
-  const hours = `${date.getHours()}`.padStart(2, "0")
-  const minutes = `${date.getMinutes()}`.padStart(2, "0")
-  return `${year}-${month}-${day} ${hours}:${minutes}`
+declare interface AnalyseQuote {
+  quoteId: string,     // 报价单ID
+  quote: QuoteDetail,  // 源报价数据（包含总金额等计算属性）
+  shareTimeText: string, // 分享时间文案
+  expireTimeText: string, // 截止时间文案
+  viewCount: number,   // 查看次数
+  viewCountDisplay: string, // 查看次数显示文本(最多10次,超出则显示>10)
+  viewLog: Array<QuoteViewLog>, // 查看记录
 }
 
 Page({
   data: {
     safeTop: 0,
-    quoteList: [] as Array<QuoteDetail>,
+    // 这个字段用于展示页面信息
+    list: [] as Array<AnalyseQuote>,
   },
 
   async onLoad() {
@@ -35,41 +35,70 @@ Page({
 
   async queryShareList() {
     const rawList = await getShareQuote()
-    const list = Array.isArray(rawList) ? rawList : []
-    const quoteList = await Promise.all(
-      (list as any[]).map(async (item) => {
-        const computeData = item.computeData || {}
-        const hasTotalAmount = typeof computeData.totalAmount === "number"
-        const totalAmount = hasTotalAmount ? computeData.totalAmount : calculateTotalAmount(item as QuoteDetail)
-        const shareDate = item.shareDate || {}
-        const shareTimeText = formatDateTime(shareDate.createdAt)
-        const expireTimeText = formatDateTime(shareDate.expiresAt)
-        let viewCount = 0
-        let viewCountDisplay = "0"
-        if (item._id) {
-          try {
-            const logs = await getShareQuoteLog(item._id as string)
-            viewCount = Array.isArray(logs) ? logs.length : 0
-          } catch (e) {
-            viewCount = 0
-          }
-          viewCountDisplay = viewCount > 50 ? ">50" : `${viewCount}`
-        }
-        return {
-          ...item,
-          computeData: {
-            ...computeData,
-            totalAmount,
-          },
-          analyseMeta: {
-            shareTimeText,
-            expireTimeText,
-            viewCount,
-            viewCountDisplay,
-          },
-        }
-      })
+    const sourceList = Array.isArray(rawList) ? rawList : []
+    const analyseList = await Promise.all(
+      (sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>).map(item => buildAnalyseQuoteItem(item))
     )
-    this.setData({ quoteList })
+    this.setData({ list: analyseList })
   }
 })
+
+// 根据分享记录构建查看次数相关元信息
+async function buildQuoteViewMeta(quoteId?: string) {
+  if (!quoteId) {
+    return {
+      viewCount: 0,
+      viewCountDisplay: "0",
+      viewLog: [] as Array<QuoteViewLog>,
+    }
+  }
+  let viewCount = 0
+  let viewLog: Array<QuoteViewLog> = []
+  try {
+    const logs = await getShareQuoteLog(quoteId)
+    viewLog = Array.isArray(logs) ? logs as Array<QuoteViewLog> : []
+    viewCount = viewLog.length
+  } catch (e) {
+    viewCount = 0
+    viewLog = []
+  }
+  const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
+  return {
+    viewCount,
+    viewCountDisplay,
+    viewLog,
+  }
+}
+
+// 确保报价单包含总金额计算结果
+function buildQuoteWithTotalAmount(item: QuoteDetail) {
+  const computeData = item.computeData || {}
+  const hasTotalAmount = typeof computeData.totalAmount === "number"
+  const totalAmount = hasTotalAmount ? computeData.totalAmount : calculateTotalAmount(item)
+  return {
+    ...item,
+    computeData: {
+      ...computeData,
+      totalAmount,
+    },
+  }
+}
+
+
+async function buildAnalyseQuoteItem(item: QuoteDetail & { _id?: string; quoteId?: string }) {
+  const quoteId = (item as any).quoteId || (item as any)["_id"] || ""
+  const quote = buildQuoteWithTotalAmount(item)
+  const shareDate = quote.shareDate || {}
+  const shareTimeText = formatDateTime(shareDate.createdAt)
+  const expireTimeText = formatDateTime(shareDate.expiresAt)
+  const viewMeta = await buildQuoteViewMeta(quoteId)
+  return {
+    quoteId,
+    quote,
+    shareTimeText,
+    expireTimeText,
+    viewCount: viewMeta.viewCount,
+    viewCountDisplay: viewMeta.viewCountDisplay,
+    viewLog: viewMeta.viewLog,
+  }
+}
