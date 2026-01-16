@@ -56,7 +56,6 @@
       <view wx:if="{{!CollapseStatus.company}}">
         <view class="config-schema-group">
           <input class="config-schema-pill" placeholder="我的公司名称(可选)" value="{{quoteDetail.domain.name}}" bindinput="onDomainNameInput" bindblur="onDomainNameBlur" />
-          <view class="config-schema-pill">我的公司LOGO(可选)</view>
         </view>
       </view>
     </view>

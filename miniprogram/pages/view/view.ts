@@ -4,6 +4,7 @@ Page({
   data: {
     quoteDetail: undefined as QuoteDetail | undefined,
     shareStatus: "normal" as "normal" | "offlined" | "expired",
+    currentTheme: "amber",
   },
 
   onLoad(options: Record<string, string>) {
@@ -34,7 +35,11 @@ Page({
         }
       }
 
-      this.setData({ quoteDetail, shareStatus })
+      this.setData({
+        quoteDetail,
+        shareStatus,
+        currentTheme: quoteDetail.theme || "amber",
+      })
     })
   }
 })

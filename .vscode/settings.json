@@ -11,6 +11,7 @@
         "catchtouchmove",
         "catchtouchstart",
         "cloudbase",
+        "elif",
         "getopenid",
         "Miniprogram",
         "Offlined"
