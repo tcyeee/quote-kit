@@ -8,7 +8,7 @@ interface QuoteDetail {
     // 支付节点
     PayNodes: QuotePayNode[],
     // 服务条款说明
-    serviceTerms: string,
+    serviceTerms?: string,
     theme: string,
 
     /* 分享属性 */

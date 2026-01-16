@@ -98,7 +98,6 @@ export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "amber",
         clientName: "某不愿透露姓名甲方",
-        serviceTerms: "To be determined",
         computeData: {
             expiresDays: 7,
         },
@@ -126,7 +125,6 @@ export function appDefaultQuote(): QuoteDetail {
                 { name: "名片/会员卡设计", description: null, unit: "项", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
                 { name: "DM/宣传单", description: null, unit: "项", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
                 { name: "画册/手册/宣传册", description: null, unit: "项", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
-                { name: "三折页", description: null, unit: "张", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
                 { name: "展架/易拉宝设计", description: null, unit: "项", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
                 { name: "主KV画面设计", description: null, unit: "项", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
                 { name: "文化墙", description: null, unit: "平方米", unitPrice: 150, quantity: 1, deliveryPeriodDays: 15 },
