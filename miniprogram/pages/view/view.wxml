@@ -1,5 +1,5 @@
 <view class="page-root">
-  <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+  <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}" wx:if="{{shareStatus === 'normal'}}">
     <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" quote-detail="{{quoteDetail}}" />
     <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" quote-detail="{{quoteDetail}}" />
     <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
@@ -9,4 +9,14 @@
       <button class="view-footer-button" type="primary" bindtap="goHome">回到首页</button>
     </view>
   </scroll-view>
+  <view wx:elif="{{shareStatus === 'offlined'}}" class="view-status">
+    <view class="view-status-title">对方已撤销该报价单</view>
+    <view class="view-status-subtitle">报价内容已不再对外展示</view>
+    <button class="view-status-button" type="primary" bindtap="goHome">回到首页</button>
+  </view>
+  <view wx:elif="{{shareStatus === 'expired'}}" class="view-status">
+    <view class="view-status-title">链接已失效</view>
+    <view class="view-status-subtitle">请联系对方获取新的报价单链接</view>
+    <button class="view-status-button" type="primary" bindtap="goHome">回到首页</button>
+  </view>
 </view>

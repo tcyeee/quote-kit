@@ -3,6 +3,7 @@ import { setShareQuoteLog, getShareQuoteById } from "../../utils/cloud-database"
 Page({
   data: {
     quoteDetail: undefined as QuoteDetail | undefined,
+    shareStatus: "normal" as "normal" | "offlined" | "expired",
   },
 
   onLoad(options: Record<string, string>) {
@@ -18,8 +19,22 @@ Page({
 
   initData(quoteId: string) {
     getShareQuoteById(quoteId).then((quoteDetail) => {
-      this.setData({ quoteDetail })
+      let shareStatus: "normal" | "offlined" | "expired" = "normal"
+      const shareDate = quoteDetail.shareDate
+
+      if (shareDate?.isManuallyOfflined) {
+        shareStatus = "offlined"
+      } else if (shareDate?.expiresAt) {
+        const expiresAt =
+          shareDate.expiresAt instanceof Date
+            ? shareDate.expiresAt
+            : new Date(shareDate.expiresAt)
+        if (expiresAt.getTime() < Date.now()) {
+          shareStatus = "expired"
+        }
+      }
+
+      this.setData({ quoteDetail, shareStatus })
     })
   }
 })
-

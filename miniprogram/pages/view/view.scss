@@ -30,3 +30,30 @@ page {
 .view-footer-button {
   min-width: 200rpx;
 }
+
+.view-status {
+  min-height: 100vh;
+  padding: 80rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #38312b;
+}
+
+.view-status-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.view-status-subtitle {
+  font-size: 26rpx;
+  color: #8a7e72;
+  margin-bottom: 40rpx;
+}
+
+.view-status-button {
+  min-width: 200rpx;
+}
