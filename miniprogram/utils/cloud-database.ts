@@ -27,6 +27,7 @@ export async function getShareQuoteLog(quoteIdList: string[]): Promise<QuoteView
     const res = await db
         .collection("ShareQuoteViewLog")
         .where({ quoteId: command.in(quoteIdList) })
+        .orderBy("viewTime", "desc")
         .get()
     return res.data as QuoteViewLog[]
 }
