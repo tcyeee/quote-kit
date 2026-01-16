@@ -1,14 +1,8 @@
 Component({
-  data: {
-    quoteDetail: {} as QuoteDetail,
-  },
-
-  lifetimes: {
-    attached() {
-      this.setData({
-        quoteDetail: getApp<IAppOption>().globalData.quoteDetail,
-      })
+  properties: {
+    quoteDetail: {
+      type: Object,
+      value: {} as QuoteDetail,
     },
   },
 })
-

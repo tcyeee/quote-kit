@@ -2,10 +2,10 @@
   <saving-toast id="savingToast" />
   <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
     <!-- 根据当前主题渲染不同的预览组件 -->
-    <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" />
-    <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" />
-    <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" />
-    <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" />
+    <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" quote-detail="{{quoteDetail}}" />
+    <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" quote-detail="{{quoteDetail}}" />
+    <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
+    <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" quote-detail="{{quoteDetail}}" />
     <view style="height:15vh" />
   </scroll-view>
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>

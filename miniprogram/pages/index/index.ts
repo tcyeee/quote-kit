@@ -11,6 +11,7 @@ Page({
     bottomDialogExpanded: false,
     showEditEnd: false,
     currentTheme: 'amber',
+    quoteDetail: {} as QuoteDetail,
   },
   showSavingToast() {
     const toast = this.selectComponent("#savingToast") as any
@@ -49,6 +50,7 @@ Page({
   onLoad() {
     const quoteDetail = app.globalData.quoteDetail
     this.setData({
+      quoteDetail,
       currentTheme: quoteDetail.theme || 'amber',
     })
   },
@@ -56,10 +58,9 @@ Page({
     this.showSavingToast()
     const quoteDetail = app.globalData.quoteDetail
     this.setData({
+      quoteDetail,
       currentTheme: quoteDetail.theme || 'amber',
     })
-    const preview = this.selectComponent("#quotePreview")
-    if (preview) preview.setData({ quoteDetail })
   },
   toggleConfirmDialog(event: any) {
     this.setData({
