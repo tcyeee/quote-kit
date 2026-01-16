@@ -121,3 +121,41 @@ button.analyse-action-button {
   font-size: 22rpx;
   color: #cf1322;
 }
+
+.analyse-view-log {
+  margin-top: 12rpx;
+  padding-top: 12rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.analyse-view-log-header {
+  font-size: 22rpx;
+  color: #8a7e72;
+  margin-bottom: 8rpx;
+}
+
+.analyse-view-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.analyse-view-log-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.analyse-view-log-bullet {
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #8a7e72;
+  margin-right: 8rpx;
+}
+
+.analyse-view-log-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #38312b;
+  line-height: 1.6;
+}

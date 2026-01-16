@@ -17,7 +17,7 @@
       <view class="analyse-metric-value">{{item.quote.computeData.totalAmount}} 元</view>
     </view>
     <view class="analyse-metric">
-      <view class="analyse-metric-label">查看次数</view>
+      <view class="analyse-metric-label">阅读次数</view>
       <view class="analyse-metric-value">{{item.viewCountDisplay}}</view>
     </view>
   </view>
@@ -28,9 +28,23 @@
     <view class="analyse-actions">
       <block wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}">
         <button size="mini" class="analyse-action-button" bindtap="onOfflineTap">下架</button>
+        <button size="mini" class="analyse-action-button" bindtap="onToggleViewLogTap">
+          {{showViewLog ? '收起阅读记录' : '展开阅读记录'}}
+        </button>
       </block>
       <block wx:else>
         <view class="analyse-actions-status">已下架</view>
+      </block>
+    </view>
+  </view>
+  <view wx:if="{{showViewLog && item.viewLogTop10 && item.viewLogTop10.length}}" class="analyse-view-log">
+    <view class="analyse-view-log-header">阅读记录</view>
+    <view class="analyse-view-log-list">
+      <block wx:for="{{item.viewLogTop10}}" wx:for-item="log" wx:for-index="logIndex" wx:key="{{log._id || logIndex}}">
+        <view class="analyse-view-log-item">
+          <text class="analyse-view-log-bullet">•</text>
+          <text class="analyse-view-log-text">{{log.displayText}}</text>
+        </view>
       </block>
     </view>
   </view>

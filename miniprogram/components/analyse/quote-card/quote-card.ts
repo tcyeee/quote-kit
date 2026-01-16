@@ -12,6 +12,9 @@ Component({
       value: 0,
     },
   },
+  data: {
+    showViewLog: false,
+  },
   methods: {
     onOfflineTap() {
       const index = this.data.index as number
@@ -20,6 +23,12 @@ Component({
     onDeleteTap() {
       const index = this.data.index as number
       this.triggerEvent("delete", { index })
+    },
+    onToggleViewLogTap() {
+      const showViewLog = this.data.showViewLog as boolean
+      this.setData({
+        showViewLog: !showViewLog,
+      })
     },
   },
 })

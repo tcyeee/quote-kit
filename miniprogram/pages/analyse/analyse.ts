@@ -10,6 +10,7 @@ declare interface AnalyseQuote {
   viewCount: number,   // 查看次数
   viewCountDisplay: string, // 查看次数显示文本(最多10次,超出则显示>10)
   viewLog: Array<QuoteViewLog>, // 查看记录
+  viewLogTop10: Array<QuoteViewLog & { viewTimeText: string; displayText: string }>,
 }
 
 Page({
@@ -127,6 +128,17 @@ function buildAnalyseQuoteItem(
   const viewLog = logsByQuoteId[quoteId] || []
   const viewCount = viewLog.length
   const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
+  const viewLogTop10 = viewLog.slice(0, 10).map(log => {
+    const viewTimeText = formatDateTime((log as any).viewTime)
+    const viewerDevice = (log as any).viewerDevice || ""
+    const deviceText = viewerDevice ? `${viewerDevice}设备` : "未知设备"
+    const displayText = `${viewTimeText} 一位${deviceText}用户查看了报价单`
+    return {
+      ...log,
+      viewTimeText,
+      displayText,
+    }
+  })
   return {
     quoteId,
     quote,
@@ -135,5 +147,6 @@ function buildAnalyseQuoteItem(
     viewCount,
     viewCountDisplay,
     viewLog,
+    viewLogTop10,
   }
 }
