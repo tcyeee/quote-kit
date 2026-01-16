@@ -83,39 +83,22 @@ Page({
   async queryShareList() {
     const rawList = await getShareQuote()
     const sourceList = Array.isArray(rawList) ? rawList : []
-    const analyseList = await Promise.all(
-      (sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>).map(item => buildAnalyseQuoteItem(item))
-    )
+    const typedList = sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>
+    const quoteIdList = typedList
+      .map(item => (item as any).quoteId || (item as any)["_id"] || "")
+      .filter(id => !!id) as string[]
+    const logs = quoteIdList.length > 0 ? await getShareQuoteLog(quoteIdList) : []
+    const logsByQuoteId: Record<string, QuoteViewLog[]> = {}
+    logs.forEach(log => {
+      const id = (log as any).quoteId
+      if (!id) return
+      if (!logsByQuoteId[id]) logsByQuoteId[id] = []
+      logsByQuoteId[id].push(log)
+    })
+    const analyseList = typedList.map(item => buildAnalyseQuoteItem(item, logsByQuoteId))
     this.setData({ list: analyseList })
   }
 })
-
-// 根据分享记录构建查看次数相关元信息
-async function buildQuoteViewMeta(quoteId?: string) {
-  if (!quoteId) {
-    return {
-      viewCount: 0,
-      viewCountDisplay: "0",
-      viewLog: [] as Array<QuoteViewLog>,
-    }
-  }
-  let viewCount = 0
-  let viewLog: Array<QuoteViewLog> = []
-  try {
-    const logs = await getShareQuoteLog(quoteId)
-    viewLog = Array.isArray(logs) ? logs as Array<QuoteViewLog> : []
-    viewCount = viewLog.length
-  } catch (e) {
-    viewCount = 0
-    viewLog = []
-  }
-  const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
-  return {
-    viewCount,
-    viewCountDisplay,
-    viewLog,
-  }
-}
 
 // 确保报价单包含总金额计算结果
 function buildQuoteWithTotalAmount(item: QuoteDetail) {
@@ -132,20 +115,25 @@ function buildQuoteWithTotalAmount(item: QuoteDetail) {
 }
 
 
-async function buildAnalyseQuoteItem(item: QuoteDetail & { _id?: string; quoteId?: string }) {
+function buildAnalyseQuoteItem(
+  item: QuoteDetail & { _id?: string; quoteId?: string },
+  logsByQuoteId: Record<string, QuoteViewLog[]>
+) {
   const quoteId = (item as any).quoteId || (item as any)["_id"] || ""
   const quote = buildQuoteWithTotalAmount(item)
   const shareDate = quote.shareDate || {}
   const shareTimeText = formatDateTime(shareDate.createdAt)
   const expireTimeText = formatDateTime(shareDate.expiresAt)
-  const viewMeta = await buildQuoteViewMeta(quoteId)
+  const viewLog = logsByQuoteId[quoteId] || []
+  const viewCount = viewLog.length
+  const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
   return {
     quoteId,
     quote,
     shareTimeText,
     expireTimeText,
-    viewCount: viewMeta.viewCount,
-    viewCountDisplay: viewMeta.viewCountDisplay,
-    viewLog: viewMeta.viewLog,
+    viewCount,
+    viewCountDisplay,
+    viewLog,
   }
 }

@@ -20,10 +20,14 @@ export async function setDefaultQuoteDetail() {
     db.collection("UserEditQuote").add({ data: info })
 }
 
-/* 分享信息查看日志 GET */
-export async function getShareQuoteLog(quoteId: string): Promise<QuoteViewLog[]> {
+/* 分享信息查看日志 GET（批量，根据多个 quoteId 一次查询） */
+export async function getShareQuoteLog(quoteIdList: string[]): Promise<QuoteViewLog[]> {
     const db = getDbInstance()
-    const res = await db.collection("ShareQuoteViewLog").where({ quoteId }).get()
+    const command = db.command
+    const res = await db
+        .collection("ShareQuoteViewLog")
+        .where({ quoteId: command.in(quoteIdList) })
+        .get()
     return res.data as QuoteViewLog[]
 }
 

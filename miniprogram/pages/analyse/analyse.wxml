@@ -11,6 +11,12 @@
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <analyse-quote-card wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" item="{{item}}" index="{{index}}" bindoffline="onOfflineTap" binddelete="onDeleteTap"></analyse-quote-card>
+    <block wx:if="{{list.length > 0}}">
+      <analyse-quote-card wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" item="{{item}}" index="{{index}}" bindoffline="onOfflineTap" binddelete="onDeleteTap"></analyse-quote-card>
+    </block>
+    <view wx:else class="analyse-empty">
+      <view class="analyse-empty-title">暂无数据</view>
+      <view class="analyse-empty-desc">分享报价单后，将在这里看到分析记录</view>
+    </view>
   </view>
 </view>
