@@ -1,4 +1,4 @@
-import { getShareQuote, getShareQuoteLog } from "../../utils/cloud-database"
+import { delShareQuote, getShareQuote, getShareQuoteLog, offlineShareQuote } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
 import { formatDateTime } from "../../utils/base-utils"
 
@@ -31,6 +31,47 @@ Page({
   calculateSafeAreaHeight() {
     const systemInfo = wx.getSystemInfoSync()
     this.setData({ safeTop: systemInfo.statusBarHeight || 0 })
+  },
+
+  onOfflineTap(e: any) {
+    const index = e.currentTarget.dataset.index as number
+    const item = this.data.list[index] as AnalyseQuote | undefined
+    if (!item) return
+    // 修改线上数据
+    offlineShareQuote(item.quoteId)
+    // 修改本地数据并刷新视图
+    const nextList = this.data.list.slice()
+    const nextQuote: QuoteDetail = {
+      ...item.quote,
+      shareDate: {
+        ...(item.quote.shareDate || {}),
+        isManuallyOfflined: true,
+      },
+    }
+    nextList[index] = {
+      ...item,
+      quote: nextQuote,
+    }
+    this.setData({ list: nextList })
+  },
+
+  onDeleteTap(e: any) {
+    const index = e.currentTarget.dataset.index as number
+    const item = this.data.list[index] as AnalyseQuote | undefined
+    if (!item) return
+    wx.showModal({
+      title: "删除确认",
+      content: "确定要删除该报价单吗？此操作不可恢复。",
+      success: (res) => {
+        if (!res.confirm) return
+        // 修改本地数据
+        const nextList = this.data.list.slice()
+        nextList.splice(index, 1)
+        this.setData({ list: nextList })
+        // 修改线上数据
+        delShareQuote(item.quoteId)
+      }
+    })
   },
 
   async queryShareList() {

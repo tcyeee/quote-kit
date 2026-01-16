@@ -7,10 +7,10 @@ function getDbInstance() {
 }
 
 /* 用户正在编辑的报价单数据 GET */
-export async function getDefaultQuoteDetail() {
+export async function getDefaultQuoteDetail(): Promise<QuoteDetail> {
     const db = getDbInstance()
     const info = await db.collection("UserEditQuote").get()
-    return info.data[0] || appDefaultQuote()
+    return info.data[0] as QuoteDetail || appDefaultQuote()
 }
 
 /* 用户正在编辑的报价单数据 SET */
@@ -21,10 +21,10 @@ export async function setDefaultQuoteDetail() {
 }
 
 /* 分享信息查看日志 GET */
-export async function getShareQuoteLog(quoteId: string) {
+export async function getShareQuoteLog(quoteId: string): Promise<QuoteViewLog[]> {
     const db = getDbInstance()
     const res = await db.collection("ShareQuoteViewLog").where({ quoteId }).get()
-    return res.data
+    return res.data as QuoteViewLog[]
 }
 
 /* 分享信息查看日志 SET */
@@ -43,14 +43,28 @@ export async function setShareQuoteLog(quoteId: string) {
     db.collection("ShareQuoteViewLog").add({ data: info })
 }
 
-/* 分享的报价单信息 GET */
-export async function getShareQuote(): Promise<Array<QuoteDetail>> {
+/* 分享信息 UPDATE(下架) */
+export async function offlineShareQuote(quoteId: string) {
     const db = getDbInstance()
-    const res = await db.collection("UserShareQuote").get()
-    return res.data as Array<QuoteDetail>
+    db.collection("UserShareQuote").doc(quoteId).update({
+        data: { shareDate: { isManuallyOfflined: true } }
+    })
 }
 
-/* 分享的报价单信息 SET */
+/* 分享信息 DELETE */
+export async function delShareQuote(quoteId: string) {
+    const db = getDbInstance()
+    db.collection("UserShareQuote").doc(quoteId).remove()
+}
+
+/* 分享信息 GET */
+export async function getShareQuote(): Promise<QuoteDetail[]> {
+    const db = getDbInstance()
+    const res = await db.collection("UserShareQuote").get()
+    return res.data as QuoteDetail[]
+}
+
+/* 分享信息 SET */
 export async function setShareQuote(): Promise<string> {
     const db = getDbInstance()
     const app = getApp<IAppOption>()
@@ -74,7 +88,7 @@ export function appDefaultQuote(): QuoteDetail {
             expiresDays: 7,
         },
         domain: {
-            name: "熬夜汽水设计工作室",
+            name: "一家设计工作室",
             logoUrl: "https://example.com/assets/logo.png",
         },
         PayNodes: [{

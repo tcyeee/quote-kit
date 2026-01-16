@@ -12,7 +12,8 @@
         "catchtouchstart",
         "cloudbase",
         "getopenid",
-        "Miniprogram"
+        "Miniprogram",
+        "Offlined"
     ],
     "chatgpt.commentCodeLensEnabled": false
 }

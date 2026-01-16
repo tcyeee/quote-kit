@@ -11,13 +11,29 @@
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" class="analyse-category-row">
-      <view class="analyse-category-name">{{item.quote.clientName}}</view>
+    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" class="analyse-category-row {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'analyse-category-row--offlined' : ''}}">
+      <view class="analyse-category-header">
+        <view class="analyse-category-name">{{item.quote.clientName}}</view>
+        <view wx:if="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}" class="analyse-status-badge analyse-status-badge--offlined">
+          已下架
+        </view>
+      </view>
       <view class="analyse-category-meta">
         <view class="analyse-category-count">{{item.quote.computeData.totalAmount}} 元</view>
         <view>分享时间：{{item.shareTimeText}}</view>
         <view>截止时间：{{item.expireTimeText}}</view>
         <view>查看次数：{{item.viewCountDisplay}}</view>
+        <view class="analyse-category-actions">
+          <block wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}">
+            <button size="mini" type="default" data-index="{{index}}" bindtap="onOfflineTap">
+              下架
+            </button>
+          </block>
+          <block wx:else>
+            <view class="analyse-status-text">已下架</view>
+          </block>
+          <button size="mini" type="warn" data-index="{{index}}" bindtap="onDeleteTap">删除</button>
+        </view>
       </view>
     </view>
   </view>

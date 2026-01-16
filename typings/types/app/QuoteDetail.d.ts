@@ -22,6 +22,8 @@ interface QuoteShareInfo {
     createdAt?: Date,
     // 链接过期时间
     expiresAt?: Date,
+    // 手动下架
+    isManuallyOfflined?: boolean,
 }
 interface QuoteComputeData {
     // 链接有效期（天）
