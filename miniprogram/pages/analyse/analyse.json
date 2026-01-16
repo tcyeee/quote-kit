@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "analyse-quote-card": "/components/analyse/quote-card/quote-card"
+  }
 }

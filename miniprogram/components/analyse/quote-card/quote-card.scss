@@ -1,0 +1,109 @@
+.analyse-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 20rpx 24rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  box-shadow: 0 6rpx 18rpx rgba(56, 49, 43, 0.08);
+  margin-bottom: 16rpx;
+}
+
+.analyse-card-row--offlined {
+  background-color: #f5f5f5;
+  opacity: 0.9;
+}
+
+.analyse-card-left {
+  flex: 1.2;
+  min-width: 0;
+  padding-right: 24rpx;
+}
+
+.analyse-card-right {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px dashed rgba(0, 0, 0, 0.06);
+  padding-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.analyse-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.analyse-card-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #38312b;
+  max-width: 380rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.analyse-card-subtitle {
+  font-size: 22rpx;
+  color: #8a7e72;
+}
+
+.analyse-chip {
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+}
+
+.analyse-chip--online {
+  background-color: #e6fffb;
+  color: #08979c;
+}
+
+.analyse-chip--offlined {
+  background-color: #fdecea;
+  color: #cf1322;
+}
+
+.analyse-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.analyse-metric {
+  flex: 1;
+}
+
+.analyse-metric-label {
+  font-size: 20rpx;
+  color: #8a7e72;
+  margin-bottom: 4rpx;
+}
+
+.analyse-metric-value {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #38312b;
+}
+
+.analyse-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.analyse-actions button {
+  min-width: 140rpx;
+}
+
+.analyse-actions-status {
+  font-size: 22rpx;
+  color: #cf1322;
+}
+
