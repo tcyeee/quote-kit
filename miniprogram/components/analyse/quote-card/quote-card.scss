@@ -1,6 +1,6 @@
 .analyse-card-row {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: stretch;
   padding: 20rpx 24rpx;
   border-radius: 20rpx;
@@ -14,20 +14,8 @@
   opacity: 0.9;
 }
 
-.analyse-card-left {
-  flex: 1.2;
-  min-width: 0;
-  padding-right: 24rpx;
-}
-
-.analyse-card-right {
-  flex: 1;
-  min-width: 0;
-  border-left: 1px dashed rgba(0, 0, 0, 0.06);
-  padding-left: 24rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.analyse-card-header {
+  margin-bottom: 16rpx;
 }
 
 .analyse-card-title-row {
@@ -41,10 +29,7 @@
   font-size: 28rpx;
   font-weight: 600;
   color: #38312b;
-  max-width: 380rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.4;
 }
 
 .analyse-card-subtitle {
@@ -91,6 +76,17 @@
   color: #38312b;
 }
 
+.analyse-card-footer {
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.analyse-card-footer-spacer {
+  flex: 1;
+}
+
 .analyse-actions {
   display: flex;
   justify-content: flex-end;
@@ -102,8 +98,17 @@
   min-width: 140rpx;
 }
 
+button.analyse-action-button {
+  min-width: 120rpx;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+}
+
+.analyse-action-button--danger {
+  color: #cf1322;
+}
+
 .analyse-actions-status {
   font-size: 22rpx;
   color: #cf1322;
 }
-
