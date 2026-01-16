@@ -98,6 +98,14 @@ Page({
     })
     const analyseList = typedList.map(item => buildAnalyseQuoteItem(item, logsByQuoteId))
     this.setData({ list: analyseList })
+  },
+
+  onShareAppMessage(res: any) {
+    const quoteId = res.target.dataset.quoteId as string
+    return {
+      title: "报价单",
+      path: "/pages/view/view?id=" + quoteId,
+    }
   }
 })
 
