@@ -1,4 +1,4 @@
-import { delShareQuote, getShareQuote, getShareQuoteLog, offlineShareQuote } from "../../utils/cloud-database"
+import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
 import { formatDateTime } from "../../utils/base-utils"
 
@@ -82,7 +82,7 @@ Page({
   },
 
   async queryShareList() {
-    const rawList = await getShareQuote()
+    const rawList = await getMyShareQuoteList()
     const sourceList = Array.isArray(rawList) ? rawList : []
     const typedList = sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>
     const quoteIdList = typedList

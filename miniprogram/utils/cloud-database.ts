@@ -62,10 +62,20 @@ export async function delShareQuote(quoteId: string) {
 }
 
 /* 分享信息 GET */
-export async function getShareQuote(): Promise<QuoteDetail[]> {
+export async function getMyShareQuoteList(): Promise<QuoteDetail[]> {
     const db = getDbInstance()
-    const res = await db.collection("UserShareQuote").get()
+    const res = await db.collection("UserShareQuote")
+        .where({ _openid: getApp<IAppOption>().globalData.uid || "unknown" })
+        .get()
     return res.data as QuoteDetail[]
+}
+
+export async function getShareQuoteById(quoteId: string): Promise<QuoteDetail> {
+    const db = getDbInstance()
+    const res = await db.collection("UserShareQuote")
+        .doc(quoteId)
+        .get()
+    return res.data as QuoteDetail
 }
 
 /* 分享信息 SET */
