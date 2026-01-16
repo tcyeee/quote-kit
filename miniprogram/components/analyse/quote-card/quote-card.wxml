@@ -42,7 +42,7 @@
   <view wx:if="{{showViewLog && item.viewLogTop10 && item.viewLogTop10.length}}" class="analyse-view-log">
     <view class="analyse-view-log-header">阅读记录</view>
     <view class="analyse-view-log-list">
-      <block wx:for="{{item.viewLogTop10}}" wx:for-item="log" wx:for-index="logIndex" wx:key="{{log._id || logIndex}}">
+      <block wx:for="{{item.viewLogTop10}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
         <view class="analyse-view-log-item">
           <text class="analyse-view-log-bullet">•</text>
           <text class="analyse-view-log-text">{{log.displayText}}</text>
