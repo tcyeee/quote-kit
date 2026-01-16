@@ -16,6 +16,14 @@ Component({
     showViewLog: false,
   },
   methods: {
+    onPreviewTap() {
+      const item = this.data.item as any
+      const quoteId = item && item.quoteId
+      if (!quoteId) return
+      wx.navigateTo({
+        url: "/pages/view/view?id=" + quoteId,
+      })
+    },
     onOfflineTap() {
       const index = this.data.index as number
       this.triggerEvent("offline", { index })

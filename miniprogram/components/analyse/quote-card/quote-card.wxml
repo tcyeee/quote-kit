@@ -28,6 +28,7 @@
     <view class="analyse-actions">
       <block wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}">
         <button size="mini" class="analyse-action-button" bindtap="onOfflineTap">下架</button>
+        <button size="mini" class="analyse-action-button" bindtap="onPreviewTap">预览</button>
         <button size="mini" class="analyse-action-button" open-type="share">重新分享</button>
         <button size="mini" class="analyse-action-button" bindtap="onToggleViewLogTap">
           {{showViewLog ? '收起阅读记录' : '展开阅读记录'}}
