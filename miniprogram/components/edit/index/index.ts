@@ -27,12 +27,11 @@ Component({
   },
   lifetimes: {
     async attached() {
-      var quoteDetail = getApp<IAppOption>().globalData.quoteDetail
-      // 计算项目周期
-      await calculateOverallDeliveryPeriodDays(quoteDetail)
-      // 计算每个服务项的金额
-      await calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
-      this.setData({ quoteDetail })
+      // 设置 quoteDetail 数据
+      const app = getApp<IAppOption>()
+      this.setData({ quoteDetail: app.globalData.quoteDetail })
+      // 页面计算
+      this.quoteDetailUpdate(false)
     },
   },
   methods: {
@@ -249,7 +248,7 @@ Component({
     },
 
     // 重新计算 quoteDetail 的衍生数据并同步到全局
-    quoteDetailUpdate() {
+    quoteDetailUpdate(showToast: boolean = true) {
       const app = getApp<IAppOption>()
       const quoteDetail = this.data.quoteDetail
       // 计算项目周期
@@ -258,7 +257,7 @@ Component({
       calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
       this.setData({ quoteDetail: { ...quoteDetail } })
       app.globalData.quoteDetail = quoteDetail
-      this.triggerEvent("quoteDetailUpdate")
+      if (showToast) this.triggerEvent("quoteDetailUpdate")
     },
   },
 })

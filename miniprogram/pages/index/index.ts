@@ -54,6 +54,8 @@ Page({
       currentTheme: quoteDetail.theme || 'amber',
     })
   },
+
+  // 报价单更新时调用
   onQuoteDetailUpdate() {
     this.showSavingToast()
     const quoteDetail = app.globalData.quoteDetail

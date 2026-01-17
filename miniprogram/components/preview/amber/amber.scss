@@ -163,7 +163,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.section-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 4rpx;
+  text-align: left;
 }
 
 .footer-text {
