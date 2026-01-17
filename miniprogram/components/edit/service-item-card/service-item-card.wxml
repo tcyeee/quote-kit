@@ -30,7 +30,7 @@
                   <view class="service-title">{{service.name}}</view>
                 </view>
                 <view class="service-meta">
-                  <text>¥{{service.unitPrice}}/{{service.unit}}</text>
+                  <text>¥{{service.unitPrice}}元/{{service.unit}}</text>
                   <text class="service-meta-separator">·</text>
                   <text>x{{service.quantity}}</text>
                   <text class="service-meta-separator">·</text>
@@ -47,7 +47,7 @@
               </view>
               <view class="service-field-grid">
                 <view class="service-field-item">
-                  <view class="service-field-label">单价</view>
+                  <view class="service-field-label">单价(元)</view>
                   <input class="config-input-small" type="digit" placeholder="单价" value="{{service.unitPrice}}" data-field="unitPrice" data-category-index="{{categoryIndex}}" data-service-index="{{serviceIndex}}" bindblur="onFieldBlur" />
                 </view>
                 <view class="service-field-item">
