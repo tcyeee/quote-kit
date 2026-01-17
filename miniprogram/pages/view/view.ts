@@ -1,5 +1,5 @@
 import { setShareQuoteLog, getShareQuoteById } from "../../utils/cloud-database"
-import { calculateShareStatus } from "../../utils/quote-utils"
+import { calculateItemTotalAmountAndDeliveryPeriodDays, calculateShareStatus } from "../../utils/quote-utils"
 
 Page({
   data: {
@@ -24,6 +24,10 @@ Page({
     if (!quoteDetail || !quoteDetail.shareDate) return
     const shareStatus = calculateShareStatus(quoteDetail.shareDate)
     const currentTheme = quoteDetail.theme || "amber"
+
+    // 计算每个quoteDetail.items的总价,总时间, 并存入 quoteDetail.items[n].computeData中
+    calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
+
     this.setData({ quoteDetail, shareStatus, currentTheme })
   }
 })

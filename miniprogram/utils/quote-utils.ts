@@ -28,7 +28,7 @@ export function calculateTotalAmount(quoteDetail: QuoteDetail) {
     return totalAmount
 }
 
-// TODO 计算分享状态
+// 计算分享状态
 export function calculateShareStatus(shareDate: QuoteShareInfo): ShareStatus {
     let shareStatus: ShareStatus = "normal"
 
@@ -44,4 +44,21 @@ export function calculateShareStatus(shareDate: QuoteShareInfo): ShareStatus {
         }
     }
     return shareStatus
+}
+
+// 计算每个quoteDetail.items的总价,总时间, 并存入 quoteDetail.items[n].computeData中
+export function calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail: QuotePricingCategory[]) {
+    quoteDetail.forEach(category => {
+        const items = category.items || []
+        items.forEach(item => {
+            const days = typeof item.deliveryPeriodDays === "number" ? item.deliveryPeriodDays : 0
+            const quantity = typeof item.quantity === "number" ? item.quantity : 0
+            const unitPrice = typeof item.unitPrice === "number" ? item.unitPrice : 0
+            const amount = unitPrice * quantity
+            item.computeData = {
+                amount,
+                deliveryPeriodDays: days * quantity,
+            }
+        })
+    })
 }
