@@ -13,7 +13,9 @@
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>
     </view>
+    <!-- 编辑索引页 -->
     <edit-index wx:if="{{!showEditEnd}}" bind:quoteDetailUpdate="onQuoteDetailUpdate" bind:toggleConfirmDialog="toggleConfirmDialog" />
+    <!-- 编辑结束页 -->
     <edit-end wx:else bind:toggleConfirmDialog="toggleConfirmDialog" />
   </view>
 </view>

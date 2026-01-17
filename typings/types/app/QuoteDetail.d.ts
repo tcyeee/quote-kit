@@ -32,7 +32,11 @@ interface QuoteComputeData {
     totalAmount?: number,
     // 整体预计工期（天）
     overallDeliveryPeriodDays?: number,
+    // 分享状态
+    shareStatus?: ShareStatus,
 }
+
+type ShareStatus = "normal" | "offlined" | "expired"
 
 /**
  * 单个服务条目的报价信息
@@ -51,6 +55,15 @@ interface QuoteServiceItem {
     quantity: number,
     // 交付周期（天），为负数时可表示“待定”
     deliveryPeriodDays: number,
+    // 计算数据
+    computeData?: QuoteServiceItemComputeData,
+}
+
+interface QuoteServiceItemComputeData {
+    // 项目总金额
+    amount?: number,
+    // 预计工期（天）
+    deliveryPeriodDays?: number,
 }
 
 /**

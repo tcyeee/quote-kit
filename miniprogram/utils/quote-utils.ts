@@ -27,3 +27,21 @@ export function calculateTotalAmount(quoteDetail: QuoteDetail) {
     })
     return totalAmount
 }
+
+// TODO 计算分享状态
+export function calculateShareStatus(shareDate: QuoteShareInfo): ShareStatus {
+    let shareStatus: ShareStatus = "normal"
+
+    if (shareDate?.isManuallyOfflined) {
+        shareStatus = "offlined"
+    } else if (shareDate?.expiresAt) {
+        const expiresAt =
+            shareDate.expiresAt instanceof Date
+                ? shareDate.expiresAt
+                : new Date(shareDate.expiresAt)
+        if (expiresAt.getTime() < Date.now()) {
+            shareStatus = "expired"
+        }
+    }
+    return shareStatus
+}

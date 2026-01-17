@@ -1,9 +1,10 @@
 import { setShareQuoteLog, getShareQuoteById } from "../../utils/cloud-database"
+import { calculateShareStatus } from "../../utils/quote-utils"
 
 Page({
   data: {
     quoteDetail: undefined as QuoteDetail | undefined,
-    shareStatus: "normal" as "normal" | "offlined" | "expired",
+    shareStatus: 'normal' as ShareStatus,
     currentTheme: "amber",
   },
 
@@ -18,28 +19,11 @@ Page({
     wx.reLaunch({ url: "/pages/index/index" })
   },
 
-  initData(quoteId: string) {
-    getShareQuoteById(quoteId).then((quoteDetail) => {
-      let shareStatus: "normal" | "offlined" | "expired" = "normal"
-      const shareDate = quoteDetail.shareDate
-
-      if (shareDate?.isManuallyOfflined) {
-        shareStatus = "offlined"
-      } else if (shareDate?.expiresAt) {
-        const expiresAt =
-          shareDate.expiresAt instanceof Date
-            ? shareDate.expiresAt
-            : new Date(shareDate.expiresAt)
-        if (expiresAt.getTime() < Date.now()) {
-          shareStatus = "expired"
-        }
-      }
-
-      this.setData({
-        quoteDetail,
-        shareStatus,
-        currentTheme: quoteDetail.theme || "amber",
-      })
-    })
+  async initData(quoteId: string) {
+    const quoteDetail = await getShareQuoteById(quoteId)
+    if (!quoteDetail || !quoteDetail.shareDate) return
+    const shareStatus = calculateShareStatus(quoteDetail.shareDate)
+    const currentTheme = quoteDetail.theme || "amber"
+    this.setData({ quoteDetail, shareStatus, currentTheme })
   }
 })
