@@ -157,6 +157,20 @@
   margin-top: 8rpx;
 }
 
+.section-footer {
+  margin-top: 12rpx;
+  padding: 12rpx 4rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4rpx;
+}
+
+.footer-text {
+  font-size: 22rpx;
+  color: #6b665f;
+}
+
 .pay-nodes-list {
   display: flex;
   flex-direction: column;
