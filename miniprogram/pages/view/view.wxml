@@ -5,7 +5,10 @@
     <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
     <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" quote-detail="{{quoteDetail}}" />
     <view class="view-footer">
-      <view class="view-footer-text">power by: Quote Kit</view>
+      <view class="view-footer-text">
+        Power by: ©
+        <span class="font-xs">简单报价单</span>
+      </view>
     </view>
   </scroll-view>
   <view wx:elif="{{shareStatus === 'offlined'}}" class="view-status">
