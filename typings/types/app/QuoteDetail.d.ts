@@ -55,8 +55,6 @@ interface QuoteServiceItem {
     quantity: number,
     // 交付周期（天），为负数时可表示“待定”
     deliveryPeriodDays: number,
-    // 计算数据
-    computeData?: QuoteServiceItemComputeData,
 }
 
 interface QuoteServiceItemComputeData {
@@ -75,6 +73,8 @@ interface QuotePricingCategory {
     name: string,
     // 该类别下的具体服务条目列表
     items: QuoteServiceItem[],
+    // 计算数据
+    computeData?: QuoteServiceItemComputeData,
 }
 
 /**

@@ -29,10 +29,9 @@ Component({
     async attached() {
       var quoteDetail = getApp<IAppOption>().globalData.quoteDetail
       // 计算项目周期
-      calculateOverallDeliveryPeriodDays(quoteDetail)
+      await calculateOverallDeliveryPeriodDays(quoteDetail)
       // 计算每个服务项的金额
       await calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
-      console.log(quoteDetail);
       this.setData({ quoteDetail })
     },
   },
@@ -51,26 +50,6 @@ Component({
           ...partial,
         },
       })
-    },
-
-    // 更新指定分类下的单个服务条目
-    updateServiceItem(
-      categoryIndex: number,
-      serviceIndex: number,
-      updater: (service: any) => any,
-    ) {
-      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
-      const category = pricingItems[categoryIndex]
-      if (!category) return
-      const items = (category.items || []).slice()
-      const service = items[serviceIndex]
-      if (!service) return
-      items[serviceIndex] = updater(service)
-      pricingItems[categoryIndex] = {
-        ...category,
-        items,
-      }
-      this.updateQuoteDetail({ pricingItems })
     },
 
     // 打开确认分享弹窗
@@ -131,12 +110,6 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    // 输入服务条款时更新数据
-    onServiceTermsInput(e: any) {
-      const serviceTerms = e.detail.value as string
-      this.updateQuoteDetail({ serviceTerms })
-    },
-
     // 服务条款输入完成后重新计算报价
     onServiceTermsBlur() {
       this.quoteDetailUpdate()
@@ -160,6 +133,22 @@ Component({
       const serviceIndex = e.detail.serviceIndex as number
       const service = e.detail.service as any
       this.updateServiceItem(categoryIndex, serviceIndex, () => service)
+    },
+
+    // 更新指定分类下的单个服务条目
+    updateServiceItem(categoryIndex: number, serviceIndex: number, updater: (service: any) => any) {
+      const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
+      const category = pricingItems[categoryIndex]
+      if (!category) return
+      const items = (category.items || []).slice()
+      const service = items[serviceIndex]
+      if (!service) return
+      items[serviceIndex] = updater(service)
+      pricingItems[categoryIndex] = {
+        ...category,
+        items,
+      }
+      this.updateQuoteDetail({ pricingItems })
     },
 
     // 在指定分类下新增服务条目
@@ -258,9 +247,6 @@ Component({
       })
       this.quoteDetailUpdate()
     },
-
-
-
 
     // 重新计算 quoteDetail 的衍生数据并同步到全局
     quoteDetailUpdate() {

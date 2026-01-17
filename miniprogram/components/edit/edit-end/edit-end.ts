@@ -11,16 +11,14 @@ Component({
   lifetimes: {
     // 组件挂载时初始化报价详情、总价和链接有效期
     attached() {
-      const app = getApp<IAppOption>()
-      const quoteDetail = app.globalData.quoteDetail
+      const quoteDetail = getApp<IAppOption>().globalData.quoteDetail
       const totalAmount = calculateTotalAmount(quoteDetail)
-      const overallDeliveryPeriodDays = calculateOverallDeliveryPeriodDays(quoteDetail)
+      calculateOverallDeliveryPeriodDays(quoteDetail)
       const nextQuoteDetail: QuoteDetail = {
         ...quoteDetail,
         computeData: {
           ...quoteDetail.computeData,
           totalAmount,
-          overallDeliveryPeriodDays,
         },
       }
       const linkExpireDays = this.getInitialLinkExpireDays(nextQuoteDetail)
@@ -28,7 +26,6 @@ Component({
         quoteDetail: nextQuoteDetail,
         linkExpireDays,
       })
-      app.globalData.quoteDetail = nextQuoteDetail
     },
   },
   methods: {

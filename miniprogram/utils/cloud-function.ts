@@ -7,7 +7,6 @@ export async function cloudInit() {
 declare type GetOpenIdResult = { openid: string }
 
 export async function getUserId() {
-    console.log("[DEBUG] getUserId");
     const result = await wx.cloud.callFunction({ name: 'getopenid' })
     const data = result.result as GetOpenIdResult | undefined
     const app = getApp<IAppOption>()
