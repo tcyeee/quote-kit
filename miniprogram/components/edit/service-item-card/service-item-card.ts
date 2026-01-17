@@ -7,10 +7,6 @@ Component({
       type: Array,
       value: [],
     },
-    serviceCollapseStatus: {
-      type: Array,
-      value: [],
-    },
   },
   data: {
     dragServiceOverlayTop: 0,
@@ -19,6 +15,28 @@ Component({
     dragServiceSnapshot: {} as any,
     showDragServiceOverlay: false,
     categoryCollapseStatus: [] as boolean[],
+    serviceCollapseStatus: [] as boolean[][],
+  },
+  observers: {
+    pricingItems(pricingItems: any[]) {
+      const currentStatus = (this.data as any).serviceCollapseStatus as boolean[][] || []
+      const nextStatus = (pricingItems || []).map((category, categoryIndex) => {
+        const items = (category && (category as any).items) || []
+        const oldCategoryStatus = currentStatus[categoryIndex] || []
+        const newCategoryStatus: boolean[] = []
+        for (let i = 0; i < items.length; i++) {
+          if (oldCategoryStatus[i] !== undefined) {
+            newCategoryStatus[i] = oldCategoryStatus[i]
+          } else {
+            newCategoryStatus[i] = i === 0 ? false : true
+          }
+        }
+        return newCategoryStatus
+      })
+      this.setData({
+        serviceCollapseStatus: nextStatus,
+      })
+    },
   },
   lifetimes: {
     attached() {
@@ -106,7 +124,6 @@ Component({
       pricingItems[categoryIndex] = updatedCategory as any
       this.triggerEvent("updatePricingItems", {
         pricingItems,
-        serviceCollapseStatus: this.data.serviceCollapseStatus,
       })
     },
 
@@ -127,9 +144,17 @@ Component({
     onToggleCollapseTap(e: any) {
       const categoryIndex = e.currentTarget.dataset.categoryIndex as number
       const serviceIndex = e.currentTarget.dataset.serviceIndex as number
-      this.triggerEvent("toggleCollapse", {
-        categoryIndex,
-        serviceIndex,
+      const allStatus = (this.data as any).serviceCollapseStatus as boolean[][] || []
+      const status = allStatus.slice()
+      const categoryStatus = (status[categoryIndex] || []).slice()
+      const current = !!categoryStatus[serviceIndex]
+      for (let i = 0; i < categoryStatus.length; i++) {
+        categoryStatus[i] = true
+      }
+      categoryStatus[serviceIndex] = !current
+      status[categoryIndex] = categoryStatus
+      this.setData({
+        serviceCollapseStatus: status,
       })
     },
 
@@ -244,14 +269,19 @@ Component({
             items,
           }
           pricingItems[categoryIndex] = updatedCategory as any
-          const status = (this.data.serviceCollapseStatus || []).slice() as boolean[][]
+          const allStatus = (this.data as any).serviceCollapseStatus as boolean[][] || []
+          const status = allStatus.slice()
           const categoryStatus = (status[categoryIndex] || []).slice()
-          const movedStatus = categoryStatus.splice(fromIndex, 1)[0]
-          categoryStatus.splice(targetIndex, 0, movedStatus)
-          status[categoryIndex] = categoryStatus
+          if (categoryStatus.length) {
+            const movedStatus = categoryStatus.splice(fromIndex, 1)[0]
+            categoryStatus.splice(targetIndex, 0, movedStatus)
+            status[categoryIndex] = categoryStatus
+            this.setData({
+              serviceCollapseStatus: status,
+            })
+          }
           this.triggerEvent("updatePricingItems", {
             pricingItems,
-            serviceCollapseStatus: status,
           })
         }
         this.resetDragServiceState()

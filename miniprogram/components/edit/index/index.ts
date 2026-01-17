@@ -14,7 +14,7 @@ Component({
     styleIsolation: 'apply-shared'
   },
   data: {
-    quoteDetail: getApp<IAppOption>().globalData.quoteDetail as QuoteDetail,
+    quoteDetail: {} as QuoteDetail,
     // 编辑面板各大区块的折叠状态
     CollapseStatus: {
       theme: false,
@@ -24,33 +24,23 @@ Component({
       payment: false,
       remark: false,
     } as CollapseStatus,
-    // 每个服务分类下各服务项的折叠状态
-    serviceCollapseStatus: [] as boolean[][],
   },
   lifetimes: {
-    // 组件挂载时初始化报价数据和折叠状态
-    attached() {
-      const quoteDetail = this.data.quoteDetail
-      const serviceCollapseStatus = (quoteDetail.pricingItems || []).map(category => {
-        const items = category.items || []
-        if (!items.length) return []
-        const status = new Array<boolean>(items.length).fill(true)
-        status[0] = false
-        return status
-      })
-      this.setData({
-        quoteDetail,
-        serviceCollapseStatus,
-      })
-      this.quoteDetailUpdate()
+    async attached() {
+      var quoteDetail = getApp<IAppOption>().globalData.quoteDetail
+      // 计算项目周期
+      calculateOverallDeliveryPeriodDays(quoteDetail)
+      // 计算每个服务项的金额
+      await calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
+      console.log(quoteDetail);
+      this.setData({ quoteDetail })
     },
   },
   methods: {
+
     // 跳转到分析页
     onAnalyseTap() {
-      wx.navigateTo({
-        url: "/pages/analyse/analyse",
-      })
+      wx.navigateTo({ url: "/pages/analyse/analyse" })
     },
 
     // 合并并更新 quoteDetail 的部分字段
@@ -152,16 +142,14 @@ Component({
       this.quoteDetailUpdate()
     },
 
-    // 接收子组件更新后的 pricingItems 和折叠状态
+    // 接收子组件更新后的 pricingItems
     onUpdatePricingItems(e: any) {
       const pricingItems = e.detail.pricingItems as QuotePricingCategory[]
-      const serviceCollapseStatus = e.detail.serviceCollapseStatus as boolean[][]
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
           pricingItems,
         },
-        serviceCollapseStatus,
       })
       this.quoteDetailUpdate()
     },
@@ -194,16 +182,11 @@ Component({
         ...category,
         items,
       }
-      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
-      const nextCategoryStatus = new Array<boolean>(items.length).fill(true)
-      nextCategoryStatus[items.length - 1] = false
-      serviceCollapseStatus[categoryIndex] = nextCategoryStatus
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
           pricingItems,
         },
-        serviceCollapseStatus,
       })
       this.quoteDetailUpdate()
     },
@@ -216,14 +199,11 @@ Component({
         items: [],
       }
       pricingItems.push(newCategory)
-      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
-      serviceCollapseStatus.push([])
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
           pricingItems,
         },
-        serviceCollapseStatus,
       })
       this.quoteDetailUpdate()
     },
@@ -242,24 +222,7 @@ Component({
       })
     },
 
-    // 展开或折叠某一分类下的具体服务条目
-    onToggleServiceCollapse(e: any) {
-      const categoryIndex = e.detail.categoryIndex as number
-      const serviceIndex = e.detail.serviceIndex as number
-      const status = this.data.serviceCollapseStatus.slice()
-      const categoryStatus = (status[categoryIndex] || []).slice()
-      const current = !!categoryStatus[serviceIndex]
-      for (let i = 0; i < categoryStatus.length; i++) {
-        categoryStatus[i] = true
-      }
-      categoryStatus[serviceIndex] = !current
-      status[categoryIndex] = categoryStatus
-      this.setData({
-        serviceCollapseStatus: status,
-      })
-    },
-
-    // 删除某个服务条目并同步折叠状态
+    // 删除某个服务条目
     onDeleteService(e: any) {
       const categoryIndex = e.detail.categoryIndex as number
       const serviceIndex = e.detail.serviceIndex as number
@@ -272,47 +235,32 @@ Component({
         ...category,
         items,
       }
-      const status = this.data.serviceCollapseStatus.slice()
-      const categoryStatus = (status[categoryIndex] || []).slice()
-      categoryStatus.splice(serviceIndex, 1)
-      status[categoryIndex] = categoryStatus
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
           pricingItems,
         },
-        serviceCollapseStatus: status,
       })
       this.quoteDetailUpdate()
     },
 
-    // 删除某个服务分类及其对应的折叠状态
+    // 删除某个服务分类
     onDeleteCategory(e: any) {
       const categoryIndex = e.detail.categoryIndex as number
       const pricingItems = (this.data.quoteDetail.pricingItems || []).slice()
       if (!pricingItems[categoryIndex]) return
       pricingItems.splice(categoryIndex, 1)
-      const serviceCollapseStatus = this.data.serviceCollapseStatus.slice()
-      serviceCollapseStatus.splice(categoryIndex, 1)
       this.setData({
         quoteDetail: {
           ...this.data.quoteDetail,
           pricingItems,
         },
-        serviceCollapseStatus,
       })
       this.quoteDetailUpdate()
     },
 
 
-    // 组件加载时初始化计算总金额和工期
-    onLoad() {
-      // 计算项目周期
-      calculateOverallDeliveryPeriodDays(this.data.quoteDetail)
-      // 计算每个服务项的金额
-      calculateItemTotalAmountAndDeliveryPeriodDays(this.data.quoteDetail.pricingItems)
-      this.setData({ quoteDetail: { ...this.data.quoteDetail } })
-    },
+
 
     // 重新计算 quoteDetail 的衍生数据并同步到全局
     quoteDetailUpdate() {

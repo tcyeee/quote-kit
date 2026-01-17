@@ -49,7 +49,7 @@ export function calculateShareStatus(shareDate: QuoteShareInfo): ShareStatus {
 }
 
 // 计算每个quoteDetail.items的总价,总时间, 并存入 quoteDetail.items[n].computeData中
-export function calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail: QuotePricingCategory[]) {
+export async function calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail: QuotePricingCategory[]) {
     quoteDetail.forEach(category => {
         const items = category.items || []
         items.forEach(item => {
