@@ -12,6 +12,8 @@ export function calculateOverallDeliveryPeriodDays(quoteDetail: QuoteDetail) {
             }
         })
     })
+    quoteDetail.computeData = quoteDetail.computeData || {}
+    quoteDetail.computeData.overallDeliveryPeriodDays = total
     return total
 }
 
