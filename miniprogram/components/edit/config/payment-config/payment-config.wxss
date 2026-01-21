@@ -1,9 +1,5 @@
 .config-schema-header {
-  display: flex;
-  gap: 7rpx;
-  background-color: #c0a28a43;
   padding: 5rpx 7rpx;
-  border-radius: 10rpx;
   margin-bottom: 12rpx;
 }
 

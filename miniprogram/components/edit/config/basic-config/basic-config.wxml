@@ -1,6 +1,16 @@
 <view>
   <view class="config-schema-section">
     <view class="config-schema-header">
+      <view class="config-schema-title">项目名称</view>
+    </view>
+    <view>
+      <view class="config-schema-group">
+        <input class="config-schema-pill" placeholder="请输入项目名称" value="{{quoteDetail.projectName}}" bindinput="onProjectNameInput" bindblur="onProjectNameBlur" />
+      </view>
+    </view>
+  </view>
+  <view class="config-schema-section">
+    <view class="config-schema-header">
       <view class="config-schema-title">主题选择</view>
     </view>
     <view>
@@ -25,16 +35,6 @@
           <view class="theme-overlay"></view>
           <text class="theme-name">深海</text>
         </view>
-      </view>
-    </view>
-  </view>
-  <view class="config-schema-section">
-    <view class="config-schema-header">
-      <view class="config-schema-title">项目名称</view>
-    </view>
-    <view>
-      <view class="config-schema-group">
-        <input class="config-schema-pill" placeholder="请输入项目名称" value="{{quoteDetail.projectName}}" bindinput="onProjectNameInput" bindblur="onProjectNameBlur" />
       </view>
     </view>
   </view>
