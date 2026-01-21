@@ -7,6 +7,7 @@
     "config-tabs": "/components/edit/config-tabs/config-tabs",
     "basic-config": "/components/edit/config/basic-config/basic-config",
     "service-config": "/components/edit/config/service-config/service-config",
-    "payment-config": "/components/edit/config/payment-config/payment-config"
+    "payment-config": "/components/edit/config/payment-config/payment-config",
+    "remark-config": "/components/edit/config/remark-config/remark-config"
   }
 }

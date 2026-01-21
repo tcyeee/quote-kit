@@ -4,25 +4,7 @@
       <view class="config-schema-title">交付节点设置</view>
     </view>
     <view class="config-schema-group">
-      <edit-pay-nodes
-        pay-nodes="{{quoteDetail.PayNodes || []}}"
-        bind:change="onPayNodesChange"
-        bind:blur="onPayNodesBlur"
-      />
-    </view>
-  </view>
-  <view class="config-schema-section">
-    <view class="config-schema-header">
-      <view class="config-schema-title">备注</view>
-    </view>
-    <view class="config-schema-group">
-      <textarea
-        class="config-textarea"
-        placeholder="输入备注信息"
-        value="{{quoteDetail.serviceTerms}}"
-        bindblur="onServiceTermsBlur"
-      />
+      <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes || []}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
     </view>
   </view>
 </view>
-

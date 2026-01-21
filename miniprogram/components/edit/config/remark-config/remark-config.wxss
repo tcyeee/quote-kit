@@ -1,0 +1,36 @@
+.config-schema-header {
+  padding: 5rpx 7rpx;
+  margin-bottom: 12rpx;
+}
+
+.config-schema-section + .config-schema-section {
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx dashed #e0d7ce;
+}
+
+.config-schema-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #6b665f;
+  line-height: 20px;
+}
+
+.config-schema-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.config-textarea {
+  width: 100%;
+  min-height: 140rpx;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d6cdc4;
+  font-size: 24rpx;
+  color: gray;
+}
+

@@ -25,14 +25,10 @@ Component({
       this.triggerEvent("update", partial)
     },
 
-    onPayNodesChange(e: any) {
-      const PayNodes = e.detail.payNodes as QuotePayNode[]
-      this.updateQuoteDetail({ PayNodes })
-    },
-
-    onPayNodesBlur() {
-      const PayNodes = (this.data.quoteDetail.PayNodes || []) as QuotePayNode[]
-      this.updateQuoteDetail({ PayNodes })
+    onServiceTermsBlur(e: any) {
+      const serviceTerms = e.detail.value as string
+      this.updateQuoteDetail({ serviceTerms })
     },
   },
 })
+

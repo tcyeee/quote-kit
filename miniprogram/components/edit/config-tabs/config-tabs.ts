@@ -6,7 +6,8 @@ Component({
     tabs: [
       { key: 'basic', label: '基础信息' },
       { key: 'service', label: '服务项' },
-      { key: 'payment', label: '支付节点&备注' },
+      { key: 'payment', label: '支付节点' },
+      { key: 'remark', label: '备注' },
     ],
     activeKey: 'basic',
   },
@@ -21,4 +22,3 @@ Component({
     },
   },
 })
-

@@ -4,7 +4,7 @@
     <basic-config wx:if="{{currentTab === 'basic'}}" bind:update="onBasicConfigUpdate" />
     <service-config wx:elif="{{currentTab === 'service'}}" bind:update="onServiceConfigUpdate" />
     <payment-config wx:elif="{{currentTab === 'payment'}}" bind:update="onPaymentConfigUpdate" />
-    <view style="height: 10vh;"></view>
+    <remark-config wx:elif="{{currentTab === 'remark'}}" bind:update="onPaymentConfigUpdate" />
   </scroll-view>
   <view class="action-bar">
     <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>

@@ -1,0 +1,16 @@
+<view>
+  <view class="config-schema-section">
+    <view class="config-schema-header">
+      <view class="config-schema-title">备注</view>
+    </view>
+    <view class="config-schema-group">
+      <textarea
+        class="config-textarea"
+        placeholder="输入备注信息"
+        value="{{quoteDetail.serviceTerms}}"
+        bindblur="onServiceTermsBlur"
+      />
+    </view>
+  </view>
+</view>
+
