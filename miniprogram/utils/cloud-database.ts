@@ -103,7 +103,7 @@ export async function setShareQuote(): Promise<string> {
 export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "amber",
-        clientName: "某不愿透露姓名甲方",
+        projectName: "某公司UI设计项目",
         computeData: {
             expiresDays: 7,
         },

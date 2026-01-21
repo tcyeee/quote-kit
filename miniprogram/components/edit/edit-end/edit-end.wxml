@@ -3,8 +3,8 @@
         <view class="edit-end-title">发送前请确认报价单信息</view>
         <view class="edit-end-summary">
             <view class="edit-end-row">
-                <view class="edit-end-label">项目甲方</view>
-                <view class="edit-end-value">{{quoteDetail.clientName}}</view>
+                <view class="edit-end-label">项目名称</view>
+                <view class="edit-end-value">{{quoteDetail.projectName}}</view>
             </view>
             <view class="edit-end-row">
                 <view class="edit-end-label">项目总价</view>

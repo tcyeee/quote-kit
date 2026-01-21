@@ -32,7 +32,6 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16rpx;
 }
 
 .header-right {
@@ -62,14 +61,13 @@
 }
 
 .quote-title {
-  display: block;
-  font-size: 34rpx;
+  font-size: 50rpx;
   font-weight: 600;
   letter-spacing: 4rpx;
 }
 
 .quote-subtitle {
-  margin-top: 4rpx;
+  margin-top: 5px;
   font-size: 22rpx;
   color: #8b8680;
 }
@@ -246,10 +244,6 @@
     border-radius: 18rpx;
     padding: 32rpx 24rpx 28rpx;
     box-shadow: 0 12rpx 28rpx rgba(0, 0, 0, 0.05);
-  }
-
-  .quote-title {
-    font-size: 30rpx;
   }
 
   .section-table .table-row .col-name,

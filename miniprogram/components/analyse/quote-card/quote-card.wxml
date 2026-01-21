@@ -1,7 +1,7 @@
 <view class="analyse-card-row {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'analyse-card-row--offlined' : ''}}">
   <view class="analyse-card-header">
     <view class="analyse-card-title-row">
-      <view class="analyse-card-title">{{item.quote.clientName}}</view>
+      <view class="analyse-card-title">{{item.quote.projectName}}</view>
       <view wx:if="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}" class="analyse-chip analyse-chip--offlined">
         已下架
       </view>

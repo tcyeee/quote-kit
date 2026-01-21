@@ -1,6 +1,6 @@
 interface QuoteDetail {
-    // 客户名称
-    clientName: string,
+    // 项目名称
+    projectName: string,
     // 我的公司信息
     domain: QuoteDomain,
     // 报价条目列表

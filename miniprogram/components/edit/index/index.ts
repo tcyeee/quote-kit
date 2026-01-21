@@ -3,7 +3,7 @@ import { calculateItemTotalAmountAndDeliveryPeriodDays, calculateOverallDelivery
 type CollapseStatus = {
   theme: boolean,
   client: boolean,
-  company: boolean,
+  project: boolean,
   service: boolean,
   payment: boolean,
   remark: boolean,
@@ -19,7 +19,7 @@ Component({
     CollapseStatus: {
       theme: false,
       client: false,
-      company: false,
+      project: false,
       service: false,
       payment: false,
       remark: false,
@@ -74,7 +74,7 @@ Component({
     // 输入客户名称时更新数据
     onClientNameInput(e: any) {
       const clientName = e.detail.value as string
-      this.updateQuoteDetail({ clientName })
+      this.updateQuoteDetail({ projectName: clientName })
     },
 
     // 客户名称输入完成后重新计算报价
