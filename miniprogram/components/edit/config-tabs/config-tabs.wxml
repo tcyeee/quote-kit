@@ -1,0 +1,8 @@
+<view class="config-tabs">
+  <block wx:for="{{tabs}}" wx:key="key">
+    <view class="config-tab-item {{item.key === activeKey ? 'active' : ''}}" bindtap="onTabTap" data-key="{{item.key}}">
+      <text class="config-tab-text">{{item.label}}</text>
+    </view>
+  </block>
+</view>
+

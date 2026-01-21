@@ -15,14 +15,15 @@ Component({
   },
   data: {
     quoteDetail: {} as QuoteDetail,
+    currentTab: 'basic',
     // 编辑面板各大区块的折叠状态
     CollapseStatus: {
       theme: false,
-      client: false,
-      project: false,
-      service: false,
-      payment: false,
-      remark: false,
+      client: true,
+      project: true,
+      service: true,
+      payment: true,
+      remark: true,
     } as CollapseStatus,
   },
   lifetimes: {
@@ -39,6 +40,14 @@ Component({
     // 跳转到分析页
     onAnalyseTap() {
       wx.navigateTo({ url: "/pages/analyse/analyse" })
+    },
+
+    onConfigTabChange(e: any) {
+      const key = e && e.detail ? (e.detail.key as string) : ''
+      const currentTab = key === 'service' || key === 'payment' ? key : 'basic'
+      this.setData({
+        currentTab,
+      })
     },
 
     // 合并并更新 quoteDetail 的部分字段

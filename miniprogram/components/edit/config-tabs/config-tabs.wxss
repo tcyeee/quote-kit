@@ -1,0 +1,27 @@
+.config-tabs {
+  display: flex;
+  padding: 0 10rpx 24rpx;
+  gap: 16rpx;
+}
+
+.config-tab-item {
+  flex: 1;
+  padding: 14rpx 10rpx;
+  border-radius: 999rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d6cdc4;
+  text-align: center;
+  font-size: 24rpx;
+  color: #8b8680;
+}
+
+.config-tab-item.active {
+  background-color: #c0a28a;
+  border-color: #c0a28a;
+  color: #fdfaf7;
+}
+
+.config-tab-text {
+  white-space: nowrap;
+}
+
