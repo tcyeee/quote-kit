@@ -27,11 +27,11 @@
           <!-- More Menu Popover -->
           <view wx:if="{{showMoreMenu}}" class="quote-card__menu">
             <view wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}" class="quote-card__menu-item" bindtap="onOfflineTap">
-              <text class="quote-card__menu-icon">👁️‍🗨️</text>
+              <text class="icon--eye-off icon-size-18"></text>
               <text>下架报价</text>
             </view>
             <view class="quote-card__menu-item quote-card__menu-item--danger" bindtap="onDeleteTap">
-              <text class="quote-card__menu-icon">🗑️</text>
+              <text class="icon--delete-16-regular icon-size-18"></text>
               <text>删除报价</text>
             </view>
           </view>
