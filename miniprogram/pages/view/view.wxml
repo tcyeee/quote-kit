@@ -5,9 +5,13 @@
     <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
     <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" quote-detail="{{quoteDetail}}" />
     <view class="view-footer">
-      <view class="view-footer-text">
+      <view wx:if="{{entryType === 'share'}}" class="view-footer-text">
         Power by: ©
         <span class="font-xs view-footer-link" bindtap="goHome">简单报价单</span>
+      </view>
+      <view wx:elif="{{entryType === 'preview'}}" class="view-footer-preview">
+        <view class="view-footer-preview-text">当前为预览页面</view>
+        <view class="view-footer-link" bindtap="goBack">返回</view>
       </view>
     </view>
   </scroll-view>

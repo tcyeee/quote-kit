@@ -104,7 +104,7 @@ Page({
     const quoteId = res.target.dataset.quoteId as string
     return {
       title: "报价单",
-      path: "/pages/view/view?id=" + quoteId,
+      path: "/pages/view/view?id=" + quoteId + "&entry=share",
     }
   }
 })

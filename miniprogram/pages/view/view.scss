@@ -31,6 +31,20 @@ page {
   margin-left: 8rpx;
   color: #c0a28a;
   text-decoration: underline;
+  margin-left: 8px;
+}
+
+.view-footer-preview {
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 520rpx;
+}
+
+.view-footer-preview-text {
+  color: #8a7e72;
 }
 
 .view-footer-button {

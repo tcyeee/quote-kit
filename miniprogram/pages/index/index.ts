@@ -76,7 +76,7 @@ Page({
     console.log("quote-kit: 报价单分享完成,ID:" + shareId)
     const content: WechatMiniprogram.Page.ICustomShareContent = {
       title: "报价单",
-      path: "/pages/view/view?id=" + shareId,
+      path: "/pages/view/view?id=" + shareId + "&entry=share",
     }
     return content
   },

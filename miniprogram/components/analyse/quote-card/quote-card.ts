@@ -21,7 +21,7 @@ Component({
       const quoteId = item && item.quoteId
       if (!quoteId) return
       wx.navigateTo({
-        url: "/pages/view/view?id=" + quoteId,
+        url: "/pages/view/view?id=" + quoteId + "&entry=preview",
       })
     },
     onOfflineTap() {
