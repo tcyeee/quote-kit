@@ -26,3 +26,14 @@
   gap: 12rpx;
 }
 
+.config-textarea {
+  width: 100%;
+  min-height: 140rpx;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background-color: #f2ece5;
+  border: 2rpx solid #d6cdc4;
+  font-size: 24rpx;
+  color: gray;
+}

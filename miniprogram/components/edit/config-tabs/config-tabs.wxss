@@ -30,13 +30,13 @@
 }
 
 .config-tab-item.active {
-  background-color: #fdfaf7;
+  background-color: #F7F4F0;
   border-color: #c0a28a;
   color: #4a4742;
 }
 
 .config-tab-item.active::after {
-  background-color: #fdfaf7;
+  background-color: #F7F4F0;
 }
 
 .config-tab-text {

@@ -28,6 +28,7 @@ Component({
       const key = e && e.detail ? (e.detail.key as string) : ''
       const currentTab = key === 'service' || key === 'payment' ? key : 'basic'
       this.setData({ currentTab })
+      this.triggerEvent("toggleConfirmDialog", false)
     },
 
     onBasicConfigUpdate(e: any) {
