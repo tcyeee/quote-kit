@@ -1,4 +1,4 @@
-<view class="quote-card {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card--offlined' : ''}}">
+<view class="quote-card {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card--offlined' : ''}} {{showMoreMenu ? 'quote-card--active' : ''}}">
   <view class="quote-card__body">
     <!-- Title Section -->
     <view class="quote-card__title-section">
@@ -20,11 +20,26 @@
         <button class="quote-card__action-btn" open-type="share" data-quote-id="{{item.quoteId}}">
           <span class="icon--share icon-size-18"></span>
         </button>
-        <button class="quote-card__action-btn" bindtap="onMoreTap">
-          <span class="icon--more icon-size-18"></span>
-        </button>
+        <view class="quote-card__more-wrapper">
+          <button class="quote-card__action-btn" bindtap="onMoreTap">
+            <span class="icon--more icon-size-18"></span>
+          </button>
+          <!-- More Menu Popover -->
+          <view wx:if="{{showMoreMenu}}" class="quote-card__menu">
+            <view wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}" class="quote-card__menu-item" bindtap="onOfflineTap">
+              <text class="quote-card__menu-icon">👁️‍🗨️</text>
+              <text>下架报价</text>
+            </view>
+            <view class="quote-card__menu-item quote-card__menu-item--danger" bindtap="onDeleteTap">
+              <text class="quote-card__menu-icon">🗑️</text>
+              <text>删除报价</text>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
+    <!-- Menu Backdrop -->
+    <view wx:if="{{showMoreMenu}}" class="quote-card__menu-backdrop" bindtap="onCloseMenu"></view>
     <!-- Footer -->
     <view class="quote-card__footer">
       <view class="quote-card__creation-date">有效期至 {{item.expireTimeText || '—'}}</view>
