@@ -53,7 +53,10 @@
       <view class="quote-card__view-log-list">
         <block wx:for="{{item.viewLogTop10}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
           <view class="quote-card__view-log-item">
-            <text class="quote-card__view-log-bullet">•</text>
+            <view class="quote-card__view-log-marker">
+              <view class="quote-card__view-log-dot"></view>
+              <view wx:if="{{logIndex < item.viewLogTop10.length - 1}}" class="quote-card__view-log-line"></view>
+            </view>
             <text class="quote-card__view-log-text">{{log.displayText}}</text>
           </view>
         </block>
