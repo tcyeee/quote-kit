@@ -5,6 +5,7 @@
     "service-item-card": "/components/edit/service-item-card/service-item-card",
     "edit-pay-nodes": "/components/edit/pay-nodes/pay-nodes",
     "config-tabs": "/components/edit/config-tabs/config-tabs",
-    "basic-config": "/components/edit/basic-config/basic-config"
+    "basic-config": "/components/edit/basic-config/basic-config",
+    "service-config": "/components/edit/service-config/service-config"
   }
 }
