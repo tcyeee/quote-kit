@@ -50,6 +50,12 @@ Component({
       })
     },
 
+    onBasicConfigUpdate(e: any) {
+      const detail = (e && e.detail) || {}
+      this.updateQuoteDetail(detail as Partial<QuoteDetail>)
+      this.quoteDetailUpdate()
+    },
+
     // 合并并更新 quoteDetail 的部分字段
     updateQuoteDetail(partial: Partial<QuoteDetail>) {
       this.setData({
@@ -71,13 +77,6 @@ Component({
         top: 0,
         itemHeight: 0,
       }
-    },
-
-    // 切换主题
-    onThemeTap(e: any) {
-      const theme = e.currentTarget.dataset.theme as string
-      this.updateQuoteDetail({ theme })
-      this.quoteDetailUpdate()
     },
 
     // 输入客户名称时更新数据

@@ -1,0 +1,41 @@
+<view>
+  <view class="config-schema-section">
+    <view class="config-schema-header">
+      <view class="config-schema-title">主题选择</view>
+    </view>
+    <view>
+      <view class="theme-options">
+        <view class="theme-option {{quoteDetail.theme === 'amber' ? 'active' : ''}}" data-theme="amber" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../../assets/button_3.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">琥珀</text>
+        </view>
+        <view class="theme-option {{quoteDetail.theme === 'moonlight' ? 'active' : ''}}" data-theme="moonlight" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../../assets/button_1.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">月光</text>
+        </view>
+        <view class="theme-option {{quoteDetail.theme === 'neon' ? 'active' : ''}}" data-theme="neon" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../../assets/button_4.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">霓虹</text>
+        </view>
+        <view class="theme-option {{quoteDetail.theme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
+          <image class="theme-bg" src="../../../assets/button_2.png" mode="aspectFill"></image>
+          <view class="theme-overlay"></view>
+          <text class="theme-name">深海</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="config-schema-section">
+    <view class="config-schema-header">
+      <view class="config-schema-title">项目名称</view>
+    </view>
+    <view>
+      <view class="config-schema-group">
+        <input class="config-schema-pill" placeholder="请输入项目名称" value="{{quoteDetail.projectName}}" bindinput="onProjectNameInput" bindblur="onProjectNameBlur" />
+      </view>
+    </view>
+  </view>
+</view>

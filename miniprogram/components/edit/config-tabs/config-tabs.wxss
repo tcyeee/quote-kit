@@ -1,27 +1,44 @@
 .config-tabs {
   display: flex;
-  padding: 0 10rpx 24rpx;
+  padding: 0 10rpx;
+  margin-bottom: 24rpx;
   gap: 16rpx;
+  border-bottom: 2rpx solid #d6cdc4;
 }
 
 .config-tab-item {
+  position: relative;
   flex: 1;
-  padding: 14rpx 10rpx;
-  border-radius: 999rpx;
+  padding: 18rpx 10rpx 12rpx;
+  border-radius: 18rpx 18rpx 0 0;
   background-color: #f2ece5;
   border: 2rpx solid #d6cdc4;
+  border-bottom-width: 0;
   text-align: center;
   font-size: 24rpx;
   color: #8b8680;
 }
 
+.config-tab-item::after {
+  content: "";
+  position: absolute;
+  left: -2rpx;
+  right: -2rpx;
+  bottom: -2rpx;
+  height: 2rpx;
+  background-color: transparent;
+}
+
 .config-tab-item.active {
-  background-color: #c0a28a;
+  background-color: #fdfaf7;
   border-color: #c0a28a;
-  color: #fdfaf7;
+  color: #4a4742;
+}
+
+.config-tab-item.active::after {
+  background-color: #fdfaf7;
 }
 
 .config-tab-text {
   white-space: nowrap;
 }
-

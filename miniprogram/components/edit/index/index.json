@@ -4,6 +4,7 @@
     "collapse-icon": "/components/edit/collapse-icon/collapse-icon",
     "service-item-card": "/components/edit/service-item-card/service-item-card",
     "edit-pay-nodes": "/components/edit/pay-nodes/pay-nodes",
-    "config-tabs": "/components/edit/config-tabs/config-tabs"
+    "config-tabs": "/components/edit/config-tabs/config-tabs",
+    "basic-config": "/components/edit/basic-config/basic-config"
   }
 }
