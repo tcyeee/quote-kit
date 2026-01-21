@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "edit-pay-nodes": "/components/edit/pay-nodes/pay-nodes"
+  }
+}
+

@@ -1,40 +1,13 @@
 <view class="bottom-dialog-body">
   <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <view class="action-bar">
-      <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>
-      <button class="action-btn primary" bindtap="toggleConfirmDialog">发送报价单</button>
-    </view>
     <config-tabs bind:change="onConfigTabChange" />
-    <view wx:if="{{currentTab === 'basic'}}">
-      <basic-config bind:update="onBasicConfigUpdate" />
-    </view>
-    <view wx:elif="{{currentTab === 'service'}}">
-      <service-config bind:update="onServiceConfigUpdate" />
-    </view>
-    <!-- 配置项:交付节点设置 -->
-    <view wx:elif="{{currentTab === 'payment'}}">
-      <view class="config-schema-section">
-        <view class="config-schema-header" bindtap="onToggleSection" data-section="payment">
-          <collapse-icon collapsed="{{CollapseStatus.payment}}" />
-          <view class="config-schema-title">交付节点设置</view>
-        </view>
-        <view wx:if="{{!CollapseStatus.payment}}">
-          <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes || []}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />
-        </view>
-      </view>
-      <!-- 底部备注信息 -->
-      <view class="config-schema-section">
-        <view class="config-schema-header" bindtap="onToggleSection" data-section="remark">
-          <collapse-icon collapsed="{{CollapseStatus.remark}}" />
-          <view class="config-schema-title">备注</view>
-        </view>
-        <view wx:if="{{!CollapseStatus.remark}}">
-          <view class="config-schema-group">
-            <textarea class="config-textarea" placeholder="输入备注信息" value="{{quoteDetail.serviceTerms}}" bindblur="onServiceTermsBlur" />
-          </view>
-        </view>
-      </view>
-    </view>
+    <basic-config wx:if="{{currentTab === 'basic'}}" bind:update="onBasicConfigUpdate" />
+    <service-config wx:elif="{{currentTab === 'service'}}" bind:update="onServiceConfigUpdate" />
+    <payment-config wx:elif="{{currentTab === 'payment'}}" bind:update="onPaymentConfigUpdate" />
     <view style="height: 10vh;"></view>
   </scroll-view>
+  <view class="action-bar">
+    <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>
+    <button class="action-btn primary" bindtap="toggleConfirmDialog">发送报价单</button>
+  </view>
 </view>
