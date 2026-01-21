@@ -14,10 +14,10 @@
         <view class="quote-card__stat-value">{{item.viewCountDisplay}}</view>
       </view>
       <view class="quote-card__actions">
-        <button class="quote-card__action-btn" bindtap="onPreviewTap">
+        <button class="quote-card__action-btn" bindtap="onPreviewTap" disabled="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}">
           <span class="icon--eye icon-size-18"></span>
         </button>
-        <button class="quote-card__action-btn" open-type="share" data-quote-id="{{item.quoteId}}">
+        <button class="quote-card__action-btn" open-type="share" data-quote-id="{{item.quoteId}}" disabled="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}">
           <span class="icon--share icon-size-18"></span>
         </button>
         <view class="quote-card__more-wrapper">
