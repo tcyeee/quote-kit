@@ -6,10 +6,16 @@ function getDbInstance() {
     return db || (db = wx.cloud.database())
 }
 
+class DB_LIST {
+    static readonly UserEditQuote = "UserEditQuote"
+    static readonly ShareQuoteViewLog = "ShareQuoteViewLog"
+    static readonly UserShareQuote = "UserShareQuote"
+}
+
 /* 用户正在编辑的报价单数据 GET */
 export async function getDefaultQuoteDetail(): Promise<QuoteDetail> {
     const db = getDbInstance()
-    const info = await db.collection("UserEditQuote").get()
+    const info = await db.collection(DB_LIST.UserEditQuote).get()
     return info.data[0] as QuoteDetail || appDefaultQuote()
 }
 
@@ -17,7 +23,7 @@ export async function getDefaultQuoteDetail(): Promise<QuoteDetail> {
 export async function setDefaultQuoteDetail() {
     const db = getDbInstance()
     const info = appDefaultQuote()
-    db.collection("UserEditQuote").add({ data: info })
+    db.collection(DB_LIST.UserEditQuote).add({ data: info })
 }
 
 /* 分享信息查看日志 GET（批量，根据多个 quoteId 一次查询） */
@@ -25,7 +31,7 @@ export async function getShareQuoteLog(quoteIdList: string[]): Promise<QuoteView
     const db = getDbInstance()
     const command = db.command
     const res = await db
-        .collection("ShareQuoteViewLog")
+        .collection(DB_LIST.ShareQuoteViewLog)
         .where({ quoteId: command.in(quoteIdList) })
         .orderBy("viewTime", "desc")
         .get()
@@ -45,13 +51,13 @@ export async function setShareQuoteLog(quoteId: string) {
         viewerSystem: systemInfo.system,
         viewTime: new Date(),
     }
-    db.collection("ShareQuoteViewLog").add({ data: info })
+    db.collection(DB_LIST.ShareQuoteViewLog).add({ data: info })
 }
 
 /* 分享信息 UPDATE(下架) */
 export async function offlineShareQuote(quoteId: string) {
     const db = getDbInstance()
-    db.collection("UserShareQuote").doc(quoteId).update({
+    db.collection(DB_LIST.UserShareQuote).doc(quoteId).update({
         data: { shareDate: { isManuallyOfflined: true } }
     })
 }
@@ -59,13 +65,13 @@ export async function offlineShareQuote(quoteId: string) {
 /* 分享信息 DELETE */
 export async function delShareQuote(quoteId: string) {
     const db = getDbInstance()
-    db.collection("UserShareQuote").doc(quoteId).remove()
+    db.collection(DB_LIST.UserShareQuote).doc(quoteId).remove()
 }
 
 /* 分享信息 GET */
 export async function getMyShareQuoteList(): Promise<QuoteDetail[]> {
     const db = getDbInstance()
-    const res = await db.collection("UserShareQuote")
+    const res = await db.collection(DB_LIST.UserShareQuote)
         .where({ _openid: getApp<IAppOption>().globalData.uid || "unknown" })
         .get()
     return res.data as QuoteDetail[]
@@ -73,7 +79,7 @@ export async function getMyShareQuoteList(): Promise<QuoteDetail[]> {
 
 export async function getShareQuoteById(quoteId: string): Promise<QuoteDetail> {
     const db = getDbInstance()
-    const res = await db.collection("UserShareQuote")
+    const res = await db.collection(DB_LIST.UserShareQuote)
         .doc(quoteId)
         .get()
     return res.data as QuoteDetail

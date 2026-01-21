@@ -14,7 +14,8 @@
         "elif",
         "getopenid",
         "Miniprogram",
-        "Offlined"
+        "Offlined",
+        "xkcfr"
     ],
     "chatgpt.commentCodeLensEnabled": false
 }

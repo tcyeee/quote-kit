@@ -7,7 +7,7 @@
     <view class="view-footer">
       <view class="view-footer-text">
         Power by: ©
-        <span class="font-xs">简单报价单</span>
+        <span class="font-xs view-footer-link" bindtap="goHome">简单报价单</span>
       </view>
     </view>
   </scroll-view>

@@ -1,4 +1,4 @@
-const CLOUD_ENV = 'cloud1-0gyo5sli9601b011'
+const CLOUD_ENV = 'cloud1-7g7xkcfr525015b6'
 
 export async function cloudInit() {
     wx.cloud.init({ env: CLOUD_ENV, traceUser: true })
