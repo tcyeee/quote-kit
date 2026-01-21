@@ -109,6 +109,10 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onProjectNameBlur() {
+      this.quoteDetailUpdate()
+    },
+
     // 服务条款输入完成后重新计算报价
     onServiceTermsBlur() {
       this.quoteDetailUpdate()
