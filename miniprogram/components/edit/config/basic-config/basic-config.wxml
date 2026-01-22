@@ -30,10 +30,10 @@
           <view class="theme-overlay"></view>
           <text class="theme-name">霓虹</text>
         </view>
-        <view class="theme-option {{quoteDetail.theme === 'deep-sea' ? 'active' : ''}}" data-theme="deep-sea" bindtap="onThemeTap">
+        <view class="theme-option {{quoteDetail.theme === 'sky' ? 'active' : ''}}" data-theme="sky" bindtap="onThemeTap">
           <image class="theme-bg" src="../../../../assets/button_2.png" mode="aspectFill"></image>
           <view class="theme-overlay"></view>
-          <text class="theme-name">深海</text>
+          <text class="theme-name">天空</text>
         </view>
       </view>
     </view>
