@@ -4,8 +4,9 @@
       <view class="config-schema-title">整体优惠</view>
       <text>优惠金额在总价上进行扣除</text>
     </view>
-    
-
+    <view class="config-schema-group">
+      <input class="config-schema-pill" type="digit" placeholder="输入优惠金额，例如 500" value="{{quoteDetail.businessDiscountAmount}}" bindblur="onBusinessDiscountBlur" />
+    </view>
     <view class="config-schema-header">
       <view class="config-schema-title">支付节点</view>
     </view>

@@ -22,6 +22,15 @@
   gap: 12rpx;
 }
 
+.config-schema-pill {
+  padding: 12rpx 16rpx;
+  border-radius: 14rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
 .config-textarea {
   width: 100%;
   min-height: 140rpx;

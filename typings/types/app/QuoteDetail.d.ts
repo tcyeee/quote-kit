@@ -9,8 +9,10 @@ interface QuoteDetail {
     PayNodes: QuotePayNode[],
     // 服务条款说明
     serviceTerms?: string,
+    // 主题
     theme: string,
-
+    // 最终折扣
+    businessDiscountAmount?: number,
     /* 分享属性 */
     shareDate?: QuoteShareInfo,
     /* 计算属性 */

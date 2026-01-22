@@ -60,12 +60,12 @@
       </view>
       <view class="summary-row">
         <text class="summary-label">商务优惠</text>
-        <text class="summary-discount">-¥0.00</text>
+        <text class="summary-discount">-¥{{discountAmount}}</text>
       </view>
       <view class="summary-divider"></view>
       <view class="summary-row summary-total-row">
         <text class="summary-total-label">最终总计</text>
-        <text class="summary-total-value">¥{{totalAmount}}</text>
+        <text class="summary-total-value">¥{{finalTotalAmount}}</text>
       </view>
     </view>
   </view>
