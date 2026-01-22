@@ -118,6 +118,7 @@ export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "amber",
         projectName: "某公司UI设计项目",
+        businessDiscountAmount: 500,
         computeData: {
             expiresDays: 7,
         },

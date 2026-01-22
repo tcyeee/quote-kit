@@ -192,7 +192,7 @@
 .service-category {
   margin-bottom: 24rpx;
   border-radius: 18rpx;
-  background-color: #ffffff;
+  background-color: #F7F4F0;
   box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
   border: 1rpx solid #e3ddd5;
   overflow: hidden;
