@@ -1,6 +1,6 @@
 <view class="bottom-dialog-body">
+  <config-tabs bind:change="onConfigTabChange" />
   <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <config-tabs bind:change="onConfigTabChange" />
     <basic-config wx:if="{{currentTab === 'basic'}}" bind:update="onBasicConfigUpdate" />
     <service-config wx:elif="{{currentTab === 'service'}}" bind:update="onServiceConfigUpdate" />
     <payment-config wx:elif="{{currentTab === 'payment'}}" bind:update="onPaymentConfigUpdate" />
