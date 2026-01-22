@@ -3,6 +3,9 @@
     <view class="service-category-header flex" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
       <view class="service-summary">
         <view class="service-title">{{category.name}}</view>
+        <view class="service-meta">
+          <text>{{category.items && category.items.length || 0}} 个服务项</text>
+        </view>
       </view>
       <view class="service-actions">
         <view class="service-action" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}">
@@ -10,7 +13,7 @@
         </view>
       </view>
     </view>
-    <view class="pl-lg pr-lg pb-lg" wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
+    <view class="service-category-content {{categoryCollapseStatus[categoryIndex] ? 'service-category-content--collapsed' : 'service-category-content--expanded'}} pl-lg pr-lg pb-lg">
       <view class="service-field">
         <view class="service-field-label">服务组标题</view>
         <input class="config-input" placeholder="服务组标题" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
