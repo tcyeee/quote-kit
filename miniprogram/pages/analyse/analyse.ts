@@ -18,6 +18,7 @@ Page({
     safeTop: 0,
     // 这个字段用于展示页面信息
     list: [] as Array<AnalyseQuote>,
+    loading: true,
   },
 
   async onLoad() {
@@ -82,22 +83,27 @@ Page({
   },
 
   async queryShareList() {
-    const rawList = await getMyShareQuoteList()
-    const sourceList = Array.isArray(rawList) ? rawList : []
-    const typedList = sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>
-    const quoteIdList = typedList
-      .map(item => (item as any).quoteId || (item as any)["_id"] || "")
-      .filter(id => !!id) as string[]
-    const logs = quoteIdList.length > 0 ? await getShareQuoteLog(quoteIdList) : []
-    const logsByQuoteId: Record<string, QuoteViewLog[]> = {}
-    logs.forEach(log => {
-      const id = (log as any).quoteId
-      if (!id) return
-      if (!logsByQuoteId[id]) logsByQuoteId[id] = []
-      logsByQuoteId[id].push(log)
-    })
-    const analyseList = typedList.map(item => buildAnalyseQuoteItem(item, logsByQuoteId))
-    this.setData({ list: analyseList })
+    this.setData({ loading: true })
+    try {
+      const rawList = await getMyShareQuoteList()
+      const sourceList = Array.isArray(rawList) ? rawList : []
+      const typedList = sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>
+      const quoteIdList = typedList
+        .map(item => (item as any).quoteId || (item as any)["_id"] || "")
+        .filter(id => !!id) as string[]
+      const logs = quoteIdList.length > 0 ? await getShareQuoteLog(quoteIdList) : []
+      const logsByQuoteId: Record<string, QuoteViewLog[]> = {}
+      logs.forEach(log => {
+        const id = (log as any).quoteId
+        if (!id) return
+        if (!logsByQuoteId[id]) logsByQuoteId[id] = []
+        logsByQuoteId[id].push(log)
+      })
+      const analyseList = typedList.map(item => buildAnalyseQuoteItem(item, logsByQuoteId))
+      this.setData({ list: analyseList, loading: false })
+    } catch (e) {
+      this.setData({ list: [], loading: false })
+    }
   },
 
   onShareAppMessage(res: any) {

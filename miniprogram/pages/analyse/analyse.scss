@@ -110,3 +110,30 @@
   margin-top: 8rpx;
   font-size: 24rpx;
 }
+
+.analyse-loading {
+  margin-top: 32rpx;
+  padding: 80rpx 24rpx;
+  text-align: center;
+  color: #8a7e72;
+}
+
+.analyse-loading-icon {
+  font-size: 64rpx;
+  margin-bottom: 16rpx;
+  animation: analyse-loading-rotate 1.1s linear infinite;
+}
+
+.analyse-loading-text {
+  font-size: 26rpx;
+}
+
+@keyframes analyse-loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -14,7 +14,13 @@
   </view>
   <view class="analyse-section">
     <view class="analyse-section-title">报价单</view>
-    <block wx:if="{{list.length > 0}}">
+    <block wx:if="{{loading}}">
+      <view class="analyse-loading">
+        <view class="icon--loading icon-size-30">⏳</view>
+        <view class="analyse-loading-text">数据加载中...</view>
+      </view>
+    </block>
+    <block wx:elif="{{list.length > 0}}">
       <analyse-quote-card wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="quoteId" item="{{item}}" index="{{index}}" bindoffline="onOfflineTap" binddelete="onDeleteTap"></analyse-quote-card>
     </block>
     <view wx:else class="analyse-empty">
