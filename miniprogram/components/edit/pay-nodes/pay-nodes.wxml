@@ -42,7 +42,7 @@
             <view class="pay-node-field-item pay-node-field-item--date">
               <view class="pay-node-field-label">日期(可选)</view>
               <view class="pay-node-time">
-                <picker mode="date" value="{{node.nodeDate}}" data-index="{{index}}" bindchange="onNodeDateChange">
+                <picker class="pay-node-time-picker" mode="date" value="{{node.nodeDate}}" data-index="{{index}}" bindchange="onNodeDateChange">
                   <view class="config-input-small pay-node-time-display">
                     {{node.nodeDate || '选择'}}
                   </view>

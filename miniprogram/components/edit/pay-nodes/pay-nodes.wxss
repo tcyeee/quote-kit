@@ -16,6 +16,7 @@
 }
 
 .config-schema-action {
+  margin-top: 12rpx;
   color: #c0a28a;
   border-style: dashed;
   text-align: center;
@@ -70,6 +71,7 @@
 
 .pay-node-ratio-input {
   flex: 1;
+  color: gray;
 }
 
 .pay-node-ratio-suffix {
@@ -83,7 +85,14 @@
 }
 
 .pay-node-time-display {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: gray;
+}
+
+.pay-node-time-picker {
+  width: 100%;
 }
 
 .flex {
