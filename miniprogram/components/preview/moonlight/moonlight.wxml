@@ -70,4 +70,5 @@
       </view>
     </view>
   </view>
+  <view wx:if="{{parentViewMode === 'preview'}}" style="height:30vh"></view>
 </view>

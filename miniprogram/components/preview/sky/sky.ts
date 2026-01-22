@@ -3,6 +3,7 @@ import { calculateTotalAmount } from '../../../utils/quote-utils'
 Component({
   properties: {
     quoteDetail: { type: Object, value: {} as QuoteDetail },
+    parentViewMode: { type: String, value: 'real' },
   },
   data: {
     totalAmount: 0,

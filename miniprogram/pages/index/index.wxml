@@ -2,12 +2,10 @@
   <saving-toast id="savingToast" />
   <scroll-view class="page-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
     <!-- 根据当前主题渲染不同的预览组件 -->
-    <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" quote-detail="{{quoteDetail}}" />
-    <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" quote-detail="{{quoteDetail}}" />
-    <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
-    <sky-preview id="quotePreview" wx:if="{{currentTheme === 'sky'}}" quote-detail="{{quoteDetail}}" />
-    <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" quote-detail="{{quoteDetail}}" />
-    <view style="height:20vh" />
+    <amber-preview id="quotePreview" wx:if="{{!currentTheme || currentTheme === 'amber'}}" quote-detail="{{quoteDetail}}" parent-view-mode="preview" />
+    <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" quote-detail="{{quoteDetail}}" parent-view-mode="preview" />
+    <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" parent-view-mode="preview" />
+    <sky-preview id="quotePreview" wx:if="{{currentTheme === 'sky'}}" quote-detail="{{quoteDetail}}" parent-view-mode="preview" />
   </scroll-view>
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
   <view class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}" style="height: {{bottomDialogExpanded ? options.bottomDialogExpandedHeight : options.bottomDialogCollapsedHeight}}vh;" catchtouchmove="onBottomDialogMaskTouchMove">
