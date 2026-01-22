@@ -1,5 +1,5 @@
 <view class="edit-end-root">
-    <view class="edit-end-card">
+    <view class="edit-end-main">
         <view class="edit-end-title">发送前请确认报价单信息</view>
         <view class="edit-end-summary">
             <view class="edit-end-row">
@@ -37,7 +37,6 @@
     </view>
     <view class="edit-end-actions">
         <button class="action-btn secondary" bindtap="toggleConfirmDialog">重新编辑</button>
-        <!-- 微信分享按钮 -->
         <button class="action-btn primary" open-type="share">确认发送</button>
     </view>
 </view>

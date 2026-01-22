@@ -6,12 +6,8 @@
   justify-content: space-between;
 }
 
-.edit-end-card {
-  background-color: #fdfaf7;
-  border-radius: 24rpx;
-  padding: 32rpx 28rpx;
-  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.06);
-  border: 2rpx solid #e0d7ce;
+.edit-end-main {
+  margin-top: 12rpx;
 }
 
 .edit-end-title {
@@ -27,7 +23,7 @@
   gap: 14rpx;
   padding: 18rpx 16rpx;
   border-radius: 18rpx;
-  background-color: #f8f4ef;
+  background-color: #fef8f1;
   border: 2rpx solid #d6cdc4;
 }
 
@@ -35,7 +31,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 24rpx;
+  font-size: 22rpx;
   color: #6b665f;
 }
 
@@ -44,8 +40,9 @@
 }
 
 .edit-end-value {
-  font-weight: 600;
+  font-weight: 500;
   color: #4a4742;
+  opacity: 0.8;
 }
 
 .expire-options {
