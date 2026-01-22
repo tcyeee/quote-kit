@@ -15,13 +15,7 @@
 }
 
 .config-schema-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8rpx;
-  margin-top: 16rpx;
-  padding-left: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .config-schema-row--collapsed {
@@ -136,7 +130,6 @@
 }
 
 .service-field {
-  margin-top: 24rpx;
   margin-bottom: 12rpx;
 }
 
@@ -144,6 +137,7 @@
   margin-bottom: 6rpx;
   font-size: 22rpx;
   color: #8b8680;
+  padding-top: 24rpx;
 }
 
 .service-field-grid {
@@ -171,10 +165,6 @@
   align-items: center;
   padding: 16rpx 20rpx;
   background-color: #ece2d5;
-  overflow: hidden;
-}
-
-.service-category-content {
   overflow: hidden;
 }
 
