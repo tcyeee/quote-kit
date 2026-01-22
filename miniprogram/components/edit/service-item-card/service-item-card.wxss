@@ -98,6 +98,7 @@
   font-size: 22rpx;
   font-weight: 600;
   color: #4a4742;
+  opacity: 0.7
 }
 
 .service-meta {

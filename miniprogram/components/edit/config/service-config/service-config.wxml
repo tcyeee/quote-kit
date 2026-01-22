@@ -4,16 +4,7 @@
       <view class="config-schema-title">服务内容</view>
     </view>
     <view class="config-schema-group">
-      <service-item-card
-        pricing-items="{{quoteDetail.pricingItems || []}}"
-        bind:delete="onDeleteService"
-        bind:deleteCategory="onDeleteCategory"
-        bind:serviceChange="onServiceChange"
-        bind:addService="onAddService"
-        bind:addCategory="onAddCategory"
-        bind:fieldBlur="onServiceFieldBlur"
-        bind:updatePricingItems="onUpdatePricingItems"
-      />
+      <service-item-card pricing-items="{{quoteDetail.pricingItems || []}}" bind:delete="onDeleteService" bind:deleteCategory="onDeleteCategory" bind:serviceChange="onServiceChange" bind:addService="onAddService" bind:addCategory="onAddCategory" bind:fieldBlur="onServiceFieldBlur" bind:updatePricingItems="onUpdatePricingItems" />
     </view>
   </view>
 </view>
