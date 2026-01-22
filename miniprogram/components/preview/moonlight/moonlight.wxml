@@ -1,20 +1,13 @@
 <view class="page">
+  <view class="card-header">
+    <view class="header-accent"></view>
+    <view class="header-title"></view>
+  </view>
   <view class="quote-card">
-    <view class="card-header">
-      <view class="header-accent"></view>
-      <view class="header-title">
-        <text class="header-the">The</text>
-        <text class="header-quotation">Quotation</text>
-      </view>
-    </view>
     <view class="card-meta">
-      <view wx:if="{{quoteDetail.domain.name}}" class="meta-row">
+      <view wx:if="{{quoteDetail.projectName}}" class="meta-row">
         <text class="meta-icon">🏷️</text>
-        <text class="meta-text">{{quoteDetail.domain.name}}</text>
-      </view>
-      <view wx:if="{{quoteDetail.projectName}}" class="meta-row meta-project">
-        <text class="meta-label">项目 Project</text>
-        <text class="meta-value">{{quoteDetail.projectName}}</text>
+        <text class="meta-text">{{quoteDetail.projectName}}</text>
       </view>
     </view>
     <view class="section-block">
@@ -68,10 +61,6 @@
       <view class="summary-row">
         <text class="summary-label">商务优惠</text>
         <text class="summary-discount">-¥0.00</text>
-      </view>
-      <view class="summary-row">
-        <text class="summary-label">增值税率 (0%)</text>
-        <text class="summary-value">¥0.00</text>
       </view>
       <view class="summary-divider"></view>
       <view class="summary-row summary-total-row">
