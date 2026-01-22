@@ -5,7 +5,7 @@ enum ViewEntryType { Share = "share", Preview = "preview" }
 
 Page({
   data: {
-    quoteDetail: undefined as QuoteDetail | undefined,
+    quoteDetail: {} as QuoteDetail,
     shareStatus: 'normal' as ShareStatus,
     currentTheme: "amber",
     entryType: ViewEntryType.Share as ViewEntryType,

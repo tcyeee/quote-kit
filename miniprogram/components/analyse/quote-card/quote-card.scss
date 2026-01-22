@@ -1,4 +1,3 @@
-
 .quote-card {
   width: 100%;
   background-color: #fdf9f2;
@@ -180,7 +179,7 @@
       border: none;
     }
 
-    &[disabled] {
+    &--disabled {
       opacity: 0.4;
       background-color: #f5f0e9 !important;
       color: #b0aaa3 !important;
@@ -221,11 +220,11 @@
   &__stat-compact {
     display: flex;
     flex-direction: column;
-    
+
     .quote-card__stat-label {
       margin-bottom: 4rpx;
     }
-    
+
     .quote-card__stat-value {
       font-size: 28rpx;
     }
