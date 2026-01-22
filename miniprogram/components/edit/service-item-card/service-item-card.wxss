@@ -125,7 +125,7 @@
 }
 
 .service-body--expanded {
-  max-height: 9999rpx;
+  max-height: 300rpx;
   opacity: 1;
 }
 

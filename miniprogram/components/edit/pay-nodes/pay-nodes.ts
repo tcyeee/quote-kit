@@ -27,6 +27,28 @@ Component({
       })
     },
   },
+  observers: {
+    payNodes(payNodes: QuotePayNode[]) {
+      const list = payNodes || []
+      const length = list.length || 0
+      const current = ((this.data as any).payNodeCollapseStatus as boolean[]) || []
+      if (!length) {
+        if (current.length) {
+          this.setData({
+            payNodeCollapseStatus: [],
+          })
+        }
+        return
+      }
+      if (!current.length || current.length !== length) {
+        const status = new Array<boolean>(length).fill(true)
+        status[0] = false
+        this.setData({
+          payNodeCollapseStatus: status,
+        })
+      }
+    },
+  },
   methods: {
     resetDragPayNodeState() {
       this.setData({
