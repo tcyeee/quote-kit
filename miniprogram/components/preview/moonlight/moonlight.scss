@@ -82,7 +82,7 @@ page {
 }
 
 .section-block {
-  margin-bottom: 32rpx;
+  margin-bottom: 50rpx;
 }
 
 .section-header-row {
@@ -144,7 +144,7 @@ page {
 
 .section-title-main {
   display: flex;
-  flex-direction: column;
+  gap: 24rpx;
 }
 
 .section-title-label {
@@ -206,7 +206,7 @@ page {
 
 .summary-card {
   margin-top: 10rpx;
-  padding: 24rpx 26rpx 22rpx;
+  padding: 30rpx;
   background: #f3f4f6;
   border-radius: 20rpx;
 }
@@ -217,6 +217,7 @@ page {
   justify-content: space-between;
   font-size: 22rpx;
   color: #4b5563;
+  margin-bottom: 20rpx;
 }
 
 .summary-row + .summary-row {

@@ -17,13 +17,25 @@ Component({
         ...node,
         amount: Math.round(finalTotalAmount * (node.nodeRatio || 0)),
       }))
-      this.setData({ totalAmount, finalTotalAmount, discountAmount, payNodes })
+      const formatAmount = (value: number) => value.toFixed(2)
+      this.setData({
+        totalAmount,
+        finalTotalAmount,
+        discountAmount,
+        payNodes,
+        totalAmountDisplay: formatAmount(totalAmount),
+        discountAmountDisplay: formatAmount(discountAmount),
+        finalTotalAmountDisplay: formatAmount(finalTotalAmount),
+      })
     },
   },
   data: {
     totalAmount: 0,
     finalTotalAmount: 0,
     discountAmount: 0,
+    totalAmountDisplay: '',
+    discountAmountDisplay: '',
+    finalTotalAmountDisplay: '',
     payNodes: [] as Array<QuotePayNode & { amount: number }>,
   },
 })

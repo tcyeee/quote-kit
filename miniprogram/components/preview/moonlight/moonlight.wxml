@@ -36,7 +36,7 @@
       </view>
       <view class="section-payment-rows">
         <view class="payment-row" wx:for="{{payNodes}}" wx:for-item="node" wx:key="nodeName">
-          <text class="payment-name">💰 {{node.nodeName}}（{{node.nodeRatio * 100}}%）</text>
+          <text class="payment-name">{{node.nodeName}}（{{node.nodeRatio * 100}}%）</text>
           <text class="payment-amount">¥{{node.amount}}</text>
         </view>
       </view>
@@ -49,23 +49,24 @@
         </view>
       </view>
       <view class="remarks-body">
-        <text class="remarks-icon">📌</text>
         <text class="remarks-text">{{quoteDetail.serviceTerms}}</text>
       </view>
     </view>
     <view wx:if="{{totalAmount}}" class="summary-card">
-      <view class="summary-row">
-        <text class="summary-label">项目分项小计</text>
-        <text class="summary-value">¥{{totalAmount}}</text>
-      </view>
-      <view class="summary-row">
-        <text class="summary-label">商务优惠</text>
-        <text class="summary-discount">-¥{{discountAmount}}</text>
-      </view>
-      <view class="summary-divider"></view>
+      <block wx:if="{{discountAmount > 0}}">
+        <view class="summary-row">
+          <text class="summary-label">项目分项小计</text>
+          <text class="summary-value">¥{{totalAmountDisplay}}</text>
+        </view>
+        <view class="summary-row">
+          <text class="summary-label">商务优惠</text>
+          <text class="summary-discount">-¥{{discountAmountDisplay}}</text>
+        </view>
+        <view class="summary-divider"></view>
+      </block>
       <view class="summary-row summary-total-row">
         <text class="summary-total-label">最终总计</text>
-        <text class="summary-total-value">¥{{finalTotalAmount}}</text>
+        <text class="summary-total-value">¥{{finalTotalAmountDisplay}}</text>
       </view>
     </view>
   </view>

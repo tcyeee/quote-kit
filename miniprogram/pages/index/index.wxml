@@ -6,7 +6,7 @@
     <moonlight-preview id="quotePreview" wx:if="{{currentTheme === 'moonlight'}}" quote-detail="{{quoteDetail}}" />
     <neon-preview id="quotePreview" wx:if="{{currentTheme === 'neon'}}" quote-detail="{{quoteDetail}}" />
     <deep-sea-preview id="quotePreview" wx:if="{{currentTheme === 'deep-sea'}}" quote-detail="{{quoteDetail}}" />
-    <view style="height:15vh" />
+    <view style="height:30vh" />
   </scroll-view>
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
   <view class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}" style="height: {{bottomDialogExpanded ? options.bottomDialogExpandedHeight : options.bottomDialogCollapsedHeight}}vh;" catchtouchmove="onBottomDialogMaskTouchMove">
