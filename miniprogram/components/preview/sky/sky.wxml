@@ -31,7 +31,9 @@
               <text class="service-unit-value">¥{{service.unitPrice}}</text>
             </view>
             <view class="service-amount">
-              <text class="service-amount-value">¥{{service.unitPrice * service.quantity}}</text>
+              <text class="service-unit-label">周期</text>
+              <text wx:if="{{service.deliveryPeriodDays <= 0}}" class="service-unit-value">待定</text>
+              <text wx:else class="service-unit-value">{{service.deliveryPeriodDays}} 天</text>
             </view>
           </view>
         </view>
@@ -61,7 +63,6 @@
           </view>
           <view class="payment-right">
             <text class="payment-amount">¥{{node.amount}}</text>
-            <text class="payment-status">待支付</text>
           </view>
         </view>
       </view>
