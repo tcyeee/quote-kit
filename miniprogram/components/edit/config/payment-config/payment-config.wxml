@@ -1,7 +1,13 @@
 <view>
   <view class="config-schema-section">
     <view class="config-schema-header">
-      <view class="config-schema-title">交付节点设置</view>
+      <view class="config-schema-title">整体优惠</view>
+      <text>优惠金额在总价上进行扣除</text>
+    </view>
+    
+
+    <view class="config-schema-header">
+      <view class="config-schema-title">支付节点</view>
     </view>
     <view class="config-schema-group">
       <edit-pay-nodes pay-nodes="{{quoteDetail.PayNodes || []}}" bind:change="onPayNodesChange" bind:blur="onPayNodesBlur" />

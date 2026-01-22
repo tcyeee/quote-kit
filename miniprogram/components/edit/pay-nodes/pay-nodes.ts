@@ -255,7 +255,7 @@ Component({
       const payNodes = (this.data.payNodes || []).slice()
       const nextIndex = payNodes.length + 1
       const newNode: QuotePayNode = {
-        nodeName: `交付节点${nextIndex}`,
+        nodeName: `支付节点${nextIndex}`,
         nodeRatio: 0,
       }
       payNodes.push(newNode)

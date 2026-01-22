@@ -1,1 +1,83 @@
-<view class="page"></view>
+<view class="page">
+  <view class="quote-card">
+    <view class="card-header">
+      <view class="header-accent"></view>
+      <view class="header-title">
+        <text class="header-the">The</text>
+        <text class="header-quotation">Quotation</text>
+      </view>
+    </view>
+    <view class="card-meta">
+      <view wx:if="{{quoteDetail.domain.name}}" class="meta-row">
+        <text class="meta-icon">🏷️</text>
+        <text class="meta-text">{{quoteDetail.domain.name}}</text>
+      </view>
+      <view wx:if="{{quoteDetail.projectName}}" class="meta-row meta-project">
+        <text class="meta-label">项目 Project</text>
+        <text class="meta-value">{{quoteDetail.projectName}}</text>
+      </view>
+    </view>
+    <view class="section-block">
+      <view class="section-header-row">
+        <text class="col-project">项目 PROJECT</text>
+        <text class="col-price">价格 PRICE</text>
+        <text class="col-time">周期 TIME</text>
+      </view>
+      <block wx:for="{{quoteDetail.pricingItems}}" wx:for-item="category" wx:key="name">
+        <block wx:for="{{category.items}}" wx:for-item="service" wx:key="name">
+          <view class="section-item-row">
+            <text class="col-project">{{service.name}}</text>
+            <text class="col-price">¥{{service.unitPrice * service.quantity}}</text>
+            <text wx:if="{{service.deliveryPeriodDays <= 0}}" class="col-time">待定</text>
+            <text wx:else class="col-time">{{service.deliveryPeriodDays}} 天</text>
+          </view>
+        </block>
+      </block>
+    </view>
+    <view wx:if="{{payNodes.length}}" class="section-block">
+      <view class="section-title-row">
+        <view class="section-title-main">
+          <text class="section-title-label">付款计划</text>
+          <text class="section-title-en">PAYMENT PLAN</text>
+        </view>
+      </view>
+      <view class="section-payment-rows">
+        <view class="payment-row" wx:for="{{payNodes}}" wx:for-item="node" wx:key="nodeName">
+          <text class="payment-name">💰 {{node.nodeName}}（{{node.nodeRatio * 100}}%）</text>
+          <text class="payment-amount">¥{{node.amount}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{quoteDetail.serviceTerms}}" class="section-block">
+      <view class="section-title-row">
+        <view class="section-title-main">
+          <text class="section-title-label">备注</text>
+          <text class="section-title-en">REMARKS</text>
+        </view>
+      </view>
+      <view class="remarks-body">
+        <text class="remarks-icon">📌</text>
+        <text class="remarks-text">{{quoteDetail.serviceTerms}}</text>
+      </view>
+    </view>
+    <view wx:if="{{totalAmount}}" class="summary-card">
+      <view class="summary-row">
+        <text class="summary-label">项目分项小计</text>
+        <text class="summary-value">¥{{totalAmount}}</text>
+      </view>
+      <view class="summary-row">
+        <text class="summary-label">商务优惠</text>
+        <text class="summary-discount">-¥0.00</text>
+      </view>
+      <view class="summary-row">
+        <text class="summary-label">增值税率 (0%)</text>
+        <text class="summary-value">¥0.00</text>
+      </view>
+      <view class="summary-divider"></view>
+      <view class="summary-row summary-total-row">
+        <text class="summary-total-label">最终总计</text>
+        <text class="summary-total-value">¥{{totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+</view>
