@@ -55,11 +55,11 @@
     <view wx:if="{{totalAmount}}" class="summary-card">
       <block wx:if="{{discountAmount > 0}}">
         <view class="summary-row">
-          <text class="summary-label">项目分项小计</text>
+          <text class="summary-label">项目小计</text>
           <text class="summary-value">¥{{totalAmountDisplay}}</text>
         </view>
         <view class="summary-row">
-          <text class="summary-label">商务优惠</text>
+          <text class="summary-label">优惠</text>
           <text class="summary-discount">-¥{{discountAmountDisplay}}</text>
         </view>
         <view class="summary-divider"></view>
