@@ -1,9 +1,26 @@
 <view>
   <view class="service-category" wx:for="{{pricingItems}}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="name">
-    <view class="service-summary-content" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
-      <collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
-      <input class="config-input" placeholder="服务类别名称" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
-      <span class="icon--delete-16-regular icon-size-15 icon-color-error" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}"></span>
+    <view class="service-category-header flex">
+      <view class="service-summary">
+        <view class="service-title">{{category.name}}</view>
+      </view>
+      <view class="service-actions">
+        <view class="service-action" catchtap="onDeleteCategoryTap" data-category-index="{{categoryIndex}}">
+          <span class="icon--delete-16-regular icon-size-15 icon-color-error"></span>
+          <text>删除</text>
+        </view>
+        <view class="service-action" bindtap="onToggleCategoryCollapseTap" data-category-index="{{categoryIndex}}">
+          <collapse-icon size="14" collapsed="{{categoryCollapseStatus[categoryIndex]}}" />
+          <text>{{categoryCollapseStatus[categoryIndex] ? '展开' : '收起'}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!categoryCollapseStatus[categoryIndex]}}">
+      <view class="service-field">
+        <view class="service-field-label">服务组标题</view>
+        <input class="config-input" placeholder="服务组标题" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
+      </view>
+      <view class="service-group-divider"></view>
     </view>
     <view class="config-schema-row {{categoryCollapseStatus[categoryIndex] ? 'config-schema-row--collapsed' : 'config-schema-row--expanded'}}">
       <view class="service-list-box service-list-box-{{categoryIndex}}">
