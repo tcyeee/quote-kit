@@ -1,6 +1,5 @@
 .config-schema-pill {
   width: 100%;
-  padding: 12rpx 16rpx;
   background-color: #f8f4ef;
   border: 2rpx solid #d6cdc4;
   border-radius: 14rpx;
@@ -49,6 +48,7 @@
   padding: 12rpx 16rpx;
   font-size: 22rpx;
   margin-top: 16rpx;
+  margin-left: 34rpx;
 }
 
 .config-input {
@@ -84,8 +84,7 @@
 
 .service-header {
   justify-content: space-between;
-  margin: -12rpx -16rpx -12rpx;
-  padding: 10rpx 16rpx;
+  padding: 16rpx;
   background-color: #ece2d5;
 }
 
@@ -133,7 +132,6 @@
 .service-body--expanded {
   max-height: 9999rpx;
   opacity: 1;
-  margin-top: 8rpx;
 }
 
 .service-field {
@@ -170,9 +168,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16rpx 12rpx;
-  border-radius: 14rpx;
-  background-color: #f8f4ef;
+  padding: 16rpx 20rpx;
+  background-color: #ece2d5;
+  overflow: hidden;
 }
 
 .service-action {
@@ -198,11 +196,11 @@
 
 .service-category {
   margin-bottom: 24rpx;
-  padding: 24rpx 20rpx;
   border-radius: 18rpx;
   background-color: #ffffff;
   box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
   border: 1rpx solid #e3ddd5;
+  overflow: hidden;
 }
 
 .service-drag-ghost {
