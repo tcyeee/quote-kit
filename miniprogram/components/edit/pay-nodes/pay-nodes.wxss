@@ -3,17 +3,16 @@
   align-items: center;
   gap: 12rpx;
   margin-bottom: 12rpx;
-  overflow: hidden;
 }
 
 .config-schema-pill {
-  padding: 12rpx 16rpx;
   background-color: #f8f4ef;
   font-size: 22rpx;
   color: #8b8680;
   width: 100%;
   border: 1px solid #d6cdc4;
   border-radius: 14rpx;
+  overflow: hidden;
 }
 
 .config-schema-action {
@@ -95,11 +94,14 @@
 
 .pay-node-header {
   justify-content: space-between;
-  margin-bottom: 12rpx;
+  background-color: #ece2d5;
+  padding: 24rpx;
+  overflow: hidden;
 }
 
 .pay-node-summary {
   display: flex;
+  align-items: center;
   gap: 6rpx;
 }
 
@@ -110,7 +112,6 @@
 }
 
 .pay-node-title {
-  font-size: 22rpx;
   font-weight: 600;
   color: gray;
 }
@@ -130,7 +131,6 @@
 .pay-node-body {
   overflow: hidden;
   transition: max-height 0.2s ease, opacity 0.2s ease;
-  margin-top: 8rpx;
 }
 
 .pay-node-body--collapsed {
@@ -139,7 +139,7 @@
 }
 
 .pay-node-body--expanded {
-  max-height: 9999rpx;
+  max-height: 200rpx;
   opacity: 1;
 }
 
@@ -157,10 +157,23 @@
   display: flex;
   flex-direction: row;
   gap: 8rpx;
+  margin: 24rpx;
 }
 
 .pay-node-field-item {
+  flex: 0 0 auto;
+}
+
+.pay-node-field-item--name {
   flex: 1;
+}
+
+.pay-node-field-item--ratio {
+  flex: 0 0 100rpx;
+}
+
+.pay-node-field-item--date {
+  flex: 0 0 120rpx;
 }
 
 .pay-node-list-box {
