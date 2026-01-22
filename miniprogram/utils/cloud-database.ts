@@ -62,6 +62,20 @@ export async function offlineShareQuote(quoteId: string) {
     })
 }
 
+/* 分享信息 UPDATE(重新上架) */
+export async function onlineShareQuote(quoteId: string, expiresDays: number) {
+    const db = getDbInstance()
+    const base = new Date()
+    const shareDate = {
+        createdAt: base,
+        expiresAt: calculateExpiresAt(base, expiresDays),
+    }
+    await db.collection(DB_LIST.UserShareQuote).doc(quoteId).update({
+        data: { shareDate }
+    })
+    return shareDate
+}
+
 /* 分享信息 DELETE */
 export async function delShareQuote(quoteId: string) {
     const db = getDbInstance()

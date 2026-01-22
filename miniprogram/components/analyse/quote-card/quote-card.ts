@@ -25,6 +25,11 @@ Component({
         url: "/pages/view/view?id=" + quoteId + "&entry=preview",
       })
     },
+    onOnlineTap() {
+      const index = this.data.index as number
+      this.triggerEvent("online", { index })
+      this.setData({ showMoreMenu: false })
+    },
     onOfflineTap() {
       const index = this.data.index as number
       this.triggerEvent("offline", { index })

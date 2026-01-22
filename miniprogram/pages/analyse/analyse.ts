@@ -1,4 +1,4 @@
-import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote } from "../../utils/cloud-database"
+import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote, onlineShareQuote } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
 import { formatDateTime } from "../../utils/base-utils"
 
@@ -33,6 +33,28 @@ Page({
   calculateSafeAreaHeight() {
     const systemInfo = wx.getSystemInfoSync()
     this.setData({ safeTop: systemInfo.statusBarHeight || 0 })
+  },
+
+  async onOnlineTap(e: any) {
+    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    if (typeof index !== "number") return
+    const item = this.data.list[index] as AnalyseQuote | undefined
+    if (!item) return
+    const computeData = item.quote.computeData || {}
+    const expiresDays = typeof computeData.expiresDays === "number" ? computeData.expiresDays : 7
+    const shareDate = await onlineShareQuote(item.quoteId, expiresDays)
+    const nextList = this.data.list.slice()
+    const nextQuote: QuoteDetail = {
+      ...item.quote,
+      shareDate,
+    }
+    nextList[index] = {
+      ...item,
+      quote: nextQuote,
+    }
+    this.setData({ list: nextList })
   },
 
   onOfflineTap(e: any) {
