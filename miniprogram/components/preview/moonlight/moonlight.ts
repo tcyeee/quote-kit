@@ -1,8 +1,5 @@
 Component({
   properties: {
-    quoteDetail: {
-      type: Object,
-      value: {} as QuoteDetail,
-    },
+    quoteDetail: { type: Object, value: {} as QuoteDetail },
   },
 })
