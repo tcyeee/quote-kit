@@ -2,7 +2,9 @@
     "cSpell.words": [
         "Analyse",
         "bindblur",
+        "binddelete",
         "bindinput",
+        "bindoffline",
         "bindtap",
         "bindtouchend",
         "bindtouchstart",

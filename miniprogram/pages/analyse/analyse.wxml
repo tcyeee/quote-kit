@@ -3,10 +3,13 @@
   <view class="analyse-header-bar">
     <span class="icon--return icon-size-70 analyse-back-button" bindtap="onBackTap" />
   </view>
-  <view class="analyse-cards">
-    <view class="analyse-card">
-      <view class="analyse-card-label">报价单数量</view>
-      <view class="analyse-card-value">{{list.length}}</view>
+  <view class="analyse-section">
+    <view class="analyse-section-title">概览</view>
+    <view class="analyse-cards">
+      <view class="analyse-card">
+        <view class="analyse-card-label">报价单数量</view>
+        <view class="analyse-card-value">{{list.length}}</view>
+      </view>
     </view>
   </view>
   <view class="analyse-section">
