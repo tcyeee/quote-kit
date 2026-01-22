@@ -3,6 +3,17 @@
   margin-bottom: 12rpx;
 }
 
+.config-schema-divider {
+  margin: 24rpx 0 20rpx;
+  border-top: 2rpx dashed #e0d7ce;
+}
+
+.config-schema-desc {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
 .config-schema-section + .config-schema-section {
   margin-top: 24rpx;
   padding-top: 20rpx;
