@@ -13,7 +13,7 @@
         </view>
       </view>
     </view>
-    <view class="service-category-content {{categoryCollapseStatus[categoryIndex] ? 'service-category-content--collapsed' : 'service-category-content--expanded'}} pl-lg pr-lg pb-lg">
+    <view class="service-category-content pl-lg pr-lg pb-lg">
       <view class="service-field">
         <view class="service-field-label">服务组标题</view>
         <input class="config-input" placeholder="服务组标题" value="{{category.name}}" data-category-index="{{categoryIndex}}" bindblur="onCategoryNameBlur" />
