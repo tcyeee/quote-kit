@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2rpx solid transparent;
+  border: 5rpx solid transparent;
   transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out;
   box-sizing: border-box;
 }
@@ -64,7 +64,6 @@
 
 .theme-option.active {
   border-color: #c0a28a;
-  border-width: 5rpx;
 }
 
 .config-schema-header {
