@@ -25,13 +25,6 @@ Component({
       this.triggerEvent("update", partial)
     },
 
-    onBusinessDiscountBlur(e: any) {
-      const value = e.detail.value
-      const amount = Number(value)
-      const businessDiscountAmount = Number.isNaN(amount) ? 0 : amount
-      this.updateQuoteDetail({ businessDiscountAmount })
-    },
-
     onPayNodesChange(e: any) {
       const PayNodes = e.detail.payNodes as QuotePayNode[]
       this.updateQuoteDetail({ PayNodes })

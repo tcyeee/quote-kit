@@ -25,10 +25,16 @@ Component({
       this.triggerEvent("update", partial)
     },
 
+    onBusinessDiscountBlur(e: any) {
+      const value = e.detail.value
+      const amount = Number(value)
+      const businessDiscountAmount = Number.isNaN(amount) ? 0 : amount
+      this.updateQuoteDetail({ businessDiscountAmount })
+    },
+
     onServiceTermsBlur(e: any) {
       const serviceTerms = e.detail.value as string
       this.updateQuoteDetail({ serviceTerms })
     },
   },
 })
-

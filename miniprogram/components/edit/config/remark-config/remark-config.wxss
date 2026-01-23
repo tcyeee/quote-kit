@@ -3,6 +3,12 @@
   margin-bottom: 12rpx;
 }
 
+.config-schema-desc {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
 .config-schema-section + .config-schema-section {
   margin-top: 24rpx;
   padding-top: 20rpx;
@@ -22,6 +28,15 @@
   gap: 12rpx;
 }
 
+.config-schema-pill {
+  padding: 12rpx 16rpx;
+  border-radius: 14rpx;
+  background-color: #f8f4ef;
+  border: 2rpx solid #d6cdc4;
+  font-size: 22rpx;
+  color: #8b8680;
+}
+
 .config-textarea {
   width: 100%;
   min-height: 140rpx;
@@ -33,4 +48,3 @@
   font-size: 24rpx;
   color: gray;
 }
-
