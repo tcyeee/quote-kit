@@ -8,7 +8,11 @@
     <sky-preview id="quotePreview" wx:if="{{currentTheme === 'sky'}}" quote-detail="{{quoteDetail}}" parent-view-mode="preview" />
   </scroll-view>
   <view class="bottom-dialog-mask {{bottomDialogExpanded ? 'visible' : 'hidden'}}" bindtap="toggleBottomDialog" catchtouchmove="onBottomDialogMaskTouchMove"></view>
-  <view class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}" style="height: {{options.bottomDialogExpandedHeight}}vh; transform: translateY({{bottomDialogExpanded ? 0 : (options.bottomDialogExpandedHeight - options.bottomDialogCollapsedHeight)}}vh);" catchtouchmove="onBottomDialogMaskTouchMove">
+  <view
+    class="bottom-dialog {{bottomDialogExpanded ? 'expanded' : 'collapsed'}}"
+    style="height: {{options.bottomDialogExpandedHeight}}vh; transform: {{bottomDialogExpanded ? 'none' : ('translateY(' + (options.bottomDialogExpandedHeight - options.bottomDialogCollapsedHeight) + 'vh)')}};"
+    catchtouchmove="onBottomDialogMaskTouchMove"
+  >
     <view class="bottom-dialog-header" bindtap="toggleBottomDialog" bindtouchstart="onBottomDialogHeaderTouchStart" bindtouchend="onBottomDialogHeaderTouchEnd">
       <view class="bottom-dialog-handle"></view>
     </view>

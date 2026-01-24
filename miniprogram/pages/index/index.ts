@@ -74,9 +74,11 @@ Page({
   async onShareAppMessage() {
     var shareId = await setShareQuote()
     console.log("quote-kit: 报价单分享完成,ID:" + shareId)
+    const title = app.globalData.quoteDetail.projectName || "报价单"
     const content: WechatMiniprogram.Page.ICustomShareContent = {
-      title: "报价单",
+      title,
       path: "/pages/view/view?id=" + shareId + "&entry=share",
+      imageUrl: "/assets/share.png",
     }
     return content
   },
