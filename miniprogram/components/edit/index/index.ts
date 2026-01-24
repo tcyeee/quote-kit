@@ -49,6 +49,12 @@ Component({
       this.quoteDetailUpdate()
     },
 
+    onRemarkConfigUpdate(e: any) {
+      const detail = (e && e.detail) || {}
+      this.updateQuoteDetail(detail as Partial<QuoteDetail>)
+      this.quoteDetailUpdate()
+    },
+
     // 合并并更新 quoteDetail 的部分字段
     updateQuoteDetail(partial: Partial<QuoteDetail>) {
       this.setData({
