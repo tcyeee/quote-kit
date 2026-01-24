@@ -1,19 +1,22 @@
 <view class="bottom-dialog-body">
   <config-tabs bind:change="onConfigTabChange" />
-  <scroll-view class="bottom-dialog-scroll" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <view hidden="{{currentTab !== 'basic'}}">
-      <basic-config bind:update="onBasicConfigUpdate" />
-    </view>
-    <view hidden="{{currentTab !== 'service'}}">
-      <service-config bind:update="onServiceConfigUpdate" />
-    </view>
-    <view hidden="{{currentTab !== 'payment'}}">
-      <payment-config bind:update="onPaymentConfigUpdate" />
-    </view>
-    <view hidden="{{currentTab !== 'remark'}}">
-      <remark-config bind:update="onRemarkConfigUpdate" />
-    </view>
-  </scroll-view>
+  <view class="bottom-dialog-scroll-wrapper">
+    <scroll-view class="bottom-dialog-scroll {{bottomDialogExpanded ? '' : 'disabled'}}" scroll-y="true" enhanced="{{true}}" show-scrollbar="{{false}}">
+      <view hidden="{{currentTab !== 'basic'}}">
+        <basic-config bind:update="onBasicConfigUpdate" />
+      </view>
+      <view hidden="{{currentTab !== 'service'}}">
+        <service-config bind:update="onServiceConfigUpdate" />
+      </view>
+      <view hidden="{{currentTab !== 'payment'}}">
+        <payment-config bind:update="onPaymentConfigUpdate" />
+      </view>
+      <view hidden="{{currentTab !== 'remark'}}">
+        <remark-config bind:update="onRemarkConfigUpdate" />
+      </view>
+    </scroll-view>
+    <view wx:if="{{!bottomDialogExpanded}}" class="inner-bottom-dialog-mask" catchtap="onMaskTap" catchtouchmove="onMaskTap"></view>
+  </view>
   <view class="action-bar">
     <button class="action-btn secondary" bindtap="onAnalyseTap">统计面板</button>
     <button class="action-btn primary" bindtap="toggleConfirmDialog">发送报价单</button>

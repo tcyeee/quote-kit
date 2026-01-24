@@ -6,9 +6,23 @@
   box-sizing: border-box;
 }
 
-.bottom-dialog-scroll {
+.bottom-dialog-scroll-wrapper {
+  position: relative;
   flex: 1;
   min-height: 0;
+}
+
+.bottom-dialog-scroll {
+  height: 100%;
+}
+
+.bottom-dialog-scroll.disabled {
+  pointer-events: none;
+}
+
+.inner-bottom-dialog-mask {
+  position: absolute;
+  inset: 0;
 }
 
 .action-bar {

@@ -4,6 +4,12 @@ Component({
   options: {
     styleIsolation: 'apply-shared'
   },
+  properties: {
+    bottomDialogExpanded: {
+      type: Boolean,
+      value: false,
+    },
+  },
   data: {
     quoteDetail: {} as QuoteDetail,
     currentTab: 'basic',
@@ -63,6 +69,10 @@ Component({
           ...partial,
         },
       })
+    },
+
+    onMaskTap() {
+      this.triggerEvent("toggleBottomDialog")
     },
 
     // 打开确认分享弹窗
