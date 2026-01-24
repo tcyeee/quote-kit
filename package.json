@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.17.0"
+    "@cloudbase/node-sdk": "^3.17.0",
+    "wxml-to-canvas": "^1.1.1"
   }
 }

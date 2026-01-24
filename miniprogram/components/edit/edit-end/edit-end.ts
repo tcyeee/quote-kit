@@ -80,6 +80,10 @@ Component({
       this.updateQuoteDetailAndState(nextQuoteDetail, days)
     },
 
+    onSaveImage() {
+      this.triggerEvent("saveimage")
+    },
+
 
     // 切换“发送前确认”对话框的显示状态
     toggleConfirmDialog() {

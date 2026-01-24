@@ -71,6 +71,13 @@ Page({
     })
   },
 
+  onSaveImage() {
+    const preview = this.selectComponent("#quotePreview") as any
+    if (preview && typeof preview.onSaveImage === "function") {
+      preview.onSaveImage()
+    }
+  },
+
   async onShareAppMessage() {
     var shareId = await setShareQuote()
     console.log("quote-kit: 报价单分享完成,ID:" + shareId)

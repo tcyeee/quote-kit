@@ -5,6 +5,14 @@ Component({
     quoteDetail: { type: Object, value: {} as QuoteDetail },
     parentViewMode: { type: String, value: 'real' },
   },
+  methods: {
+    onSaveImage() {
+      wx.showToast({
+        title: 'hello-neon',
+        icon: 'none',
+      })
+    },
+  },
   observers: {
     quoteDetail(quoteDetail: QuoteDetail) {
       if (!quoteDetail) return

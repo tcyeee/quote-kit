@@ -14,6 +14,14 @@ Component({
     finalTotalAmountDisplay: '',
     payNodesWithAmount: [] as Array<QuotePayNode & { amount: number }>,
   },
+  methods: {
+    onSaveImage() {
+      wx.showToast({
+        title: 'hello-sky',
+        icon: 'none',
+      })
+    },
+  },
   observers: {
     quoteDetail(quoteDetail: QuoteDetail) {
       if (!quoteDetail) return
