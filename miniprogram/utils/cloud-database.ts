@@ -116,7 +116,7 @@ export async function setShareQuote(): Promise<string> {
 
 export function appDefaultQuote(): QuoteDetail {
     return {
-        theme: "amber",
+        theme: "sky",
         projectName: "某公司UI设计项目",
         businessDiscountAmount: 500,
         computeData: {
