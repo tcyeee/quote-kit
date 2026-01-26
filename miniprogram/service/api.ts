@@ -1,16 +1,5 @@
-const BASE_URL = "http://127.0.0.1:3000"
+import { get, post } from './http'
 
 export const pingBackend = () => get("/ping")
-
-function get<T>(url: string): Promise<T> {
-    return new Promise((resolve, reject) => {
-        wx.request({
-            url: BASE_URL + url,
-            method: 'GET',
-            success: (result) => resolve(result.data as T),
-            fail: reject,
-        })
-    })
-}
-
+export const login = (code: string) => post<LoginResponse>("/quote-kit/login", { code })
 

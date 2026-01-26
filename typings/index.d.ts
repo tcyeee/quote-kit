@@ -12,6 +12,8 @@ interface IAppOption {
     userInfo?: WechatMiniprogram.UserInfo,
     // 当前展示的报价详情
     quoteDetail: QuoteDetail,
+    // 登录状态
+    loginStatus: 'NONE' | 'LOADING' | 'SUCCESS' | 'FAILED',
   }
   // 获取用户信息成功后的回调
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
