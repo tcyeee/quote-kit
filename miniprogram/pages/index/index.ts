@@ -1,3 +1,4 @@
+import { createQuoteDetail } from "../../service/api"
 import { setShareQuote } from "../../utils/cloud-database"
 
 let bottomDialogHeaderTouchStartY = 0
@@ -79,12 +80,14 @@ Page({
   },
 
   async onShareAppMessage() {
-    var shareId = await setShareQuote()
-    console.log("quote-kit: 报价单分享完成,ID:" + shareId)
+    const app = getApp<IAppOption>()
+    var data = app.globalData.quoteDetail
+    var quoteDetail = await createQuoteDetail(data)
+    console.log("quote-kit: 报价单分享完成,ID:" + quoteDetail.id)
     const title = app.globalData.quoteDetail.projectName || "报价单"
     const content: WechatMiniprogram.Page.ICustomShareContent = {
       title,
-      path: "/pages/view/view?id=" + shareId + "&entry=share",
+      path: "/pages/view/view?id=" + quoteDetail.id + "&entry=share",
       imageUrl: "/assets/share.png",
     }
     return content

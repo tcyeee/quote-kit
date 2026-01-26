@@ -5,6 +5,9 @@ export function get<T>(url: string): Promise<T> {
         wx.request({
             url: BASE_URL + url,
             method: 'GET',
+            header: {
+                'Authorization': 'Bearer ' + getApp<IAppOption>().globalData.token || '',
+            },
             success: (result) => resolve(result.data as T),
             fail: reject,
         })
@@ -16,6 +19,9 @@ export function post<T>(url: string, data: any): Promise<T> {
         wx.request({
             url: BASE_URL + url,
             method: 'POST',
+            header: {
+                'Authorization': 'Bearer ' + getApp<IAppOption>().globalData.token || '',
+            },
             data,
             success: (result) => resolve(result.data as T),
             fail: reject,

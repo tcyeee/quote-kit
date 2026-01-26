@@ -4,6 +4,7 @@ import { loginAndAuth } from './service/auth'
 App<IAppOption>({
   globalData: {
     uid: undefined,
+    token: undefined,
     quoteDetail: appDefaultQuote(),
     loginStatus: 'NONE',
   },

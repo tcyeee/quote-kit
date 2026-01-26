@@ -12,20 +12,6 @@ class DB_LIST {
     static readonly UserShareQuote = "UserShareQuote"
 }
 
-/* 用户正在编辑的报价单数据 GET */
-export async function getDefaultQuoteDetail(): Promise<QuoteDetail> {
-    const db = getDbInstance()
-    const info = await db.collection(DB_LIST.UserEditQuote).get()
-    return info.data[0] as QuoteDetail || appDefaultQuote()
-}
-
-/* 用户正在编辑的报价单数据 SET */
-export async function setDefaultQuoteDetail() {
-    const db = getDbInstance()
-    const info = appDefaultQuote()
-    db.collection(DB_LIST.UserEditQuote).add({ data: info })
-}
-
 /* 分享信息查看日志 GET（批量，根据多个 quoteId 一次查询） */
 export async function getShareQuoteLog(quoteIdList: string[]): Promise<QuoteViewLog[]> {
     const db = getDbInstance()

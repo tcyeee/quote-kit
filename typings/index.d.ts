@@ -8,6 +8,8 @@ interface IAppOption {
   globalData: {
     // 全局用户 ID
     uid?: string,
+    // 全局 token
+    token?: string,
     // 微信用户信息，可选
     userInfo?: WechatMiniprogram.UserInfo,
     // 当前展示的报价详情
