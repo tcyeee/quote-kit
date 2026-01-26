@@ -94,30 +94,12 @@ export async function getShareQuoteById(quoteId: string): Promise<QuoteDetail> {
     return res.data as QuoteDetail
 }
 
-/* 分享信息 SET */
-export async function setShareQuote(): Promise<string> {
-    const db = getDbInstance()
-    const app = getApp<IAppOption>()
-    var data = app.globalData.quoteDetail
-    const base = new Date()
-    const expiresAt = calculateExpiresAt(base, data.computeData?.expiresDays || 7)
-    data.expiresAt = expiresAt
-    data.deleteFlag = false
-    data.removeFlag = false
-        ; (data as any).shareDate = {
-            createdAt: base,
-            expiresAt,
-        }
-    return db.collection("UserShareQuote").add({ data: data }).then((res) => {
-        return res._id as string
-    })
-}
-
 export function appDefaultQuote(): QuoteDetail {
     return {
         theme: "sky",
         projectName: "某公司UI设计项目",
         businessDiscountAmount: 500,
+        uid: "unknown",
         deleteFlag: false,
         removeFlag: false,
         computeData: {
