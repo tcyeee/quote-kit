@@ -16,16 +16,15 @@ Component({
       calculateOverallDeliveryPeriodDays(quoteDetail)
       const nextQuoteDetail: QuoteDetail = {
         ...quoteDetail,
+        expiresAt: new Date(Date.now() + this.data.linkExpireDays * 24 * 60 * 60 * 1000),
         computeData: {
           ...quoteDetail.computeData,
           totalAmount,
         },
       }
       const linkExpireDays = this.getInitialLinkExpireDays(nextQuoteDetail)
-      this.setData({
-        quoteDetail: nextQuoteDetail,
-        linkExpireDays,
-      })
+      this.setData({ quoteDetail: nextQuoteDetail, linkExpireDays })
+      this.updateGlobalQuoteDetail(nextQuoteDetail)
     },
   },
   methods: {
@@ -44,40 +43,24 @@ Component({
       return Number.isNaN(days) ? 0 : days
     },
 
-    // 基于当前报价详情构建更新后的 computeData（只更新 expiresDays）
-    buildNextComputeData(quoteDetail: QuoteDetail, days: number): QuoteComputeData {
-      const currentComputeData = quoteDetail.computeData || ({} as QuoteComputeData)
-      return {
-        ...currentComputeData,
-        expiresDays: days,
-      }
-    },
 
-    // 构建包含最新 expiresDays 的报价详情对象
-    buildNextQuoteDetailWithExpiresDays(quoteDetail: QuoteDetail, days: number): QuoteDetail {
-      const nextComputeData = this.buildNextComputeData(quoteDetail, days)
-      return {
-        ...quoteDetail,
-        computeData: nextComputeData,
-      }
-    },
-
-    // 同步组件内部状态并更新全局报价详情
-    updateQuoteDetailAndState(nextQuoteDetail: QuoteDetail, days: number) {
-      this.setData({
-        quoteDetail: nextQuoteDetail,
-        linkExpireDays: days,
-      })
-      this.updateGlobalQuoteDetail(nextQuoteDetail)
-    },
 
     // 点击有效期选项时更新报价详情和显示状态
     onExpireDaysTap(e: any) {
       const days = this.getExpireDaysFromEvent(e)
       if (!days) return
       const quoteDetail = this.data.quoteDetail
-      const nextQuoteDetail = this.buildNextQuoteDetailWithExpiresDays(quoteDetail, days)
-      this.updateQuoteDetailAndState(nextQuoteDetail, days)
+
+      // 同步更新报价详情中的过期时间
+      quoteDetail.expiresAt = new Date(Date.now() + days * 24 * 60 * 60 * 1000)
+
+      const currentComputeData = quoteDetail.computeData || ({} as QuoteComputeData)
+      currentComputeData.expiresDays = days
+      quoteDetail.computeData = currentComputeData
+
+      this.setData({ quoteDetail, linkExpireDays: days })
+
+      this.updateGlobalQuoteDetail(quoteDetail)
     },
 
     onSaveImage() {

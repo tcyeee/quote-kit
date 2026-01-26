@@ -80,8 +80,8 @@ Page({
 
   async onShareAppMessage() {
     const app = getApp<IAppOption>()
-    var data = app.globalData.quoteDetail
-    var quoteDetail = await createQuoteDetail(data)
+    var quote = app.globalData.quoteDetail
+    var quoteDetail = await createQuoteDetail(quote)
     console.log("quote-kit: 报价单分享完成,ID:" + quoteDetail.id)
     const title = app.globalData.quoteDetail.projectName || "报价单"
     const content: WechatMiniprogram.Page.ICustomShareContent = {
