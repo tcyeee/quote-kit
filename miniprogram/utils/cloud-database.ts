@@ -99,7 +99,6 @@ export function appDefaultQuote(): QuoteDetail {
         theme: "sky",
         projectName: "某公司UI设计项目",
         businessDiscountAmount: 500,
-        uid: "unknown",
         deleteFlag: false,
         removeFlag: false,
         computeData: {
