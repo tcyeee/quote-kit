@@ -44,7 +44,10 @@ export async function setShareQuoteLog(quoteId: string) {
 export async function offlineShareQuote(quoteId: string) {
     const db = getDbInstance()
     db.collection(DB_LIST.UserShareQuote).doc(quoteId).update({
-        data: { shareDate: { isManuallyOfflined: true } }
+        data: {
+            shareDate: { isManuallyOfflined: true },
+            removeFlag: true,
+        }
     })
 }
 
@@ -52,12 +55,18 @@ export async function offlineShareQuote(quoteId: string) {
 export async function onlineShareQuote(quoteId: string, expiresDays: number) {
     const db = getDbInstance()
     const base = new Date()
+    const expiresAt = calculateExpiresAt(base, expiresDays)
     const shareDate = {
         createdAt: base,
-        expiresAt: calculateExpiresAt(base, expiresDays),
+        expiresAt,
     }
     await db.collection(DB_LIST.UserShareQuote).doc(quoteId).update({
-        data: { shareDate }
+        data: {
+            shareDate,
+            expiresAt,
+            removeFlag: false,
+            deleteFlag: false,
+        }
     })
     return shareDate
 }
@@ -90,11 +99,15 @@ export async function setShareQuote(): Promise<string> {
     const db = getDbInstance()
     const app = getApp<IAppOption>()
     var data = app.globalData.quoteDetail
-    // 添加上shareData
-    data.shareDate = {
-        createdAt: new Date(),
-        expiresAt: calculateExpiresAt(new Date(), data.computeData?.expiresDays || 7),
-    }
+    const base = new Date()
+    const expiresAt = calculateExpiresAt(base, data.computeData?.expiresDays || 7)
+    data.expiresAt = expiresAt
+    data.deleteFlag = false
+    data.removeFlag = false
+        ; (data as any).shareDate = {
+            createdAt: base,
+            expiresAt,
+        }
     return db.collection("UserShareQuote").add({ data: data }).then((res) => {
         return res._id as string
     })
@@ -105,6 +118,8 @@ export function appDefaultQuote(): QuoteDetail {
         theme: "sky",
         projectName: "某公司UI设计项目",
         businessDiscountAmount: 500,
+        deleteFlag: false,
+        removeFlag: false,
         computeData: {
             expiresDays: 7,
         },

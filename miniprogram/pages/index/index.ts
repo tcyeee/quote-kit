@@ -1,5 +1,4 @@
 import { createQuoteDetail } from "../../service/api"
-import { setShareQuote } from "../../utils/cloud-database"
 
 let bottomDialogHeaderTouchStartY = 0
 const app = getApp<IAppOption>()

@@ -14,8 +14,12 @@ interface QuoteDetail {
     theme: string,
     // 最终折扣
     businessDiscountAmount?: number,
-    /* 分享属性 */
-    shareDate?: QuoteShareInfo,
+    // 过期时间
+    expiresAt?: Date,
+    // 是否删除
+    deleteFlag: boolean,
+    // 是否下架
+    removeFlag: boolean,
     /* 计算属性 */
     computeData?: QuoteComputeData,
 }
