@@ -26,12 +26,10 @@ Page({
 
   async initData(quoteId: string) {
     const quoteDetail = await getShareQuoteById(quoteId)
-    if (!quoteDetail || !quoteDetail.shareDate) return
-    const shareStatus = calculateShareStatus(quoteDetail.shareDate)
+    if (!quoteDetail) return
+    const shareStatus = calculateShareStatus(quoteDetail.expiresAt, quoteDetail.removeFlag)
     const currentTheme = quoteDetail.theme || "amber"
-
     calculateItemTotalAmountAndDeliveryPeriodDays(quoteDetail.pricingItems)
-
     this.setData({ quoteDetail, shareStatus, currentTheme })
   }
 })

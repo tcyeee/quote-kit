@@ -31,19 +31,11 @@ export function calculateTotalAmount(quoteDetail: QuoteDetail) {
 }
 
 // 计算分享状态
-export function calculateShareStatus(shareDate: QuoteShareInfo): ShareStatus {
+export function calculateShareStatus(expiresAt?: Date, isManuallyOfflined?: boolean): ShareStatus {
     let shareStatus: ShareStatus = "normal"
-
-    if (shareDate?.isManuallyOfflined) {
-        shareStatus = "offlined"
-    } else if (shareDate?.expiresAt) {
-        const expiresAt =
-            shareDate.expiresAt instanceof Date
-                ? shareDate.expiresAt
-                : new Date(shareDate.expiresAt)
-        if (expiresAt.getTime() < Date.now()) {
-            shareStatus = "expired"
-        }
+    if (isManuallyOfflined) { shareStatus = "offlined" }
+    else if (expiresAt) {
+        if (expiresAt.getTime() < Date.now()) shareStatus = "expired"
     }
     return shareStatus
 }
