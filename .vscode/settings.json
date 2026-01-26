@@ -13,10 +13,14 @@
         "catchtouchmove",
         "catchtouchstart",
         "cloudbase",
+        "cloudfunction",
         "elif",
         "getopenid",
+        "lazyload",
         "Miniprogram",
         "Offlined",
+        "projectname",
+        "Wxml",
         "xkcfr"
     ],
     "chatgpt.commentCodeLensEnabled": false
