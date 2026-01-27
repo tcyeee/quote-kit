@@ -115,3 +115,24 @@
   border: 2rpx solid #c0a28a;
   color: #fdfaf7;
 }
+
+.edit-end-success-dialog {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+}
+
+.edit-end-success-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.edit-end-success-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #6b665f;
+  margin-top: 50rpx;
+}

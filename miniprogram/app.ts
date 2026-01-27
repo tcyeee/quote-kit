@@ -6,19 +6,20 @@ App<IAppOption>({
     uid: undefined,
     token: undefined,
     loginStatus: 'NONE',
-    quoteDetail: appDefaultQuote(),
+    quoteDetail: appDefaultQuote() as QuoteDetail,
     quoteAnalyze: {} as QuoteAnalyze,
   },
   async onLaunch() {
     // 登录
     await loginAndAuth(this as IAppOption)
     // 获取统计信息
-    this.globalData.quoteAnalyze = await getQuoteAction()
+    this.globalData.quoteAnalyze = await getQuoteAction() as QuoteAnalyze
   },
 })
 
 function appDefaultQuote(): QuoteDetail {
   return {
+    id: undefined,
     theme: "sky",
     projectName: "某公司UI设计项目",
     businessDiscountAmount: 500,

@@ -8,7 +8,7 @@ Component({
   data: {
     quoteDetail: {} as QuoteDetail,
     linkExpireDays: 7,
-    success: false,
+    sendEndFlag: false,
   },
   lifetimes: {
     // 组件挂载时初始化报价详情、总价和链接有效期
@@ -64,21 +64,26 @@ Component({
     },
 
     onSaveImage() {
-      this.setData({ success: true })
+      this.setData({ sendEndFlag: true })
       this.triggerEvent("saveimage")
     },
 
     onSaveExcel() {
-      this.setData({ success: true })
+      this.setData({ sendEndFlag: true })
       this.triggerEvent("saveexcel")
     },
 
     onShare() {
-      this.setData({ success: true })
+      this.setData({ sendEndFlag: true })
     },
 
     // 切换“发送前确认”对话框的显示状态
     toggleConfirmDialog() {
+      // 清除发送结束标志
+      this.setData({ sendEndFlag: false })
+      // 删除全部信息中的ID
+      const app = getApp<IAppOption>()
+      app.globalData.quoteDetail.id = undefined
       this.triggerEvent("toggleConfirmDialog", false)
     },
 

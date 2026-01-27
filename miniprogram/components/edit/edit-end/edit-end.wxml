@@ -1,5 +1,5 @@
 <view class="edit-end-root">
-    <view class="edit-end-main" wx:if="{{!success}}">
+    <view class="edit-end-main" wx:if="{{!sendEndFlag}}">
         <view class="edit-end-title">发送前请确认报价单信息</view>
         <view class="edit-end-tip">发送完成后，系统将持续追踪报价单查看情况</view>
         <view class="edit-end-summary">
@@ -36,14 +36,20 @@
         </view>
     </view>
     <!-- TODO 创建一个报价单生成成功的提示窗口 -->
-    <view class="edit-end-success-dialog" wx:if="{{success}}">
-        <view class="edit-end-success-icon">✅</view>
+    <view class="edit-end-success-dialog" wx:if="{{sendEndFlag}}">
+        <view class="icon--success icon-size-50" style="color: #00C853;"></view>
         <view class="edit-end-success-title">报价单生成成功</view>
     </view>
     <view class="edit-end-actions">
-        <button class="action-btn primary" open-type="share" bindtap="onShare">发送页面</button>
-        <button class="action-btn secondary" bindtap="onSaveImage">保存为图片</button>
-        <button class="action-btn secondary" bindtap="onSaveExcel">保存为Excel</button>
+        <button class="action-btn primary" open-type="share" bindtap="onShare">
+            {{sendEndFlag ? '重新发送' : '发送页面'}}
+        </button>
+        <button class="action-btn secondary" bindtap="onSaveImage">
+            {{sendEndFlag ? '重新保存为图片' : '保存为图片'}}
+        </button>
+        <button class="action-btn secondary" bindtap="onSaveExcel">
+            {{sendEndFlag ? '重新保存为Excel' : '保存为Excel'}}
+        </button>
         <button class="action-btn secondary" bindtap="toggleConfirmDialog">返回</button>
     </view>
 </view>

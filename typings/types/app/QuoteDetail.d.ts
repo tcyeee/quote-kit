@@ -1,4 +1,5 @@
 interface QuoteDetail {
+    id?: string,
     uid?: string,
     // 项目名称
     projectName: string,

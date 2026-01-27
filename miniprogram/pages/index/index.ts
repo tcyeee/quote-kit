@@ -186,8 +186,17 @@ Page({
 
   async saveQuote(): Promise<QuoteDetailWithId> {
     const app = getApp<IAppOption>()
+
+    // 如果已经有ID,则直接返回 
+    if (app.globalData.quoteDetail.id) {
+      return app.globalData.quoteDetail as QuoteDetailWithId
+    }
+
     var quote = app.globalData.quoteDetail
     quote.uid = app.globalData.uid
-    return await createQuoteDetail(quote)
+    var quoteDetailWithId = await createQuoteDetail(quote)
+    // 保存到全局应用数据
+    app.globalData.quoteDetail = quoteDetailWithId
+    return quoteDetailWithId
   }
 })
