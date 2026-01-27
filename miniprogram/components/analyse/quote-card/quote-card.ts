@@ -19,6 +19,11 @@ Component({
       this.dataInit()
     },
   },
+  observers: {
+    'item': function (item) {
+      this.dataInit()
+    }
+  },
   methods: {
     dataInit() {
       // 过期时间
