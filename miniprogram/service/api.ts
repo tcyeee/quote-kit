@@ -11,8 +11,8 @@ export const delQuoteDetail = (quoteId: string) => del<QuoteDetailWithId>(`/quot
 export const updateQuoteDetail = (quoteId: string, quoteDetail: QuoteDetail) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}`, quoteDetail)
 export const offlineQuoteDetail = (quoteId: string) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}/remove`)
 export const restoreQuoteDetail = (quoteId: string) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}/restore`)
-export const saveAsPic = (quoteId: string) => get<string>(`/quote-kit/quotes/${quoteId}/export-image`)
-export const saveAsExcel = (quoteId: string) => get<string>(`/quote-kit/quotes/${quoteId}/export-excel`)
+export const saveAsPic = (quoteId: string) => get<DownLoadImgDto>(`/quote-kit/quotes/${quoteId}/export-image`)
+export const saveAsExcel = (quoteId: string) => get<DownLoadExcelDto>(`/quote-kit/quotes/${quoteId}/export-excel`)
 
 // 阅读记录
 export const addViewLog = (viewLog: QuoteViewLog) => post<QuoteViewLog>("/quote-kit/view-logs", viewLog)
