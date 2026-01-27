@@ -73,8 +73,7 @@ Page({
 
   async onSaveImage() {
     try {
-      const quote = app.globalData.quoteDetail
-      const quoteDetail = await createQuoteDetail(quote)
+      var quoteDetail = await this.saveQuote()
       const downloadUrl = await saveAsPic(quoteDetail.id)
 
       // 下载图片文件
@@ -125,8 +124,7 @@ Page({
 
   async onSaveExcel() {
     try {
-      const quote = app.globalData.quoteDetail
-      const quoteDetail = await createQuoteDetail(quote)
+      var quoteDetail = await this.saveQuote()
       const downloadUrl = await saveAsExcel(quoteDetail.id)
 
       // 下载Excel文件
@@ -166,9 +164,7 @@ Page({
   },
 
   async onShareAppMessage() {
-    const app = getApp<IAppOption>()
-    var quote = app.globalData.quoteDetail
-    var quoteDetail = await createQuoteDetail(quote)
+    var quoteDetail = await this.saveQuote()
     console.log("quote-kit: 报价单分享完成,ID:" + quoteDetail.id)
     const title = app.globalData.quoteDetail.projectName || "报价单"
     const content: WechatMiniprogram.Page.ICustomShareContent = {
@@ -178,4 +174,11 @@ Page({
     }
     return content
   },
+
+  async saveQuote(): Promise<QuoteDetailWithId> {
+    const app = getApp<IAppOption>()
+    var quote = app.globalData.quoteDetail
+    quote.uid = app.globalData.uid
+    return await createQuoteDetail(quote)
+  }
 })
