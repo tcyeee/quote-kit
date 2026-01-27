@@ -19,8 +19,6 @@ declare interface AnalyseQuote {
 Page({
   data: {
     safeTop: 0,
-    // 废弃字段,禁止调用
-    list: [] as Array<AnalyseQuote>,
     loading: true,
     quoteAnalyze: {} as QuoteAnalyze,
   },
@@ -41,71 +39,52 @@ Page({
   },
 
   async onOnlineTap(e: any) {
-    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
-    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
-    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
-    if (typeof index !== "number") return
-    const item = this.data.list[index] as AnalyseQuote | undefined
-    if (!item) return
-    const computeData = item.quote.computeData || {}
-    const expiresDays = typeof computeData.expiresDays === "number" ? computeData.expiresDays : 7
-    const shareDate = await onlineShareQuote(item.quoteId, expiresDays)
-    const nextList = this.data.list.slice()
-    const nextQuote: QuoteDetail = {
-      ...item.quote,
-      expiresAt: shareDate.expiresAt,
-      deleteFlag: false,
-      removeFlag: false,
-    } as any
-    nextList[index] = {
-      ...item,
-      quote: nextQuote,
-    }
-    this.setData({ list: nextList })
+    // const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    // const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    // const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    // if (typeof index !== "number") return
+    // const item = this.data.list[index] as AnalyseQuote | undefined
+    // if (!item) return
+    // const computeData = item.quote.computeData || {}
+    // const expiresDays = typeof computeData.expiresDays === "number" ? computeData.expiresDays : 7
+    // const shareDate = await onlineShareQuote(item.quoteId, expiresDays)
+    // const nextList = this.data.list.slice()
+    // const nextQuote: QuoteDetail = {
+    //   ...item.quote,
+    //   expiresAt: shareDate.expiresAt,
+    //   deleteFlag: false,
+    //   removeFlag: false,
+    // } as any
+    // nextList[index] = {
+    //   ...item,
+    //   quote: nextQuote,
+    // }
+    // this.setData({ list: nextList })
   },
 
   onOfflineTap(e: any) {
-    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
-    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
-    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
-    if (typeof index !== "number") return
-    const item = this.data.list[index] as AnalyseQuote | undefined
-    if (!item) return
-    // 修改线上数据
-    offlineShareQuote(item.quoteId)
-    // 修改本地数据并刷新视图
-    const nextList = this.data.list.slice()
-    const nextQuote: QuoteDetail = {
-      ...(item.quote as any),
-      removeFlag: true,
-    } as any
-    nextList[index] = {
-      ...item,
-      quote: nextQuote,
-    }
-    this.setData({ list: nextList })
   },
 
   onDeleteTap(e: any) {
-    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
-    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
-    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
-    if (typeof index !== "number") return
-    const item = this.data.list[index] as AnalyseQuote | undefined
-    if (!item) return
-    wx.showModal({
-      title: "删除确认",
-      content: "确定要删除该报价单吗？此操作不可恢复。",
-      success: (res) => {
-        if (!res.confirm) return
-        // 修改本地数据
-        const nextList = this.data.list.slice()
-        nextList.splice(index, 1)
-        this.setData({ list: nextList })
-        // 修改线上数据
-        delShareQuote(item.quoteId)
-      }
-    })
+    // const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    // const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    // const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    // if (typeof index !== "number") return
+    // const item = this.data.list[index] as AnalyseQuote | undefined
+    // if (!item) return
+    // wx.showModal({
+    //   title: "删除确认",
+    //   content: "确定要删除该报价单吗？此操作不可恢复。",
+    //   success: (res) => {
+    //     if (!res.confirm) return
+    //     // 修改本地数据
+    //     const nextList = this.data.list.slice()
+    //     nextList.splice(index, 1)
+    //     this.setData({ list: nextList })
+    //     // 修改线上数据
+    //     delShareQuote(item.quoteId)
+    //   }
+    // })
   },
 
   async queryShareList() {
@@ -192,43 +171,4 @@ function buildAnalyseQuoteItem(
     viewLog,
     viewLogTop10,
   }
-}
-
-function buildAnalyseListFromAnalyze(quoteAnalyze: QuoteAnalyze | undefined): AnalyseQuote[] {
-  if (!quoteAnalyze || !Array.isArray(quoteAnalyze.quotes)) return []
-  return quoteAnalyze.quotes.map(item => {
-    const quoteId = (item as any).id || (item as any).quoteId || ""
-    const quote = buildQuoteWithTotalAmount(item)
-    const shareDate = (item as any).shareDate || {
-      createdAt: undefined,
-      expiresAt: quote.expiresAt,
-      isManuallyOfflined: quote.removeFlag,
-    }
-    const shareTimeText = formatDateTime(shareDate.createdAt)
-    const expireTimeText = formatDateTime(shareDate.expiresAt)
-    const viewLog = ((item as any).viewLogs || []) as QuoteViewLog[]
-    const viewCount = typeof (item as any).viewCount === "number" ? (item as any).viewCount : viewLog.length
-    const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
-    const viewLogTop10 = viewLog.slice(0, 10).map(log => {
-      const viewTimeText = formatDateTime((log as any).viewTime)
-      const viewerDevice = (log as any).viewerDevice || ""
-      const deviceText = viewerDevice ? `${viewerDevice}设备` : "未知设备"
-      const displayText = `${viewTimeText} 一位${deviceText}用户查看了报价单`
-      return {
-        ...log,
-        viewTimeText,
-        displayText,
-      }
-    })
-    return {
-      quoteId,
-      quote,
-      shareTimeText,
-      expireTimeText,
-      viewCount,
-      viewCountDisplay,
-      viewLog,
-      viewLogTop10,
-    }
-  })
 }

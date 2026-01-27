@@ -1,3 +1,5 @@
+import { formatDateTime } from "../../../utils/base-utils"
+
 Component({
   options: {
     styleIsolation: 'apply-shared',
@@ -5,7 +7,7 @@ Component({
   properties: {
     item: {
       type: Object,
-      value: {},
+      value: {} as QuoteAnalyzeItem,
     },
     index: {
       type: Number,
@@ -56,5 +58,9 @@ Component({
         showMoreMenu: false,
       })
     },
+
+    formatDate(expireTime: number) {
+      return formatDateTime(expireTime)
+    }
   },
 })

@@ -1,23 +1,23 @@
-<view class="quote-card {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card--offlined' : ''}} {{showMoreMenu ? 'quote-card--active' : ''}}">
+<view class="quote-card {{item.removeFlag ? 'quote-card--offlined' : ''}} {{showMoreMenu ? 'quote-card--active' : ''}}">
   <view class="quote-card__body">
     <!-- Title Section -->
     <view class="quote-card__title-section">
-      <view class="quote-card__title">{{item.quote.projectName}}</view>
-      <view class="quote-card__status-badge {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card__status-badge--offlined' : 'quote-card__status-badge--online'}}">
-        {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? '已下架' : '展示中'}}
+      <view class="quote-card__title">{{item.projectName}}</view>
+      <view class="quote-card__status-badge {{item.removeFlag ? 'quote-card__status-badge--offlined' : 'quote-card__status-badge--online'}}">
+        {{item.removeFlag ? '已下架' : '展示中'}}
       </view>
     </view>
     <!-- Header: Status and Actions -->
     <view class="quote-card__header">
       <view class="quote-card__stat-compact">
         <view class="quote-card__stat-label">阅读量</view>
-        <view class="quote-card__stat-value">{{item.viewCountDisplay}}</view>
+        <view class="quote-card__stat-value">{{item.viewCount}}</view>
       </view>
       <view class="quote-card__actions">
-        <button class="quote-card__action-btn {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card__action-btn--disabled' : ''}}" bindtap="onPreviewTap" disabled="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}">
+        <button class="quote-card__action-btn {{item.removeFlag ? 'quote-card__action-btn--disabled' : ''}}" bindtap="onPreviewTap" disabled="{{item.removeFlag}}">
           <span class="icon--eye icon-size-18"></span>
         </button>
-        <button class="quote-card__action-btn {{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined ? 'quote-card__action-btn--disabled' : ''}}" open-type="share" data-quote-id="{{item.quoteId}}" disabled="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}">
+        <button class="quote-card__action-btn {{item.removeFlag ? 'quote-card__action-btn--disabled' : ''}}" open-type="share" data-quote-id="{{item.id}}" disabled="{{item.removeFlag}}">
           <span class="icon--share icon-size-18"></span>
         </button>
         <view class="quote-card__more-wrapper">
@@ -25,11 +25,11 @@
             <span class="icon--more icon-size-18"></span>
           </button>
           <view wx:if="{{showMoreMenu}}" class="quote-card__menu">
-            <view wx:if="{{!(item.quote.shareDate && item.quote.shareDate.isManuallyOfflined)}}" class="quote-card__menu-item" bindtap="onOfflineTap">
+            <view wx:if="{{!item.removeFlag}}" class="quote-card__menu-item" bindtap="onOfflineTap">
               <text class="icon--eye-off icon-size-18"></text>
               <text>下架报价</text>
             </view>
-            <view wx:if="{{item.quote.shareDate && item.quote.shareDate.isManuallyOfflined}}" class="quote-card__menu-item" bindtap="onOnlineTap">
+            <view wx:if="{{item.removeFlag}}" class="quote-card__menu-item" bindtap="onOnlineTap">
               <text class="icon--recycle icon-size-18"></text>
               <text>重新上架</text>
             </view>
@@ -45,7 +45,7 @@
     <view wx:if="{{showMoreMenu}}" class="quote-card__menu-backdrop" bindtap="onCloseMenu"></view>
     <!-- Footer -->
     <view class="quote-card__footer">
-      <view class="quote-card__creation-date">有效期至 {{item.expireTimeText || '—'}}</view>
+      <view class="quote-card__creation-date">有效期至 {{formatDate(item.expiresAt) || '-'}}</view>
       <button class="quote-card__detail-link" bindtap="onToggleViewLogTap">
         {{showViewLog ? '收起' : '查看阅读详情'}}
       </button>
