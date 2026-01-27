@@ -196,7 +196,7 @@ Page({
     quote.uid = app.globalData.uid
     var quoteDetailWithId = await createQuoteDetail(quote)
     // 保存到全局应用数据
-    app.globalData.quoteDetail = quoteDetailWithId
+    app.globalData.quoteDetail.id = quoteDetailWithId.id
     return quoteDetailWithId
   }
 })
