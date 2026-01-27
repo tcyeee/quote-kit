@@ -42,7 +42,7 @@
     </view>
     <view class="edit-end-actions">
         <button class="action-btn primary" open-type="share" bindtap="onShare">
-            {{sendEndFlag ? '重新发送' : '发送页面'}}
+            {{sendEndFlag ? '重新发送' : '发送到微信'}}
         </button>
         <button class="action-btn secondary" bindtap="onSaveImage">
             {{sendEndFlag ? '重新保存为图片' : '保存为图片'}}
