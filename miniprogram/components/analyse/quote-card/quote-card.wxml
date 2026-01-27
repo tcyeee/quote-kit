@@ -46,8 +46,8 @@
     <!-- Footer -->
     <view class="quote-card__footer">
       <view class="quote-card__creation-date">有效期至 {{expiresAtText}}</view>
-      <button class="quote-card__detail-link" bindtap="onToggleViewLogTap">
-        {{showViewLog ? '收起' : '查看阅读详情'}}
+      <button class="quote-card__detail-link" bindtap="onToggleViewLogTap" disabled="{{!item.viewCount}}">
+        {{!item.viewCount ? '暂无阅读详情' : (showViewLog ? '收起' : '查看阅读详情')}}
       </button>
     </view>
     <!-- View Log (Expanded) -->

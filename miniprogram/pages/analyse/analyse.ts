@@ -1,20 +1,7 @@
-import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote, onlineShareQuote } from "../../utils/cloud-database"
-import { calculateTotalAmount } from "../../utils/quote-utils"
-import { formatDateTime } from "../../utils/base-utils"
-import { delQuoteDetail, getQuoteAction, offlineQuoteDetail, updateQuoteDetail } from "../../service/api";
+import { delQuoteDetail, getQuoteAction, offlineQuoteDetail, restoreQuoteDetail, updateQuoteDetail } from "../../service/api";
 
 const app = getApp<IAppOption>()
 
-declare interface AnalyseQuote {
-  quoteId: string,     // 报价单ID
-  quote: QuoteDetail,  // 源报价数据（包含总金额等计算属性）
-  shareTimeText: string, // 分享时间文案
-  expireTimeText: string, // 截止时间文案
-  viewCount: number,   // 查看次数
-  viewCountDisplay: string, // 查看次数显示文本(最多10次,超出则显示>10)
-  viewLog: Array<QuoteViewLog>, // 查看记录
-  viewLogTop10: Array<QuoteViewLog & { viewTimeText: string; displayText: string }>,
-}
 
 Page({
   data: {
@@ -39,27 +26,19 @@ Page({
   },
 
   async onOnlineTap(e: any) {
-    // const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
-    // const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
-    // const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
-    // if (typeof index !== "number") return
-    // const item = this.data.list[index] as AnalyseQuote | undefined
-    // if (!item) return
-    // const computeData = item.quote.computeData || {}
-    // const expiresDays = typeof computeData.expiresDays === "number" ? computeData.expiresDays : 7
-    // const shareDate = await onlineShareQuote(item.quoteId, expiresDays)
-    // const nextList = this.data.list.slice()
-    // const nextQuote: QuoteDetail = {
-    //   ...item.quote,
-    //   expiresAt: shareDate.expiresAt,
-    //   deleteFlag: false,
-    //   removeFlag: false,
-    // } as any
-    // nextList[index] = {
-    //   ...item,
-    //   quote: nextQuote,
-    // }
-    // this.setData({ list: nextList })
+    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    if (typeof index !== "number") return
+    const item = this.data.quoteAnalyze.quotes[index] as QuoteAnalyzeItem | undefined
+    if (!item) return
+
+    // 修改线上数据
+    restoreQuoteDetail(item.id)
+    // 修改本地数据中的状态(removeFlag=false)
+    const nextList = this.data.quoteAnalyze.quotes.slice()
+    nextList[index] = { ...item, removeFlag: false }
+    this.setData({ quoteAnalyze: { ...this.data.quoteAnalyze, quotes: nextList } })
   },
 
   onOfflineTap(e: any) {
@@ -72,8 +51,10 @@ Page({
 
     // 修改线上数据
     offlineQuoteDetail(item.id)
-    // TODO 重新排序,将removeFlag=true的报价单放到最后
-
+    // 修改本地数据中的状态(removeFlag=true)
+    const nextList = this.data.quoteAnalyze.quotes.slice()
+    nextList[index] = { ...item, removeFlag: true }
+    this.setData({ quoteAnalyze: { ...this.data.quoteAnalyze, quotes: nextList } })
   },
 
   onDeleteTap(e: any) {
@@ -98,30 +79,6 @@ Page({
     })
   },
 
-  async queryShareList() {
-    this.setData({ loading: true })
-    try {
-      const rawList = await getMyShareQuoteList()
-      const sourceList = Array.isArray(rawList) ? rawList : []
-      const typedList = sourceList as Array<QuoteDetail & { _id?: string; quoteId?: string }>
-      const quoteIdList = typedList
-        .map(item => (item as any).quoteId || (item as any)["_id"] || "")
-        .filter(id => !!id) as string[]
-      const logs = quoteIdList.length > 0 ? await getShareQuoteLog(quoteIdList) : []
-      const logsByQuoteId: Record<string, QuoteViewLog[]> = {}
-      logs.forEach(log => {
-        const id = (log as any).quoteId
-        if (!id) return
-        if (!logsByQuoteId[id]) logsByQuoteId[id] = []
-        logsByQuoteId[id].push(log)
-      })
-      const analyseList = typedList.map(item => buildAnalyseQuoteItem(item, logsByQuoteId))
-      this.setData({ list: analyseList, loading: false })
-    } catch (e) {
-      this.setData({ list: [], loading: false })
-    }
-  },
-
   onShareAppMessage(res: any) {
     const quoteId = res.target.dataset.quoteId as string
     return {
@@ -130,56 +87,3 @@ Page({
     }
   }
 })
-
-// 确保报价单包含总金额计算结果
-function buildQuoteWithTotalAmount(item: QuoteDetail) {
-  const computeData = item.computeData || {}
-  const hasTotalAmount = typeof computeData.totalAmount === "number"
-  const totalAmount = hasTotalAmount ? computeData.totalAmount : calculateTotalAmount(item)
-  return {
-    ...item,
-    computeData: {
-      ...computeData,
-      totalAmount,
-    },
-  }
-}
-
-function buildAnalyseQuoteItem(
-  item: QuoteDetail & { _id?: string; quoteId?: string },
-  logsByQuoteId: Record<string, QuoteViewLog[]>
-) {
-  const quoteId = (item as any).quoteId || (item as any)["_id"] || ""
-  const quote = buildQuoteWithTotalAmount(item)
-  const shareDate = (quote as any).shareDate || {
-    createdAt: undefined,
-    expiresAt: quote.expiresAt,
-    isManuallyOfflined: quote.removeFlag,
-  }
-  const shareTimeText = formatDateTime(shareDate.createdAt)
-  const expireTimeText = formatDateTime(shareDate.expiresAt)
-  const viewLog = logsByQuoteId[quoteId] || []
-  const viewCount = viewLog.length
-  const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
-  const viewLogTop10 = viewLog.slice(0, 10).map(log => {
-    const viewTimeText = formatDateTime((log as any).viewTime)
-    const viewerDevice = (log as any).viewerDevice || ""
-    const deviceText = viewerDevice ? `${viewerDevice}设备` : "未知设备"
-    const displayText = `${viewTimeText} 一位${deviceText}用户查看了报价单`
-    return {
-      ...log,
-      viewTimeText,
-      displayText,
-    }
-  })
-  return {
-    quoteId,
-    quote,
-    shareTimeText,
-    expireTimeText,
-    viewCount,
-    viewCountDisplay,
-    viewLog,
-    viewLogTop10,
-  }
-}

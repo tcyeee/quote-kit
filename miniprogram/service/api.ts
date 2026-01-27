@@ -10,6 +10,7 @@ export const createQuoteDetail = (quoteDetail: QuoteDetail) => post<QuoteDetailW
 export const delQuoteDetail = (quoteId: string) => del<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}`)
 export const updateQuoteDetail = (quoteId: string, quoteDetail: QuoteDetail) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}`, quoteDetail)
 export const offlineQuoteDetail = (quoteId: string) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}/remove`)
+export const restoreQuoteDetail = (quoteId: string) => put<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}/restore`)
 
 // 阅读记录
 export const addViewLog = (viewLog: QuoteViewLog) => post<QuoteViewLog>("/quote-kit/view-logs", viewLog)
