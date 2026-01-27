@@ -7,3 +7,6 @@ export const login = (code: string) => post<LoginResponse>("/quote-kit/login", {
 export const getQuoteAction = () => get<QuoteAnalyze>("/quote-kit/analyze")
 export const getQuoteDetail = (quoteId: string) => get<QuoteDetailWithId>(`/quote-kit/quotes/${quoteId}`)
 export const createQuoteDetail = (quoteDetail: QuoteDetail) => post<QuoteDetailWithId>(`/quote-kit/quotes`, quoteDetail)
+
+// 阅读记录
+export const addViewLog = (viewLog: QuoteViewLog) => post<QuoteViewLog>("/quote-kit/view-logs", viewLog)

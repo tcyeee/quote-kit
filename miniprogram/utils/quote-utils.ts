@@ -31,11 +31,13 @@ export function calculateTotalAmount(quoteDetail: QuoteDetail) {
 }
 
 // 计算分享状态
-export function calculateShareStatus(expiresAt?: Date, isManuallyOfflined?: boolean): ShareStatus {
+export function calculateShareStatus(expiresAt?: Date | number | string, removeFlag?: boolean): ShareStatus {
     let shareStatus: ShareStatus = "normal"
-    if (isManuallyOfflined) { shareStatus = "offlined" }
+    if (removeFlag) { shareStatus = "offlined" }
     else if (expiresAt) {
-        if (expiresAt.getTime() < Date.now()) shareStatus = "expired"
+        const date = expiresAt instanceof Date ? expiresAt : new Date(expiresAt)
+        const time = date.getTime()
+        if (!Number.isNaN(time) && time < Date.now()) shareStatus = "expired"
     }
     return shareStatus
 }

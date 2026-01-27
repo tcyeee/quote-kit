@@ -45,20 +45,20 @@
     <view wx:if="{{showMoreMenu}}" class="quote-card__menu-backdrop" bindtap="onCloseMenu"></view>
     <!-- Footer -->
     <view class="quote-card__footer">
-      <view class="quote-card__creation-date">有效期至 {{formatDate(item.expiresAt) || '-'}}</view>
+      <view class="quote-card__creation-date">有效期至 {{expiresAtText}}</view>
       <button class="quote-card__detail-link" bindtap="onToggleViewLogTap">
         {{showViewLog ? '收起' : '查看阅读详情'}}
       </button>
     </view>
     <!-- View Log (Expanded) -->
-    <view wx:if="{{showViewLog && item.viewLogTop10 && item.viewLogTop10.length}}" class="quote-card__view-log">
+    <view wx:if="{{showViewLog && item.viewLogs && item.viewLogs.length}}" class="quote-card__view-log">
       <view class="quote-card__view-log-header">最近阅读记录</view>
       <view class="quote-card__view-log-list">
-        <block wx:for="{{item.viewLogTop10}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
+        <block wx:for="{{item.viewLogs}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
           <view class="quote-card__view-log-item">
             <view class="quote-card__view-log-marker">
               <view class="quote-card__view-log-dot"></view>
-              <view wx:if="{{logIndex < item.viewLogTop10.length - 1}}" class="quote-card__view-log-line"></view>
+              <view wx:if="{{logIndex < item.viewLogs.length - 1}}" class="quote-card__view-log-line"></view>
             </view>
             <text class="quote-card__view-log-text">{{log.displayText}}</text>
           </view>

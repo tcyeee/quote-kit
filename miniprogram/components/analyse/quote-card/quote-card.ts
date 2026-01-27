@@ -5,23 +5,25 @@ Component({
     styleIsolation: 'apply-shared',
   },
   properties: {
-    item: {
-      type: Object,
-      value: {} as QuoteAnalyzeItem,
-    },
-    index: {
-      type: Number,
-      value: 0,
-    },
+    item: { type: Object, value: {} as QuoteAnalyzeItem },
+    index: { type: Number, value: 0 },
   },
   data: {
     showViewLog: false,
     showMoreMenu: false,
+    expiresAtText: "-",
+  },
+  lifetimes: {
+    attached() {
+      const item = this.data.item as QuoteAnalyzeItem
+      const expiresAt = item && (item as any).expiresAt
+      const expiresAtText = expiresAt ? formatDateTime(expiresAt) : "-"
+      this.setData({ expiresAtText })
+    },
   },
   methods: {
     onPreviewTap() {
-      const item = this.data.item as any
-      const quoteId = item && item.quoteId
+      const quoteId = this.data.item.id
       if (!quoteId) return
       wx.navigateTo({
         url: "/pages/view/view?id=" + quoteId + "&entry=preview",
@@ -44,23 +46,13 @@ Component({
     },
     onToggleViewLogTap() {
       const showViewLog = this.data.showViewLog as boolean
-      this.setData({
-        showViewLog: !showViewLog,
-      })
+      this.setData({ showViewLog: !showViewLog })
     },
     onMoreTap() {
-      this.setData({
-        showMoreMenu: !this.data.showMoreMenu,
-      })
+      this.setData({ showMoreMenu: !this.data.showMoreMenu, })
     },
     onCloseMenu() {
-      this.setData({
-        showMoreMenu: false,
-      })
-    },
-
-    formatDate(expireTime: number) {
-      return formatDateTime(expireTime)
+      this.setData({ showMoreMenu: false, })
     }
   },
 })
