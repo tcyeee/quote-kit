@@ -1,4 +1,4 @@
-import { formatDateTime } from "../../../utils/base-utils"
+import { formatDateTime, formatDateWithoutYear } from "../../../utils/base-utils"
 
 Component({
   options: {
@@ -9,19 +9,35 @@ Component({
     index: { type: Number, value: 0 },
   },
   data: {
+    viewLogList: [] as QuoteViewLogWithId[],
     showViewLog: false,
     showMoreMenu: false,
     expiresAtText: "-",
   },
   lifetimes: {
     attached() {
+      this.dataInit()
+    },
+  },
+  methods: {
+    dataInit() {
+      // 过期时间
       const item = this.data.item as QuoteAnalyzeItem
       const expiresAt = item && (item as any).expiresAt
       const expiresAtText = expiresAt ? formatDateTime(expiresAt) : "-"
       this.setData({ expiresAtText })
+
+      // 遍历格式化阅读记录中的时间
+      if (item.viewLogs) {
+        const viewLogList = (item.viewLogs || []).map(log => ({
+          ...log,
+          viewTimeStr: formatDateWithoutYear(log.viewTime),
+          viewTextStr: `一位${log.viewerSystem}用户通过${log.viewerDevice}访问.`,
+        }))
+        this.setData({ viewLogList })
+      }
     },
-  },
-  methods: {
+
     onPreviewTap() {
       const quoteId = this.data.item.id
       if (!quoteId) return

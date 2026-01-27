@@ -307,7 +307,6 @@
   &__view-log-item {
     display: flex;
     align-items: stretch;
-    min-height: 48rpx;
   }
 
   &__view-log-marker {
@@ -345,15 +344,24 @@
     }
   }
 
+  &__view-log-content {
+    display: flex;
+    gap: 4rpx;
+    margin-bottom: 10rpx;
+  }
+
   &__view-log-text {
     flex: 1;
-    font-size: 24rpx;
-    color: #4a4742;
-    line-height: 1.6;
-    padding-bottom: 12rpx;
+    font-size: 23rpx;
+    color: #787877;
+  }
 
-    @media (prefers-color-scheme: dark) {
-      color: #e8dfd6;
-    }
+  &__view-log-date {
+    padding: 4rpx 12rpx;
+    border-radius: 12rpx;
+    background-color: #e1e1e1;
+    flex-shrink: 0;
+    font-size: 22rpx;
+    color: #8b8680;
   }
 }

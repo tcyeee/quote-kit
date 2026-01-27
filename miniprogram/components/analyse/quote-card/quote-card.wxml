@@ -51,18 +51,19 @@
       </button>
     </view>
     <!-- View Log (Expanded) -->
-    <view wx:if="{{showViewLog && item.viewLogs && item.viewLogs.length}}" class="quote-card__view-log">
+    <view wx:if="{{showViewLog && viewLogList.length}}" class="quote-card__view-log">
       <view class="quote-card__view-log-header">最近阅读记录</view>
       <view class="quote-card__view-log-list">
-        <block wx:for="{{item.viewLogs}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
+        <block wx:if="viewLogList" wx:for="{{viewLogList}}" wx:for-item="log" wx:for-index="logIndex" wx:key="logIndex">
           <view class="quote-card__view-log-item">
             <view class="quote-card__view-log-marker">
               <view class="quote-card__view-log-dot"></view>
               <view wx:if="{{logIndex < item.viewLogs.length - 1}}" class="quote-card__view-log-line"></view>
             </view>
-            <text class="quote-card__view-log-text">{{log.viewTime}}</text>
-            <text class="quote-card__view-log-text">{{log.viewerSystem}}</text>
-            <text class="quote-card__view-log-text">{{log.viewerDevice}}</text>
+            <view class="quote-card__view-log-content">
+              <text class="quote-card__view-log-date">{{log.viewTimeStr}}</text>
+              <text class="quote-card__view-log-text">{{log.viewTextStr}}</text>
+            </view>
           </view>
         </block>
       </view>
