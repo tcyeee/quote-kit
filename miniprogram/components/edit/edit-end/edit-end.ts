@@ -1,4 +1,5 @@
 import { calculateOverallDeliveryPeriodDays, calculateTotalAmount } from '../../../utils/quote-utils'
+import { calculateExpiresAt } from '../../../utils/base-utils'
 
 Component({
   options: {
@@ -52,7 +53,7 @@ Component({
       const quoteDetail = this.data.quoteDetail
 
       // 同步更新报价详情中的过期时间
-      quoteDetail.expiresAt = new Date(Date.now() + days * 24 * 60 * 60 * 1000)
+      quoteDetail.expiresAt = calculateExpiresAt(new Date(), days)
 
       const currentComputeData = quoteDetail.computeData || ({} as QuoteComputeData)
       currentComputeData.expiresDays = days

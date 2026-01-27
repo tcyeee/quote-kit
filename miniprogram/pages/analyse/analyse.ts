@@ -1,6 +1,9 @@
 import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote, onlineShareQuote } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
 import { formatDateTime } from "../../utils/base-utils"
+import { getQuoteAction } from "../../service/api";
+
+const app = getApp<IAppOption>()
 
 declare interface AnalyseQuote {
   quoteId: string,     // 报价单ID
@@ -16,23 +19,23 @@ declare interface AnalyseQuote {
 Page({
   data: {
     safeTop: 0,
-    // 这个字段用于展示页面信息
     list: [] as Array<AnalyseQuote>,
     loading: true,
+    quoteAnalyze: {} as QuoteAnalyze,
   },
 
   async onLoad() {
-    this.calculateSafeAreaHeight()
-    await this.queryShareList()
+    // 计算安全高度
+    const systemInfo = wx.getSystemInfoSync()
+    this.setData({ safeTop: systemInfo.statusBarHeight || 0 })
+    // 先拿到全局的报价分析数据
+    this.setData({ quoteAnalyze: app.globalData.quoteAnalyze || {} })
+    // 重新统计
+    this.setData({ quoteAnalyze: await getQuoteAction() })
   },
 
   onBackTap() {
     wx.navigateBack()
-  },
-
-  calculateSafeAreaHeight() {
-    const systemInfo = wx.getSystemInfoSync()
-    this.setData({ safeTop: systemInfo.statusBarHeight || 0 })
   },
 
   async onOnlineTap(e: any) {
@@ -48,8 +51,10 @@ Page({
     const nextList = this.data.list.slice()
     const nextQuote: QuoteDetail = {
       ...item.quote,
-      shareDate,
-    }
+      expiresAt: shareDate.expiresAt,
+      deleteFlag: false,
+      removeFlag: false,
+    } as any
     nextList[index] = {
       ...item,
       quote: nextQuote,
@@ -69,12 +74,9 @@ Page({
     // 修改本地数据并刷新视图
     const nextList = this.data.list.slice()
     const nextQuote: QuoteDetail = {
-      ...item.quote,
-      shareDate: {
-        ...(item.quote.shareDate || {}),
-        isManuallyOfflined: true,
-      },
-    }
+      ...(item.quote as any),
+      removeFlag: true,
+    } as any
     nextList[index] = {
       ...item,
       quote: nextQuote,
@@ -158,7 +160,11 @@ function buildAnalyseQuoteItem(
 ) {
   const quoteId = (item as any).quoteId || (item as any)["_id"] || ""
   const quote = buildQuoteWithTotalAmount(item)
-  const shareDate = quote.shareDate || {}
+  const shareDate = (quote as any).shareDate || {
+    createdAt: undefined,
+    expiresAt: quote.expiresAt,
+    isManuallyOfflined: quote.removeFlag,
+  }
   const shareTimeText = formatDateTime(shareDate.createdAt)
   const expireTimeText = formatDateTime(shareDate.expiresAt)
   const viewLog = logsByQuoteId[quoteId] || []
