@@ -19,6 +19,7 @@ declare interface AnalyseQuote {
 Page({
   data: {
     safeTop: 0,
+    // 废弃字段,禁止调用
     list: [] as Array<AnalyseQuote>,
     loading: true,
     quoteAnalyze: {} as QuoteAnalyze,
@@ -32,6 +33,7 @@ Page({
     this.setData({ quoteAnalyze: app.globalData.quoteAnalyze || {} })
     // 重新统计
     this.setData({ quoteAnalyze: await getQuoteAction() })
+    this.setData({ loading: false })
   },
 
   onBackTap() {
@@ -153,7 +155,6 @@ function buildQuoteWithTotalAmount(item: QuoteDetail) {
   }
 }
 
-
 function buildAnalyseQuoteItem(
   item: QuoteDetail & { _id?: string; quoteId?: string },
   logsByQuoteId: Record<string, QuoteViewLog[]>
@@ -191,4 +192,43 @@ function buildAnalyseQuoteItem(
     viewLog,
     viewLogTop10,
   }
+}
+
+function buildAnalyseListFromAnalyze(quoteAnalyze: QuoteAnalyze | undefined): AnalyseQuote[] {
+  if (!quoteAnalyze || !Array.isArray(quoteAnalyze.quotes)) return []
+  return quoteAnalyze.quotes.map(item => {
+    const quoteId = (item as any).id || (item as any).quoteId || ""
+    const quote = buildQuoteWithTotalAmount(item)
+    const shareDate = (item as any).shareDate || {
+      createdAt: undefined,
+      expiresAt: quote.expiresAt,
+      isManuallyOfflined: quote.removeFlag,
+    }
+    const shareTimeText = formatDateTime(shareDate.createdAt)
+    const expireTimeText = formatDateTime(shareDate.expiresAt)
+    const viewLog = ((item as any).viewLogs || []) as QuoteViewLog[]
+    const viewCount = typeof (item as any).viewCount === "number" ? (item as any).viewCount : viewLog.length
+    const viewCountDisplay = viewCount > 10 ? ">10" : `${viewCount}`
+    const viewLogTop10 = viewLog.slice(0, 10).map(log => {
+      const viewTimeText = formatDateTime((log as any).viewTime)
+      const viewerDevice = (log as any).viewerDevice || ""
+      const deviceText = viewerDevice ? `${viewerDevice}设备` : "未知设备"
+      const displayText = `${viewTimeText} 一位${deviceText}用户查看了报价单`
+      return {
+        ...log,
+        viewTimeText,
+        displayText,
+      }
+    })
+    return {
+      quoteId,
+      quote,
+      shareTimeText,
+      expireTimeText,
+      viewCount,
+      viewCountDisplay,
+      viewLog,
+      viewLogTop10,
+    }
+  })
 }

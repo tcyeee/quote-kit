@@ -5,6 +5,7 @@
         "binddelete",
         "bindinput",
         "bindoffline",
+        "bindonline",
         "bindtap",
         "bindtouchend",
         "bindtouchstart",
