@@ -60,7 +60,9 @@
               <view class="quote-card__view-log-dot"></view>
               <view wx:if="{{logIndex < item.viewLogs.length - 1}}" class="quote-card__view-log-line"></view>
             </view>
-            <text class="quote-card__view-log-text">{{log.displayText}}</text>
+            <text class="quote-card__view-log-text">{{log.viewTime}}</text>
+            <text class="quote-card__view-log-text">{{log.viewerSystem}}</text>
+            <text class="quote-card__view-log-text">{{log.viewerDevice}}</text>
           </view>
         </block>
       </view>
