@@ -1,7 +1,7 @@
 import { delShareQuote, getMyShareQuoteList, getShareQuoteLog, offlineShareQuote, onlineShareQuote } from "../../utils/cloud-database"
 import { calculateTotalAmount } from "../../utils/quote-utils"
 import { formatDateTime } from "../../utils/base-utils"
-import { getQuoteAction } from "../../service/api";
+import { delQuoteDetail, getQuoteAction, offlineQuoteDetail, updateQuoteDetail } from "../../service/api";
 
 const app = getApp<IAppOption>()
 
@@ -63,28 +63,39 @@ Page({
   },
 
   onOfflineTap(e: any) {
+    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    if (typeof index !== "number") return
+    const item = this.data.quoteAnalyze.quotes[index] as QuoteAnalyzeItem | undefined
+    if (!item) return
+
+    // 修改线上数据
+    offlineQuoteDetail(item.id)
+    // TODO 重新排序,将removeFlag=true的报价单放到最后
+
   },
 
   onDeleteTap(e: any) {
-    // const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
-    // const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
-    // const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
-    // if (typeof index !== "number") return
-    // const item = this.data.list[index] as AnalyseQuote | undefined
-    // if (!item) return
-    // wx.showModal({
-    //   title: "删除确认",
-    //   content: "确定要删除该报价单吗？此操作不可恢复。",
-    //   success: (res) => {
-    //     if (!res.confirm) return
-    //     // 修改本地数据
-    //     const nextList = this.data.list.slice()
-    //     nextList.splice(index, 1)
-    //     this.setData({ list: nextList })
-    //     // 修改线上数据
-    //     delShareQuote(item.quoteId)
-    //   }
-    // })
+    const detailIndex = e && e.detail && typeof e.detail.index === "number" ? e.detail.index : undefined
+    const datasetIndex = e && e.currentTarget && e.currentTarget.dataset ? e.currentTarget.dataset.index : undefined
+    const index = typeof detailIndex === "number" ? detailIndex : datasetIndex
+    if (typeof index !== "number") return
+    const item = this.data.quoteAnalyze.quotes[index] as QuoteAnalyzeItem | undefined
+    if (!item) return
+    wx.showModal({
+      title: "删除确认",
+      content: "确定要删除该报价单吗？此操作不可恢复。",
+      success: (res) => {
+        if (!res.confirm) return
+        // 修改本地数据
+        const nextList = this.data.quoteAnalyze.quotes.slice()
+        nextList.splice(index, 1)
+        this.setData({ quoteAnalyze: { ...this.data.quoteAnalyze, quotes: nextList } })
+        // 修改线上数据
+        delQuoteDetail(item.id)
+      }
+    })
   },
 
   async queryShareList() {
