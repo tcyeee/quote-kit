@@ -163,16 +163,25 @@ Page({
     }
   },
 
-  async onShareAppMessage() {
-    var quoteDetail = await this.saveQuote()
-    console.log("quote-kit: 报价单分享完成,ID:" + quoteDetail.id)
-    const title = app.globalData.quoteDetail.projectName || "报价单"
-    const content: WechatMiniprogram.Page.ICustomShareContent = {
-      title,
-      path: "/pages/view/view?id=" + quoteDetail.id + "&entry=share",
+  async onShareAppMessage(options: WechatMiniprogram.Page.IShareAppMessageOption) {
+    if (options.from === 'button') {
+      var quoteDetail = await this.saveQuote()
+      console.log("quote-kit: 报价单分享完成,ID:" + quoteDetail.id)
+      const title = app.globalData.quoteDetail.projectName || "报价单"
+      const content: WechatMiniprogram.Page.ICustomShareContent = {
+        title,
+        path: "/pages/view/view?id=" + quoteDetail.id + "&entry=share",
+        imageUrl: "/assets/share.png",
+      }
+      return content
+    }
+
+    // 右上角菜单分享
+    return {
+      title: "Quote Kit - 报价单工具",
+      path: "/pages/index/index",
       imageUrl: "/assets/share.png",
     }
-    return content
   },
 
   async saveQuote(): Promise<QuoteDetailWithId> {
