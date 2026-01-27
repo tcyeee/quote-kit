@@ -8,6 +8,7 @@ Component({
   data: {
     quoteDetail: {} as QuoteDetail,
     linkExpireDays: 7,
+    success: false,
   },
   lifetimes: {
     // 组件挂载时初始化报价详情、总价和链接有效期
@@ -63,11 +64,17 @@ Component({
     },
 
     onSaveImage() {
+      this.setData({ success: true })
       this.triggerEvent("saveimage")
     },
 
     onSaveExcel() {
+      this.setData({ success: true })
       this.triggerEvent("saveexcel")
+    },
+
+    onShare() {
+      this.setData({ success: true })
     },
 
     // 切换“发送前确认”对话框的显示状态
