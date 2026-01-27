@@ -6,6 +6,7 @@
         "bindinput",
         "bindoffline",
         "bindonline",
+        "bindsaveimage",
         "bindtap",
         "bindtouchend",
         "bindtouchstart",
@@ -21,6 +22,7 @@
         "Miniprogram",
         "Offlined",
         "projectname",
+        "saveimage",
         "Wxml",
         "xkcfr"
     ],

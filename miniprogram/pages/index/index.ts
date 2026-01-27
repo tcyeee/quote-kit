@@ -1,4 +1,4 @@
-import { createQuoteDetail } from "../../service/api"
+import { createQuoteDetail, saveAsPic } from "../../service/api"
 
 let bottomDialogHeaderTouchStartY = 0
 const app = getApp<IAppOption>()
@@ -71,11 +71,13 @@ Page({
     })
   },
 
-  onSaveImage() {
-    const preview = this.selectComponent("#quotePreview") as any
-    if (preview && typeof preview.onSaveImage === "function") {
-      preview.onSaveImage()
-    }
+  async onSaveImage() {
+    var quote = app.globalData.quoteDetail
+    var quoteDetail = await createQuoteDetail(quote)
+    var url = await saveAsPic(quoteDetail.id)
+    console.log("============");
+    console.log(url);
+    console.log("============");
   },
 
   async onShareAppMessage() {

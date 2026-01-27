@@ -44,8 +44,6 @@ Component({
       return Number.isNaN(days) ? 0 : days
     },
 
-
-
     // 点击有效期选项时更新报价详情和显示状态
     onExpireDaysTap(e: any) {
       const days = this.getExpireDaysFromEvent(e)
