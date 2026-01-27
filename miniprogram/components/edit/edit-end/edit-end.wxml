@@ -39,8 +39,9 @@
         <view class="edit-end-tip">发送完成后，系统将持续追踪报价单查看情况</view>
     </view>
     <view class="edit-end-actions">
-        <button class="action-btn secondary" bindtap="toggleConfirmDialog">重新编辑</button>
+        <button class="action-btn secondary" bindtap="toggleConfirmDialog">返回</button>
         <button class="action-btn secondary" bindtap="onSaveImage">保存为图片</button>
+        <button class="action-btn secondary" bindtap="onSaveExcel">保存为Excel</button>
         <button class="action-btn primary" open-type="share">确认发送</button>
     </view>
 </view>

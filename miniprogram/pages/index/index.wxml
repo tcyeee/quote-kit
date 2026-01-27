@@ -15,6 +15,6 @@
     <!-- 编辑索引页 -->
     <edit-index wx:if="{{!showEditEnd}}" bottom-dialog-expanded="{{bottomDialogExpanded}}" bind:quoteDetailUpdate="onQuoteDetailUpdate" bind:toggleConfirmDialog="toggleConfirmDialog" bind:toggleBottomDialog="toggleBottomDialog" />
     <!-- 编辑结束页 -->
-    <edit-end wx:else bind:toggleConfirmDialog="toggleConfirmDialog" bindsaveimage="onSaveImage" />
+    <edit-end wx:else bind:toggleConfirmDialog="toggleConfirmDialog" bindsaveimage="onSaveImage" bindsaveexcel="onSaveExcel" />
   </view>
 </view>

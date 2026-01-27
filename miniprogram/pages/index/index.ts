@@ -80,6 +80,15 @@ Page({
     console.log("============");
   },
 
+  async onSaveExcel() {
+    var quote = app.globalData.quoteDetail
+    var quoteDetail = await createQuoteDetail(quote)
+    var url = await saveAsPic(quoteDetail.id)
+    console.log("============");
+    console.log(url);
+    console.log("============");
+  },
+
   async onShareAppMessage() {
     const app = getApp<IAppOption>()
     var quote = app.globalData.quoteDetail

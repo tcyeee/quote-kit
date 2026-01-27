@@ -6,6 +6,7 @@
         "bindinput",
         "bindoffline",
         "bindonline",
+        "bindsaveexcel",
         "bindsaveimage",
         "bindtap",
         "bindtouchend",

@@ -66,6 +66,9 @@ Component({
       this.triggerEvent("saveimage")
     },
 
+    onSaveExcel() {
+      this.triggerEvent("saveexcel")
+    },
 
     // 切换“发送前确认”对话框的显示状态
     toggleConfirmDialog() {
