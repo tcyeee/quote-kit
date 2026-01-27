@@ -79,20 +79,23 @@
 }
 
 .edit-end-tip {
-  margin-top: 28rpx;
+  margin-top: 10rpx;
+  margin-bottom: 14rpx;
   font-size: 22rpx;
   line-height: 1.6;
   color: #8b8680;
 }
 
 .edit-end-actions {
-  margin-top: 40rpx;
+  width: 100%;
+  margin-top: 140rpx;
   display: flex;
+  flex-direction: column;
   gap: 24rpx;
 }
 
 .action-btn {
-  width: 100%;
+  width: 60% !important;
   height: 88rpx;
   border-radius: 999rpx;
   font-size: 26rpx;
