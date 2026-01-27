@@ -70,7 +70,14 @@ Page({
         if (!res.confirm) return
         const nextList = this.data.quoteAnalyze.quotes.slice()
         nextList.splice(result.index, 1)
-        this.setData({ quoteAnalyze: { ...this.data.quoteAnalyze, quotes: nextList } })
+        const nextTotal = this.data.quoteAnalyze.total > 0 ? this.data.quoteAnalyze.total - 1 : 0
+        this.setData({
+          quoteAnalyze: {
+            ...this.data.quoteAnalyze,
+            quotes: nextList,
+            total: nextTotal
+          }
+        })
         delQuoteDetail(result.item.id)
       }
     })
