@@ -10,3 +10,7 @@ interface QuoteViewLog {
     // 查看时间
     viewTime: Date,
 }
+
+interface QuoteViewLogWithId extends QuoteViewLog {
+    id: string,
+}

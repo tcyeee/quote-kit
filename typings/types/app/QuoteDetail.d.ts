@@ -1,5 +1,4 @@
 interface QuoteDetail {
-    id?: string,
     uid?: string,
     // 项目名称
     projectName: string,
@@ -23,6 +22,10 @@ interface QuoteDetail {
     removeFlag: boolean,
     /* 计算属性 */
     computeData?: QuoteComputeData,
+}
+
+interface QuoteDetailWithId extends QuoteDetail {
+    id: string,
 }
 
 interface QuoteComputeData {
